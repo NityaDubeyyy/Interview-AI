@@ -1,0 +1,163 @@
+.postPage {
+    background-color: var(--bg);
+    min-height: 100vh;
+    padding-bottom: 8rem;
+    color: var(--text-dark);
+}
+
+.postHeader {
+    max-width: 1200px;
+    margin: 6rem auto 2rem;
+    padding: 0 2rem;
+}
+
+.categoryTag {
+    color: #1c9cf0;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.postTitle {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-dark);
+    max-width: 900px;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.postDate {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 4rem;
+    display: block;
+}
+
+.gradientDivider {
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, #1c9cf0 0%, #1583cc 50%, #1c9cf0 100%);
+    margin-bottom: 4rem;
+}
+
+.postContentArea {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.sidebar {
+    position: sticky;
+    top: 6rem;
+    height: fit-content;
+}
+
+.sidebarLabel {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.sidebarLinks {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 3rem 0;
+}
+
+.sidebarLinks li {
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 2px solid transparent;
+    padding-left: 1rem;
+    margin-left: -1rem;
+}
+
+.sidebarLinks li:hover {
+    color: var(--primary);
+    border-left-color: #e2e8f0;
+}
+
+.activeLink {
+    color: var(--primary) !important;
+    font-weight: 700;
+    border-left-color: var(--primary) !important;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 2rem;
+}
+
+.socialIcon {
+    color: #94a3b8;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.socialIcon:hover {
+    color: var(--primary);
+}
+
+.articleBody {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #334155;
+    max-width: 720px;
+}
+
+.articleBody p {
+    margin-bottom: 2rem;
+}
+
+.articleBody h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 3rem 0 1.5rem;
+}
+
+.articleBody h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 2rem 0 1rem;
+}
+
+@media (max-width: 1024px) {
+    .postContentArea {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .sidebar {
+        position: static;
+        order: 2;
+    }
+
+    .postTitle {
+        font-size: 2.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .postTitle {
+        font-size: 2.25rem;
+    }
+}

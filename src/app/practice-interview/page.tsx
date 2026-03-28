@@ -1,0 +1,271 @@
+"use client";
+
+import styles from "./practice.module.css";
+import mainStyles from "../page.module.css";
+import Link from "next/link";
+import LoginLiquidMorph from "@/components/LoginLiquidMorph";
+import {
+    Bot, ArrowUp, Mail, MapPin, PhoneCall, ArrowRight,
+    Code, Database, Brain, Cpu, Layers, MessageSquare,
+    Terminal, BarChart, Network, ChevronDown
+} from "lucide-react";
+
+const techAgents = [
+    {
+        id: "frontend",
+        name: "Frontend Specialist",
+        icon: <Layers size={32} />,
+        desc: "React, Next.js, Performance Optimization, and System Design for the Web."
+    },
+    {
+        id: "backend",
+        name: "Backend Architect",
+        icon: <Terminal size={32} />,
+        desc: "Node.js, Go, Database Schema, Scalability, and Distributed Systems."
+    },
+    {
+        id: "datascience",
+        name: "Data Science Expert",
+        icon: <BarChart size={32} />,
+        desc: "Python, Pandas, Visualizations, and Statistical Methods for Business."
+    },
+    {
+        id: "genai",
+        name: "GenAI Specialist",
+        icon: <Brain size={32} />,
+        desc: "LLMs, RAG Architectures, Vector Stores, and AI Prompt Engineering."
+    },
+    {
+        id: "mlops",
+        name: "MLOps Engineer",
+        icon: <Network size={32} />,
+        desc: "Deployment Pipelines, Model Monitoring, and Cloud AI Infrastructure."
+    }
+];
+
+const englishExams = [
+    {
+        id: "ielts",
+        name: "IELTS",
+        tag: "International English",
+        desc: "Academic & General Training mock sessions for speaking and writing."
+    },
+    {
+        id: "toefl",
+        name: "TOEFL iBT",
+        tag: "Academic Excellence",
+        desc: "Structure your answers for university-level academic speaking tasks."
+    },
+    {
+        id: "pte",
+        name: "PTE Academic",
+        tag: "Pearson Test",
+        desc: "AI-ready preparation focusing on fluency and pronunciation scoring."
+    }
+];
+
+const coursesAgents = [
+    { id: "softskills", name: "Executive Soft Skills", icon: <MessageSquare size={32} />, desc: "Master the art of high-stakes communication." },
+    { id: "systemdesign", name: "System Design Masterclass", icon: <Cpu size={32} />, desc: "Scale your architecture knowledge from 0 to 1M." },
+    { id: "leadership", name: "Leadership Coaching", icon: <Network size={32} />, desc: "Prepare for management and VP-level inquiries." }
+];
+
+export default function PracticeInterviewPage() {
+    return (
+        <main className={styles.practicePage}>
+            <div style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: 1000, background: 'rgba(6, 9, 9, 0.7)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                <div className="container">
+                    <nav className="navbar animate-fade" style={{ background: 'transparent', padding: '1rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            <div style={{ width: '12px', height: '12px', background: 'var(--primary)', borderRadius: '50%', boxShadow: '0 0 15px var(--primary)' }}></div>
+                            <span style={{ fontWeight: 800, fontSize: '1.25rem', color: 'white', letterSpacing: '-0.02em' }}>Hire IQ</span>
+                        </div>
+                        <ul className="nav-links" style={{ fontSize: '0.9rem', color: '#d4d4d8' }}>
+                            <li className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Link href="/">Home</Link></li>
+                            <li className="nav-link active" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Link href="/practice-interview">Solutions <ChevronDown size={14} /></Link></li>
+                            <li className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Link href="#">Resources <ChevronDown size={14} /></Link></li>
+                            <li className="nav-link"><Link href="#">Pricing</Link></li>
+                        </ul>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                            <LoginLiquidMorph />
+                            <Link href="/interview-builder" className="btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.6rem 1.25rem', borderRadius: '10px', background: 'white', color: 'black', fontWeight: 600, fontSize: '0.9rem' }}>
+                                Get Started <ArrowRight size={16} />
+                            </Link>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            {/* HERO SECTION */}
+            <section className={styles.heroSection}>
+                <div className={styles.heroLabel}>Practice Arena</div>
+                <h1 className={styles.heroTitle}>Master Every Scenario with AI Agents</h1>
+                <p className={styles.heroSubtitle}>
+                    From high-stakes Technical Interviews to English Fluency exams—choose your specialized AI Agent and start practicing.
+                </p>
+            </section>
+
+            <div className={styles.mainContent}>
+                {/* Description Panel */}
+                <section className={styles.descriptionPanel}>
+                    <div className={styles.descText}>
+                        <h2>Why Practice with Interview AI?</h2>
+                        <p>
+                            Our simulation engine uses low-latency neural voices and real-time behavioral analysis
+                            to provide an experience indistinguishable from a real physical interview. You&apos;ll get
+                            immediate feedback on technical accuracy, sentiment, and structural delivery.
+                        </p>
+                        <div className={styles.statsGrid}>
+                            <div className={styles.statItem}>
+                                <span className={styles.statNumber}>94%</span>
+                                <span className={styles.statLabel}>Success Rate</span>
+                            </div>
+                            <div className={styles.statItem}>
+                                <span className={styles.statNumber}>1.2M+</span>
+                                <span className={styles.statLabel}>Sessions Held</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{ background: 'var(--dark-card)', borderRadius: '24px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--dark-border)' }}>
+                        <Bot size={120} color="var(--primary)" opacity={0.3} />
+                    </div>
+                </section>
+
+                {/* Technical Interview Section */}
+                <section>
+                    <div className={styles.sectionTitleWrapper}>
+                        <div>
+                            <h2 className={styles.sectionTitle}>Technical Interview</h2>
+                            <p className={styles.sectionSubtitle}>Select your domain and face our specialized Technical Agents.</p>
+                        </div>
+                    </div>
+                    <div className={styles.agentsGrid}>
+                        {techAgents.map((agent) => (
+                            <div key={agent.id} className={styles.agentCard}>
+                                <div className={styles.iconBox}>{agent.icon}</div>
+                                <h3 className={styles.agentName}>{agent.name}</h3>
+                                <p className={styles.agentDesc}>{agent.desc}</p>
+                                <div className={styles.startBtn}>
+                                    Start Practice <span><ArrowRight size={18} /></span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* English Conversation Practice */}
+                <section className={styles.englishSection}>
+                    <div className={styles.sectionTitleWrapper}>
+                        <div>
+                            <h2 className={styles.sectionTitle}>English Fluency</h2>
+                            <p className={styles.sectionSubtitle} style={{ color: '#94a3b8' }}>Professional & Academic proficiency exams practice.</p>
+                        </div>
+                    </div>
+                    <div className={styles.englishGrid}>
+                        {englishExams.map((exam) => (
+                            <div key={exam.id} className={styles.englishCard}>
+                                <div className={styles.examTag}>{exam.tag}</div>
+                                <div className={styles.examLogo}>{exam.name}</div>
+                                <p className={styles.agentDesc} style={{ color: '#94a3b8' }}>{exam.desc}</p>
+                                <div className={styles.startBtn} style={{ color: '#fff' }}>
+                                    Begin Mock Test <span><ArrowRight size={18} /></span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Courses Section */}
+                <section>
+                    <div className={styles.sectionTitleWrapper}>
+                        <div>
+                            <h2 className={styles.sectionTitle}>Courses & Workshops</h2>
+                            <p className={styles.sectionSubtitle}>Guided AI-driven pathways for specific high-value skills.</p>
+                        </div>
+                    </div>
+                    <div className={styles.agentsGrid}>
+                        {coursesAgents.map((course) => (
+                            <div key={course.id} className={styles.agentCard}>
+                                <div className={styles.iconBox} style={{ background: '#fff7ed', color: '#f97316' }}>{course.icon}</div>
+                                <h3 className={styles.agentName}>{course.name}</h3>
+                                <p className={styles.agentDesc}>{course.desc}</p>
+                                <div className={styles.startBtn} style={{ color: '#f97316' }}>
+                                    Explore Course <span><ArrowRight size={18} /></span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            </div>
+
+            {/* FOOTER */}
+            <footer className={mainStyles.footer}>
+                <div className="container">
+                    <div className={mainStyles.footerGrid}>
+                        <div>
+                            <div className={mainStyles.footerBrand}>
+                                <Bot size={32} color="var(--primary)" />
+                                Interview AI
+                            </div>
+                            <div className={mainStyles.footerContact}>
+                                <div className={mainStyles.footerContactItem}>
+                                    <MapPin size={18} color="var(--primary)" />
+                                    <span>1800, Walt Disney World, Bay Lake,<br />Orlando, United State</span>
+                                </div>
+                                <div className={mainStyles.footerContactItem}>
+                                    <Mail size={18} color="var(--primary)" />
+                                    <span>support@interviewai.com</span>
+                                </div>
+                                <div className={mainStyles.footerContactItem}>
+                                    <PhoneCall size={18} color="var(--primary)" />
+                                    <span>+1 (786) 259 4652</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className={mainStyles.footerColTitle}>Company</div>
+                            <div className={mainStyles.footerLinks}>
+                                <Link href="/contact">Contact Us</Link>
+                                <Link href="/blog">Blog</Link>
+                                <Link href="#">Pricing</Link>
+                                <Link href="#">Sign in / Sign Up</Link>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className={mainStyles.footerColTitle}>Quick Navigation</div>
+                            <div className={mainStyles.footerLinks}>
+                                <Link href="/">Home</Link>
+                                <Link href="/practice-interview">Career Preparation</Link>
+                                <Link href="#">Learn & Grow</Link>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className={mainStyles.footerColTitle}>Tools</div>
+                            <div className={mainStyles.footerLinks}>
+                                <Link href="#">Career Vault</Link>
+                                <Link href="#">The Prep Engine</Link>
+                                <Link href="#">Mock Interview</Link>
+                                <Link href="#">Smart Career Coach</Link>
+                                <Link href="#">Question Hub</Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={mainStyles.footerBottom}>
+                        <div>© 2026 InterviewAI. All rights reserved.</div>
+                        <div className={mainStyles.backToTop} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                            Back to the top <ArrowUp size={16} />
+                        </div>
+                    </div>
+                </div>
+
+                <div className={mainStyles.footerGiantText}>
+                    Interview AI
+                </div>
+            </footer>
+        </main>
+    );
+}
