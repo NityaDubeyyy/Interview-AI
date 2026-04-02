@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
 import TypewriterTitle from "@/components/TypewriterTitle";
 import LoginLiquidMorph from "@/components/LoginLiquidMorph";
 import InterviewStepsSection from "@/components/InterviewStepsSection";
-import { motion } from "framer-motion";
+import ScreensCandidatesSection from "@/components/ScreensCandidatesSection";
+import TextHighlightSection from "@/components/TextHighlightSection";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   PlayCircle, Star, ArrowRight, Video, Phone, Mic, Settings, Bell, Inbox,
   FileText, UserCheck, Bot, LineChart, Sparkles, Quote, Plus, ArrowUp, Mail, MapPin, PhoneCall, Users, ChevronDown, Layers, Globe, LayoutGrid, Clock, Briefcase, Zap, ShieldCheck, ClipboardCheck
@@ -17,12 +19,160 @@ import CircleExpandButton from "@/components/CircleExpandButton";
 import Counter from "@/components/Counter";
 import ElectricBorder from "@/components/ElectricBorder";
 
+// ─── Spotlight Bento Card ────────────────────────────────────────────────────
+const BENTO_TILT_MAX = 9;
+const BENTO_TILT_SPRING = { stiffness: 300, damping: 28 } as const;
+const BENTO_GLOW_SPRING = { stiffness: 180, damping: 22 } as const;
+
+function BentoSpotlightCard({
+  children,
+  dimmed,
+  onHoverStart,
+  onHoverEnd,
+  className,
+  style,
+  glowColor = 'rgba(124, 58, 237, 0.35)',
+  accentColor = 'rgba(124, 58, 237, 0.12)',
+  ...rest
+}: {
+  children: React.ReactNode;
+  dimmed: boolean;
+  onHoverStart: () => void;
+  onHoverEnd: () => void;
+  className?: string;
+  style?: React.CSSProperties;
+  glowColor?: string;
+  accentColor?: string;
+  [key: string]: any;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const normX = useMotionValue(0.5);
+  const normY = useMotionValue(0.5);
+
+  const rawRotateX = useTransform(normY, [0, 1], [BENTO_TILT_MAX, -BENTO_TILT_MAX]);
+  const rawRotateY = useTransform(normX, [0, 1], [-BENTO_TILT_MAX, BENTO_TILT_MAX]);
+
+  const rotateX = useSpring(rawRotateX, BENTO_TILT_SPRING);
+  const rotateY = useSpring(rawRotateY, BENTO_TILT_SPRING);
+  const glowOpacity = useSpring(0, BENTO_GLOW_SPRING);
+
+  const spotX = useMotionValue(50);
+  const spotY = useMotionValue(50);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width;
+    const ny = (e.clientY - rect.top) / rect.height;
+    normX.set(nx);
+    normY.set(ny);
+    spotX.set(nx * 100);
+    spotY.set(ny * 100);
+  };
+
+  const handleMouseEnter = () => {
+    glowOpacity.set(1);
+    onHoverStart();
+  };
+
+  const handleMouseLeave = () => {
+    normX.set(0.5);
+    normY.set(0.5);
+    spotX.set(50);
+    spotY.set(50);
+    glowOpacity.set(0);
+    onHoverEnd();
+  };
+
+  const spotGradient = useTransform(
+    [spotX, spotY],
+    ([x, y]: number[]) =>
+      `radial-gradient(ellipse at ${x}% ${y}%, ${glowColor}, transparent 60%)`
+  );
+
+  return (
+    <motion.div
+      ref={cardRef}
+      animate={{
+        scale: dimmed ? 0.96 : 1,
+        opacity: dimmed ? 0.45 : 1,
+      }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={className}
+      style={{
+        ...style,
+        rotateX,
+        rotateY,
+        transformPerspective: 900,
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      {...rest}
+    >
+      {/* Static accent tint */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: 'inherit',
+          background: `radial-gradient(ellipse at 20% 20%, ${accentColor}, transparent 65%)`,
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Hover spotlight glow that follows cursor */}
+      <motion.div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: 'inherit',
+          opacity: glowOpacity,
+          background: spotGradient,
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Shimmer sweep on hover */}
+      <div
+        aria-hidden="true"
+        className="bento-shimmer"
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          width: '55%',
+          transform: 'translateX(-100%) skewX(-12deg)',
+          background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.045), transparent)',
+          transition: 'transform 0.7s ease-out',
+          pointerEvents: 'none',
+          zIndex: 2,
+        }}
+      />
+
+      {/* Children stacked above overlays */}
+      <div style={{ position: 'relative', zIndex: 3, height: '100%', display: 'flex', flexDirection: 'column' }}>
+        {children}
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [activeFaqCategory, setActiveFaqCategory] = useState("Product");
   const [featureHeadingSelected, setFeatureHeadingSelected] = useState(false);
   const [selectedFeatureCard, setSelectedFeatureCard] = useState<null | { title: string; desc: string; img: string }>(null);
+  const [hoveredBento, setHoveredBento] = useState<string | null>(null);
 
   return (
     <main>
@@ -144,6 +294,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TEXT HIGHLIGHT SECTION */}
+      <TextHighlightSection />
+
       {/* HOW IT WORKS / MARVELLOUS INSIGHTS SECTION */}
       <section className={styles.section} style={{ position: 'relative', overflow: 'hidden', padding: '100px 24px', zIndex: 1 }}>
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: -1, opacity: 0.3, filter: 'sepia(1) hue-rotate(240deg) saturate(2)' }}>
@@ -170,19 +323,18 @@ export default function Home() {
           <div className={styles.bentoGrid}>
             
             {/* Box 1: Wide, Top Left */}
-            <motion.div 
+            <BentoSpotlightCard
               className={styles.bentoWide}
-              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', overflow: 'hidden', backdropFilter: 'blur(20px)', position: 'relative' }}
+              dimmed={hoveredBento !== null && hoveredBento !== 'box1'}
+              onHoverStart={() => setHoveredBento('box1')}
+              onHoverEnd={() => setHoveredBento(null)}
+              glowColor="rgba(124, 58, 237, 0.4)"
+              accentColor="rgba(124, 58, 237, 0.12)"
+              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ 
-                scale: 1.02, 
-                backgroundColor: 'rgba(30, 30, 30, 0.7)',
-                borderColor: 'rgba(124, 58, 237, 0.3)',
-                boxShadow: '0 20px 40px rgba(124, 58, 237, 0.1)'
-              }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ borderColor: 'rgba(124, 58, 237, 0.35)', boxShadow: '0 20px 40px rgba(124, 58, 237, 0.15)' }}
             >
               {/* Subtle background glow */}
               <div style={{ position: 'absolute', top: '50%', left: '50%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(124,58,237,0.1), transparent 70%)', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }}></div>
@@ -223,22 +375,21 @@ export default function Home() {
                 <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px' }}>Step 1: Add Resume</h3>
                 <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.5, maxWidth: '350px' }}>Let our smart engine tailor your AI-coaches to your career goals and profile.</p>
               </div>
-            </motion.div>
+            </BentoSpotlightCard>
 
             {/* Box 2: Narrow, Top Right */}
-            <motion.div 
+            <BentoSpotlightCard
               className={styles.bentoNarrow}
-              style={{ background: 'linear-gradient(180deg, rgba(20,20,20,0.6) 0%, rgba(30,30,30,0.4) 100%)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', overflow: 'hidden', backdropFilter: 'blur(20px)', position: 'relative' }}
+              dimmed={hoveredBento !== null && hoveredBento !== 'box2'}
+              onHoverStart={() => setHoveredBento('box2')}
+              onHoverEnd={() => setHoveredBento(null)}
+              glowColor="rgba(96, 165, 250, 0.35)"
+              accentColor="rgba(96, 165, 250, 0.10)"
+              style={{ background: 'linear-gradient(180deg, rgba(20,20,20,0.6) 0%, rgba(30,30,30,0.4) 100%)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ 
-                scale: 1.02, 
-                backgroundColor: 'rgba(30, 30, 30, 0.7)',
-                borderColor: 'rgba(124, 58, 237, 0.3)',
-                boxShadow: '0 20px 40px rgba(124, 58, 237, 0.1)'
-              }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ borderColor: 'rgba(96, 165, 250, 0.35)', boxShadow: '0 20px 40px rgba(96, 165, 250, 0.12)' }}
             >
               {/* Blur glow behind the pillars */}
               <div style={{ position: 'absolute', top: '30%', left: '50%', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%)', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }}></div>
@@ -257,22 +408,21 @@ export default function Home() {
                 <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px' }}>Step 2: Define Your Role</h3>
                 <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.5 }}>Set your target role or industry we'll fine-tune every tip for that position.</p>
               </div>
-            </motion.div>
+            </BentoSpotlightCard>
 
             {/* Box 3: Narrow, Bottom Left */}
-            <motion.div 
+            <BentoSpotlightCard
               className={styles.bentoNarrow}
-              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', overflow: 'hidden', backdropFilter: 'blur(20px)' }}
+              dimmed={hoveredBento !== null && hoveredBento !== 'box3'}
+              onHoverStart={() => setHoveredBento('box3')}
+              onHoverEnd={() => setHoveredBento(null)}
+              glowColor="rgba(52, 211, 153, 0.35)"
+              accentColor="rgba(52, 211, 153, 0.10)"
+              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ 
-                scale: 1.02, 
-                backgroundColor: 'rgba(30, 30, 30, 0.7)',
-                borderColor: 'rgba(124, 58, 237, 0.3)',
-                boxShadow: '0 20px 40px rgba(124, 58, 237, 0.1)'
-              }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ borderColor: 'rgba(52, 211, 153, 0.35)', boxShadow: '0 20px 40px rgba(52, 211, 153, 0.12)' }}
             >
               <div style={{ flex: 1, marginBottom: '30px', display: 'flex', gap: '16px', minHeight: '140px' }}>
                  <div style={{ flex: 1, background: 'linear-gradient(180deg, rgba(255,255,255,0.05), transparent)', borderRadius: '24px', padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.02)' }}>
@@ -290,22 +440,21 @@ export default function Home() {
                 <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px' }}>Step 3: Launch AI Coach</h3>
                 <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.5 }}>Practice live interviews with real-time feedback and smart follow-ups.</p>
               </div>
-            </motion.div>
+            </BentoSpotlightCard>
 
             {/* Box 4: Wide, Bottom Right */}
-            <motion.div 
+            <BentoSpotlightCard
               className={styles.bentoWide}
-              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', overflow: 'hidden', backdropFilter: 'blur(20px)' }}
+              dimmed={hoveredBento !== null && hoveredBento !== 'box4'}
+              onHoverStart={() => setHoveredBento('box4')}
+              onHoverEnd={() => setHoveredBento(null)}
+              glowColor="rgba(251, 191, 36, 0.35)"
+              accentColor="rgba(251, 191, 36, 0.10)"
+              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ 
-                scale: 1.02, 
-                backgroundColor: 'rgba(30, 30, 30, 0.7)',
-                borderColor: 'rgba(124, 58, 237, 0.3)',
-                boxShadow: '0 20px 40px rgba(124, 58, 237, 0.1)'
-              }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ borderColor: 'rgba(251, 191, 36, 0.35)', boxShadow: '0 20px 40px rgba(251, 191, 36, 0.12)' }}
             >
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px' }}>Step 4: Get Report</h3>
@@ -329,11 +478,14 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </BentoSpotlightCard>
 
           </div>
         </div>
       </section>
+
+      {/* HOW INTERVIEWAI SCREENS CANDIDATES SECTION */}
+      <ScreensCandidatesSection />
 
       {/* WHY INTERVIEW AI SECTION */}
       <section id="why-ai-section" style={{ background: '#05010D', padding: '100px 24px', position: 'relative', overflow: 'hidden' }}>
@@ -1242,21 +1394,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA SECTION */}
-      <section className={styles.ctaWrapper}>
-        <div className="container">
-          <div className={styles.ctaBox} style={{ position: 'relative', overflow: 'hidden' }}>
-            <div className={styles.ctaContent} style={{ position: 'relative', zIndex: 1 }}>
-              <h2 className={styles.ctaTitle}>Unlock Your Dream Role - One Session Away</h2>
-              <p className={styles.ctaSubtitle}>Join Interview AI powered interview simulator and step into your next opportunity with confidence.</p>
-              <CircleExpandButton href="/interview-builder" className="btn" expandColor="#ffffff" style={{ background: 'white', color: 'black', fontWeight: 700, padding: '1rem 2.5rem', borderRadius: '12px', fontSize: '1.1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                Get Started Now <ArrowRight size={20} />
-              </CircleExpandButton>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ SECTION */}
       <section className={styles.faqSection} style={{ position: 'relative' }}>
         <div className={styles.faqHeader} style={{ position: 'relative', zIndex: 1, marginBottom: '2rem' }}>
@@ -1335,6 +1472,21 @@ export default function Home() {
               <p className={styles.faqAnswer}>{faq.a}</p>
             </motion.details>
           ))}
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className={styles.ctaWrapper}>
+        <div className="container">
+          <div className={styles.ctaBox} style={{ position: 'relative', overflow: 'hidden' }}>
+            <div className={styles.ctaContent} style={{ position: 'relative', zIndex: 1 }}>
+              <h2 className={styles.ctaTitle}>Unlock Your Dream Role - One Session Away</h2>
+              <p className={styles.ctaSubtitle}>Join Interview AI powered interview simulator and step into your next opportunity with confidence.</p>
+              <CircleExpandButton href="/interview-builder" className="btn" expandColor="#ffffff" style={{ background: 'white', color: 'black', fontWeight: 700, padding: '1rem 2.5rem', borderRadius: '12px', fontSize: '1.1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                Get Started Now <ArrowRight size={20} />
+              </CircleExpandButton>
+            </div>
+          </div>
         </div>
       </section>
 

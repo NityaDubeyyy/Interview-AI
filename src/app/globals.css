@@ -361,3 +361,8 @@ body {
     left: 100%;
     transition: all 1.2s ease-in-out;
 }
+
+/* ─── Bento Spotlight Card — shimmer sweep ─── */
+*:hover .bento-shimmer {
+  transform: translateX(280%) skewX(-12deg) !important;
+}
