@@ -37,3 +37,4 @@ export default function Counter({ value }: CounterProps) {
 
   return <span ref={ref}>{displayValue}</span>;
 }
+

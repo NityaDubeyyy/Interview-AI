@@ -1,18 +1,18 @@
 
 :root {
-  --primary: #7C3AED;
-  --primary-rgb: 124, 58, 237;
-  --primary-hover: #6D28D9;
-  --accent: #7C3AED;
+  --primary: #8B5CF6;
+  --primary-rgb: 139, 92, 246;
+  --primary-hover: #7C3AED;
+  --accent: #8B5CF6;
   --bg: #05010D;
   --text-dark: #FFFFFF;
   --text-muted: #94A3B8;
   --card-bg: #0F0A1A;
-  --border: rgba(124, 58, 237, 0.2);
+  --border: rgba(139, 92, 246, 0.2);
 
   --dark-bg: #05010D;
   --dark-card: #0F0A1A;
-  --dark-border: rgba(124, 58, 237, 0.3);
+  --dark-border: rgba(139, 92, 246, 0.3);
   --dark-text: #FFFFFF;
   --dark-muted: #94A3B8;
   --success: #10B981;
@@ -43,18 +43,19 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   min-height: 100vh;
+  padding-top: 5rem;
 }
 
 .btn-primary {
   background: var(--primary);
   color: white;
-  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.3);
 }
 
 .btn-primary:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
 }
 
 /* Container */
@@ -91,13 +92,13 @@ body {
 .btn-primary {
   background: var(--primary);
   color: white;
-  box-shadow: 0 4px 14px 0 rgba(28, 156, 240, 0.3);
+  box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.3);
 }
 
 .btn-primary:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(28, 156, 240, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
 }
 
 .btn-secondary {
@@ -295,7 +296,7 @@ body {
 .nav-link:hover {
     transform: scale(1.15) translateY(-2px);
     color: #ffffff;
-    text-shadow: 0 0 15px rgba(124, 58, 237, 0.8);
+    text-shadow: 0 0 15px rgba(139, 92, 246, 0.8);
 }
 
 /* 3D Image Tilt & Shine Reveal */
@@ -352,7 +353,7 @@ body {
 .card-container.active .image-card {
     transform: rotateX(0deg) rotateY(0deg) scale(1.05) translateZ(50px);
     box-shadow: 0 60px 100px rgba(0,0,0,0.8), 
-                0 0 40px rgba(124, 58, 237, 0.2);
+                0 0 40px rgba(139, 92, 246, 0.2);
 }
 
 /* Trigger Shine Animation on click */

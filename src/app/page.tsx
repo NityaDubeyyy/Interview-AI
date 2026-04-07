@@ -8,11 +8,14 @@ import TypewriterTitle from "@/components/TypewriterTitle";
 import LoginLiquidMorph from "@/components/LoginLiquidMorph";
 import InterviewStepsSection from "@/components/InterviewStepsSection";
 import ScreensCandidatesSection from "@/components/ScreensCandidatesSection";
+import RecruitingFeaturesSection from "@/components/RecruitingFeaturesSection";
+import StatsSection from "@/components/StatsSection";
+import Navbar from "@/components/Navbar";
 import TextHighlightSection from "@/components/TextHighlightSection";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import {
   PlayCircle, Star, ArrowRight, Video, Phone, Mic, Settings, Bell, Inbox,
-  FileText, UserCheck, Bot, LineChart, Sparkles, Quote, Plus, ArrowUp, Mail, MapPin, PhoneCall, Users, ChevronDown, Layers, Globe, LayoutGrid, Clock, Briefcase, Zap, ShieldCheck, ClipboardCheck
+  FileText, UserCheck, Bot, LineChart, Sparkles, Quote, Plus, ArrowUp, Mail, MapPin, PhoneCall, Users, ChevronDown, Layers, Globe, LayoutGrid, Clock, Briefcase, Zap, ShieldCheck, ClipboardCheck, ArrowUpRight, ChevronRight
 } from "lucide-react";
 import DarkVeil from "@/components/DarkVeil";
 import CircleExpandButton from "@/components/CircleExpandButton";
@@ -31,8 +34,8 @@ function BentoSpotlightCard({
   onHoverEnd,
   className,
   style,
-  glowColor = 'rgba(124, 58, 237, 0.35)',
-  accentColor = 'rgba(124, 58, 237, 0.12)',
+  glowColor = 'rgba(139, 92, 246, 0.35)',
+  accentColor = 'rgba(139, 92, 246, 0.12)',
   ...rest
 }: {
   children: React.ReactNode;
@@ -173,58 +176,21 @@ export default function Home() {
   const [featureHeadingSelected, setFeatureHeadingSelected] = useState(false);
   const [selectedFeatureCard, setSelectedFeatureCard] = useState<null | { title: string; desc: string; img: string }>(null);
   const [hoveredBento, setHoveredBento] = useState<string | null>(null);
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
 
   return (
     <main>
+      <Navbar />
       {/* HERO SECTION WITH NAVBAR */}
       <section className={styles.hero} style={{ position: 'relative', zIndex: 0, overflow: 'hidden' }}>
         <DarkVeil hueShift={0} noiseIntensity={0.03} scanlineIntensity={0.2} speed={0.2} warpAmount={0.3} />
-        <div style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: 1000, background: 'transparent', backdropFilter: 'blur(12px)' }}>
-          <div className="container">
-            <nav className="navbar animate-fade" style={{ background: 'transparent', padding: '1.5rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div style={{ position: 'relative', width: '24px', height: '24px', background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%)', transform: 'rotate(45deg)', borderRadius: '4px' }}>
-                  <div style={{ position: 'absolute', inset: '6px', background: 'white', borderRadius: '2px' }}></div>
-                </div>
-                <div className="brand-scene" style={{ fontWeight: 700, fontSize: '1.25rem', color: 'white', letterSpacing: '-0.02em' }}>
-                  <span className="brand-word">Interview</span>
-                  <span className="brand-word">AI</span>
-                </div>
-              </div>
-              <ul className="nav-links" style={{ fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.7)', display: 'flex', gap: '2rem' }}>
-                <li className="nav-link">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
-                    Product <ChevronDown size={14} />
-                  </div>
-                </li>
-                <li className="nav-link">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
-                    Solutions <ChevronDown size={14} />
-                  </div>
-                </li>
-                <li className="nav-link">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
-                    Resources <ChevronDown size={14} />
-                  </div>
-                </li>
-                <li className="nav-link"><Link href="#">Pricing</Link></li>
-              </ul>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                <CircleExpandButton className="btn" href="/interview-builder" style={{ background: 'white', border: 'none', color: 'black', padding: '0.6rem 1.5rem', borderRadius: '8px', fontSize: '0.9rem', fontWeight: 600, boxShadow: '0 4px 12px rgba(255, 255, 255, 0.1)', cursor: 'pointer' }}>
-                  Get Started
-                </CircleExpandButton>
-              </div>
-            </nav>
-          </div>
-        </div>
-
-        <div className={`container ${styles.heroContent}`}>
+        <div className={`container ${styles.heroContent}`} style={{ position: 'relative', zIndex: 10, marginTop: '5rem' }}>
           <motion.div 
             className={styles.heroBadge}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '0.5rem 1.25rem', borderRadius: '99px', display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2.5rem' }}
+            style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '0.5rem 1.25rem', borderRadius: '99px', display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}
           >
             <Globe size={16} className={styles.badgeIcon} />
             <span style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.7)' }}>Smarter Interviews, Faster Hiring</span>
@@ -235,12 +201,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            style={{ fontSize: '5rem', fontWeight: 700, lineHeight: 1.1, marginBottom: '2rem' }}
+            style={{ fontSize: '4.5rem', fontWeight: 700, lineHeight: 1.1, marginBottom: '1rem' }}
           >
             <span className="hero-word">Reduce</span>
             <span className="hero-word">Hiring</span>
             <span className="hero-word">Time</span>
-            <div style={{ flexBasis: '100%', height: 0 }}></div>
             <span className="hero-word">With</span>
             <span className="hero-word">AI</span>
             <span className="hero-word">Interview</span>
@@ -252,9 +217,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.6)', maxWidth: '800px', margin: '0 auto 3.5rem', lineHeight: 1.6 }}
+            style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.6)', maxWidth: '800px', margin: '0 auto 2rem', lineHeight: 1.6 }}
           >
-            Streamline interviews, analyse candidates with AI, and make <br /> faster, <br /> data-driven hiring decisions — all in one unified platform.
+            Streamline interviews, analyse candidates with AI, and make faster, <br /> data-driven hiring decisions — all in one unified platform.
           </motion.p>
 
           <motion.div 
@@ -262,13 +227,13 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginBottom: '6rem' }}
+            style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginBottom: '4rem' }}
           >
-            <button className={styles.btnOutline} style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '1rem 2.5rem', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <Video size={20} /> Watch Demo
+            <button className={styles.btnPrimary} style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)', color: 'white', padding: '0.85rem 2rem', borderRadius: '999px', boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)', display: 'flex', alignItems: 'center', gap: '0.6rem', border: 'none', fontWeight: 600, fontSize: '0.95rem' }}>
+              Start a project <ArrowUpRight size={18} />
             </button>
-            <button className={styles.btnPrimary} style={{ background: 'white', color: 'black', padding: '1rem 2.5rem', borderRadius: '12px', boxShadow: '0 10px 30px rgba(255, 255, 255, 0.1)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <Sparkles size={20} /> Get AI Analysis
+            <button className={styles.btnOutline} style={{ background: 'rgba(10, 10, 18, 0.8)', border: '1px solid rgba(255, 255, 255, 0.15)', color: 'white', padding: '0.85rem 2rem', borderRadius: '999px', display: 'flex', alignItems: 'center', gap: '0.6rem', fontWeight: 500, fontSize: '0.95rem' }}>
+              Explore work
             </button>
           </motion.div>
 
@@ -280,7 +245,7 @@ export default function Home() {
             transition={{ delay: 0.8, duration: 1 }}
             style={{ width: '100%', maxWidth: '1100px', margin: '0 auto', position: 'relative', perspective: '2000px' }}
           >
-            <div className={`image-card ${styles.dashboardFrame}`} style={{ border: '1px solid rgba(255, 255, 255, 0.1)', position: 'relative', zIndex: 1, width: '100%', height: '600px', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 30px 100px rgba(124, 58, 237, 0.15)' }}>
+            <div className={`image-card ${styles.dashboardFrame}`} style={{ border: '1px solid rgba(255, 255, 255, 0.1)', position: 'relative', zIndex: 1, width: '100%', height: '600px', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 30px 100px rgba(139, 92, 246, 0.15)' }}>
               <video 
                 autoPlay 
                 loop 
@@ -292,10 +257,76 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        {/* LOGO CLOUD SECTION */}
+        <div className="container" style={{ marginTop: '2rem', paddingBottom: '4rem' }}>
+          <motion.div 
+            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.logoCloudContainer}
+          >
+            <div className={styles.logoCloudWrapper}>
+              <div className={styles.centralLogo}>
+                <div className={styles.logoPulseRing} />
+                <div className={styles.logoPulseRing} />
+                <div className={styles.logoPulseRing} />
+                <div className={styles.centralLogoInner}>
+                  {/* Custom Dot Pattern Icon matching the image */}
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                    <circle cx="12" cy="4" r="2" />
+                    <circle cx="8" cy="8" r="2" />
+                    <circle cx="12" cy="8" r="2" />
+                    <circle cx="16" cy="8" r="2" />
+                    <circle cx="4" cy="12" r="2" />
+                    <circle cx="8" cy="12" r="2" />
+                    <circle cx="12" cy="12" r="2" />
+                    <circle cx="16" cy="12" r="2" />
+                    <circle cx="20" cy="12" r="2" />
+                    <circle cx="8" cy="16" r="2" />
+                    <circle cx="12" cy="16" r="2" />
+                    <circle cx="16" cy="16" r="2" />
+                    <circle cx="12" cy="20" r="2" />
+                  </svg>
+                </div>
+              </div>
+              
+              <div className={styles.logoCloud}>
+                {/* First Set of Logos */}
+                <div className={styles.logoItem}><Layers size={22} /><span>Leafe</span></div>
+                <div className={styles.logoItem}><Globe size={22} /><span>Merc</span></div>
+                <div className={styles.logoItem}><Zap size={22} /><span>luminous</span></div>
+                <div className={styles.logoItem}><LayoutGrid size={22} /><span>hue</span></div>
+                <div className={styles.logoItem}><ShieldCheck size={22} /><span>Safe</span></div>
+                <div className={styles.logoItem}><Users size={22} /><span>Collaborate</span></div>
+                <div className={styles.logoItem}><Clock size={22} /><span>FastTrack</span></div>
+                <div className={styles.logoItem}><Star size={22} /><span>Nexus</span></div>
+                <div className={styles.logoItem}><Plus size={22} /><span>Orbit</span></div>
+                <div className={styles.logoItem}><Sparkles size={22} /><span>Pulse</span></div>
+
+                {/* Second Set for Seamless Loop */}
+                <div className={styles.logoItem}><Layers size={22} /><span>Leafe</span></div>
+                <div className={styles.logoItem}><Globe size={22} /><span>Merc</span></div>
+                <div className={styles.logoItem}><Zap size={22} /><span>luminous</span></div>
+                <div className={styles.logoItem}><LayoutGrid size={22} /><span>hue</span></div>
+                <div className={styles.logoItem}><ShieldCheck size={22} /><span>Safe</span></div>
+                <div className={styles.logoItem}><Users size={22} /><span>Collaborate</span></div>
+                <div className={styles.logoItem}><Clock size={22} /><span>FastTrack</span></div>
+                <div className={styles.logoItem}><Star size={22} /><span>Nexus</span></div>
+                <div className={styles.logoItem}><Plus size={22} /><span>Orbit</span></div>
+                <div className={styles.logoItem}><Sparkles size={22} /><span>Pulse</span></div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* TEXT HIGHLIGHT SECTION */}
       <TextHighlightSection />
+
+      {/* HOW INTERVIEWAI SCREENS CANDIDATES SECTION */}
+      <ScreensCandidatesSection />
 
       {/* HOW IT WORKS / MARVELLOUS INSIGHTS SECTION */}
       <section className={styles.section} style={{ position: 'relative', overflow: 'hidden', padding: '100px 24px', zIndex: 1 }}>
@@ -328,13 +359,13 @@ export default function Home() {
               dimmed={hoveredBento !== null && hoveredBento !== 'box1'}
               onHoverStart={() => setHoveredBento('box1')}
               onHoverEnd={() => setHoveredBento(null)}
-              glowColor="rgba(124, 58, 237, 0.4)"
-              accentColor="rgba(124, 58, 237, 0.12)"
+              glowColor="rgba(139, 92, 246, 0.4)"
+              accentColor="rgba(139, 92, 246, 0.12)"
               style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ borderColor: 'rgba(124, 58, 237, 0.35)', boxShadow: '0 20px 40px rgba(124, 58, 237, 0.15)' }}
+              whileHover={{ borderColor: 'rgba(139, 92, 246, 0.35)', boxShadow: '0 20px 40px rgba(139, 92, 246, 0.15)' }}
             >
               {/* Subtle background glow */}
               <div style={{ position: 'absolute', top: '50%', left: '50%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(124,58,237,0.1), transparent 70%)', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }}></div>
@@ -484,268 +515,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW INTERVIEWAI SCREENS CANDIDATES SECTION */}
-      <ScreensCandidatesSection />
 
-      {/* WHY INTERVIEW AI SECTION */}
-      <section id="why-ai-section" style={{ background: '#05010D', padding: '100px 24px', position: 'relative', overflow: 'hidden' }}>
-        <div className="container">
-          <motion.div 
-            style={{ textAlign: 'center', marginBottom: '64px' }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <p style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '1.5px', color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '16px' }}>Why Interview AI</p>
-            <h2 style={{ fontSize: '42px', fontWeight: 700, color: '#ffffff', maxWidth: '700px', margin: '0 auto 20px', lineHeight: 1.1 }}>The smarter way to land your dream job</h2>
-            <p style={{ fontSize: '18px', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', lineHeight: '1.6' }}>Traditional interview prep is guesswork. We provide the intelligent AI systems to give you the edge.</p>
-          </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', maxWidth: '1200px', margin: '0 auto 80px', position: 'relative', zIndex: 10 }}>
-            {/* Background connecting lines to mimic layout design */}
-            <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: -1 }}>
-               {/* Line from Instant AI to Role-specific */}
-               <path d="M 50% 25% L 54% 25% L 54% 15% L 60% 15%" stroke="rgba(124, 58, 237, 0.4)" strokeWidth="2" fill="none" style={{ filter: 'drop-shadow(0 0 6px rgba(124,58,237,0.6))' }} />
-               {/* Line from Role-specific to Track progress */}
-               <path d="M 75% 30% L 75% 45%" stroke="rgba(124, 58, 237, 0.4)" strokeWidth="2" fill="none" style={{ filter: 'drop-shadow(0 0 6px rgba(124,58,237,0.6))' }} />
-               {/* Line from Instant AI to Smart Career Coach */}
-               <path d="M 23% 65% L 23% 75%" stroke="rgba(124, 58, 237, 0.4)" strokeWidth="2" fill="none" style={{ filter: 'drop-shadow(0 0 6px rgba(124,58,237,0.6))' }} />
-               {/* Line from Smart Career Coach to Comprehensive Reports */}
-               <path d="M 35% 85% L 40% 85%" stroke="rgba(124, 58, 237, 0.4)" strokeWidth="2" fill="none" style={{ filter: 'drop-shadow(0 0 6px rgba(124,58,237,0.6))' }} />
-               {/* Line from Track progress to Comprehensive reports */}
-               <path d="M 65% 65% L 65% 75% L 55% 75%" stroke="rgba(124, 58, 237, 0.4)" strokeWidth="2" fill="none" style={{ filter: 'drop-shadow(0 0 6px rgba(124,58,237,0.6))' }} />
-               {/* Line from Comprehensive reports to Private and secure */}
-               <path d="M 65% 85% L 75% 85%" stroke="rgba(124, 58, 237, 0.4)" strokeWidth="2" fill="none" style={{ filter: 'drop-shadow(0 0 6px rgba(124,58,237,0.6))' }} />
-            </svg>
-
-            {[
-              { 
-                icon: <Clock size={32} color="var(--primary)" />, 
-                title: "Instant AI feedback", 
-                desc: "Get detailed, real-time feedback on your answers, tone, and clarity the moment you finish speaking.",
-                gridCol: "1 / 3",
-                gridRow: "1 / 3",
-                height: "450px",
-                frontContent: (
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%', padding: '0 24px', gap: '20px' }}>
-                    <div style={{ flex: '0 0 35%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', gap: '16px' }}>
-                      <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'rgba(124, 58, 237, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Clock size={32} color="var(--primary)" />
-                      </div>
-                      <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#fff', margin: 0 }}>Instant AI<br/>feedback</h3>
-                    </div>
-                    {/* The requested video in place of the image */}
-                    <div style={{ flex: '1', height: '85%', background: '#0a0a0a', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)', boxShadow: '0 20px 40px rgba(0,0,0,0.5)' }}>
-                      <video autoPlay loop muted playsInline src="/whatsapp-video.mp4" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </div>
-                  </div>
-                )
-              },
-              { 
-                icon: <Briefcase size={32} color="var(--primary)" />, 
-                title: "Role-specific questions", 
-                desc: "Practice with questions tailored to your exact industry—software, finance, marketing and more.",
-                gridCol: "3 / 5",
-                gridRow: "1 / 2",
-                height: "213px",
-                frontContent: (
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', height: '100%', padding: '0 32px', gap: '24px', position: 'relative' }}>
-                    <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'rgba(124, 58, 237, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Briefcase size={32} color="var(--primary)" />
-                    </div>
-                    <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#fff', margin: 0, textAlign: 'left' }}>Role-specific questions</h3>
-                    <div style={{ position: 'absolute', right: '30px', display: 'flex', gap: '10px', flexWrap: 'wrap', width: '100px' }}>
-                      <div style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Bot size={16} color="var(--primary)"/></div>
-                      <div style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><ShieldCheck size={16} color="#4ade80"/></div>
-                      <div style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><UserCheck size={16} color="#60a5fa"/></div>
-                    </div>
-                  </div>
-                )
-              },
-              { 
-                icon: <Zap size={32} color="var(--primary)" />, 
-                title: "Track your progress", 
-                desc: "Watch your improvement with session-by-session analytics. Know exactly where you've grown.",
-                gridCol: "3 / 5",
-                gridRow: "2 / 3",
-                height: "213px",
-                frontContent: null
-              },
-              { 
-                icon: <Bot size={32} color="var(--primary)" />, 
-                title: "Smart Career Coach", 
-                desc: "Your AI coach adapts to your performance, targets weak spots, and suggests high-impact practice.",
-                gridCol: "1 / 2",
-                gridRow: "3 / 4",
-                height: "213px",
-                frontContent: null
-              },
-              { 
-                icon: <ClipboardCheck size={32} color="var(--primary)" />, 
-                title: "Comprehensive reports", 
-                desc: "Receive a personalised report after every session with strengths and sample better answers.",
-                gridCol: "2 / 4",
-                gridRow: "3 / 4",
-                height: "213px",
-                frontContent: null
-              },
-              { 
-                icon: <ShieldCheck size={32} color="var(--primary)" />, 
-                title: "Private and secure", 
-                desc: "Your data is completely private. We never share your performance data with third parties.",
-                gridCol: "4 / 5",
-                gridRow: "3 / 4",
-                height: "213px",
-                frontContent: null
-              }
-            ].map((feature, i) => (
-              <motion.div 
-                key={i}
-                style={{ 
-                  height: feature.height || '240px', 
-                  gridColumn: feature.gridCol, 
-                  gridRow: feature.gridRow,
-                  perspective: '1000px' 
-                }}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-              >
-                <motion.div
-                  style={{ 
-                    position: 'relative',
-                    width: '100%',
-                    height: '100%',
-                    transformStyle: 'preserve-3d',
-                    cursor: 'pointer'
-                  }}
-                  whileHover={{ rotateY: 180, scale: 1.02 }}
-                  transition={{ duration: 0.5, type: 'spring', stiffness: 300, damping: 25 }}
-                >
-                  {/* Front Side */}
-                  <div style={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    backfaceVisibility: 'hidden',
-                    background: 'var(--card-bg)',
-                    borderRadius: '20px',
-                    padding: feature.frontContent ? '0' : '32px',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    gap: '20px',
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)'
-                  }}>
-                    {feature.frontContent ? feature.frontContent : (
-                      <>
-                        <div style={{ 
-                          width: '64px', 
-                          height: '64px', 
-                          borderRadius: '16px', 
-                          background: 'rgba(124, 58, 237, 0.1)', 
-                          display: 'flex', 
-                          alignItems: 'center', 
-                          justifyContent: 'center'
-                        }}>
-                          {feature.icon}
-                        </div>
-                        <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', margin: 0 }}>{feature.title}</h3>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Back Side */}
-                  <div style={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    backfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)',
-                    background: 'linear-gradient(135deg, #0F0A1A 0%, #1A1033 100%)',
-                    borderRadius: '20px',
-                    padding: '32px',
-                    border: '1px solid var(--primary)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    boxShadow: '0 10px 30px rgba(124, 58, 237, 0.2)'
-                  }}>
-                    <p style={{ fontSize: '15px', color: '#fff', lineHeight: '1.6', margin: 0, fontWeight: 500 }}>{feature.desc}</p>
-                    <div style={{ marginTop: '20px', color: 'var(--primary)', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                      Learn More
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div 
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', maxWidth: '1000px', margin: '0 auto 80px', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '24px', border: '1px solid rgba(255, 255, 255, 0.08)', overflow: 'hidden' }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            {[
-              { value: "3x", label: "Offer Rate" },
-              { value: "50k+", label: "Practiced" },
-              { value: "94%", label: "Confidence" },
-              { value: "500+", label: "Roles" }
-            ].map((stat, i) => (
-              <motion.div 
-                key={i} 
-                style={{ padding: '40px 24px', textAlign: 'center', borderRight: i === 3 ? 'none' : '1px solid rgba(255, 255, 255, 0.08)', cursor: 'default' }}
-                whileHover={{ scale: 1.05, background: 'rgba(255, 255, 255, 0.05)', zIndex: 10 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-              >
-                <p style={{ fontSize: '40px', fontWeight: 700, color: 'var(--primary)', margin: '0 0 8px' }}>
-                  <Counter value={stat.value} />
-                </p>
-                <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div 
-            style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', padding: '60px 40px', borderRadius: '32px', background: 'radial-gradient(circle at top, rgba(124, 58, 237, 0.15) 0%, transparent 70%)', border: '1px solid rgba(124, 58, 237, 0.1)' }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h3 style={{ fontSize: '32px', fontWeight: 700, color: '#fff', margin: '0 0 16px' }}>Ready to ace your next interview?</h3>
-            <p style={{ fontSize: '16px', color: 'var(--text-muted)', margin: '0 0 32px' }}>Start your free session today. No credit card required.</p>
-            <Link href="/interview-builder" style={{ display: 'inline-block', background: 'var(--primary)', color: '#fff', fontSize: '16px', fontWeight: 600, padding: '16px 40px', textDecoration: 'none', boxShadow: '0 10px 20px rgba(124, 58, 237, 0.3)', transition: 'transform 0.2s ease', borderRadius: '999px' }}>
-              Start free session ↗
-            </Link>
-          </motion.div>
-        </div>
-      </section>
- 
-      {/* INTERACTIVE QUESTION CREATOR DASHBOARD LINK START */}
-      <section className={styles.section} style={{ padding: '6rem 0', textAlign: 'center' }}>
-        <motion.div className="container">
-          <h2 className={styles.sectionTitle}>Build Custom Interview Scripts</h2>
-          <p className={styles.sectionSubtitle} style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
-            Customize your questions, set the roles, and get ready for a perfect interview experience with our Interactive Builder.
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Link href="/interview-builder" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.8rem 1.5rem', borderRadius: '8px', background: 'var(--primary)', color: 'white', fontWeight: 600 }}>
-              Open Interactive Builder <ArrowRight size={18} />
-            </Link>
-          </div>
-        </motion.div>
-      </section>
-      {/* INTERACTIVE QUESTION CREATOR DASHBOARD LINK END */}
+      {/* RECRUITING FEATURES (FROM IMAGES) */}
+      <RecruitingFeaturesSection />
 
       {/* CUSTOM INTERVIEW STEPS */}
       <InterviewStepsSection />
@@ -774,7 +547,7 @@ export default function Home() {
             onClick={(e) => e.stopPropagation()}
             style={{
               background: 'rgba(10, 10, 18, 0.95)',
-              border: '1px solid rgba(124, 58, 237, 0.4)',
+              border: '1px solid rgba(139, 92, 246, 0.4)',
               borderRadius: '28px',
               boxShadow: '0 0 0 1px rgba(255,255,255,0.05), 0 40px 80px -15px rgba(124,58,237,0.3), 0 0 120px rgba(124,58,237,0.12)',
               maxWidth: '900px',
@@ -831,340 +604,9 @@ export default function Home() {
         </motion.div>
       )}
 
-      {/* FEATURES SECTION (DARK THEME) */}
-      <section className={styles.darkSection}>
-        <motion.div 
-          className="container" 
-          style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        >
-          <span className="section-label" style={{ color: 'var(--primary)', background: 'rgba(37, 99, 235, 0.1)', padding: '0.4rem 1rem', borderRadius: '99px', border: '1px solid rgba(37, 99, 235, 0.2)' }}>Key Features</span>
 
-          {/* CLICKABLE HEADING WITH LINING BOX EFFECT */}
-          <motion.div
-            style={{
-              display: 'inline-block',
-              position: 'relative',
-              marginTop: '1.5rem',
-              cursor: 'pointer',
-              padding: '16px 28px',
-              borderRadius: '16px',
-              transition: 'all 0.3s ease'
-            }}
-            onClick={() => setFeatureHeadingSelected(s => !s)}
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.99 }}
-          >
-            {/* Corner accent lines that appear on click - like the reference image */}
-            <motion.div
-              animate={{ opacity: featureHeadingSelected ? 1 : 0, scale: featureHeadingSelected ? 1 : 0.92 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              style={{ pointerEvents: 'none', position: 'absolute', inset: 0, borderRadius: '16px' }}
-            >
-              {/* Full border glow */}
-              <div style={{ position: 'absolute', inset: 0, borderRadius: '16px', border: '1.5px solid rgba(124,58,237,0.7)', boxShadow: '0 0 18px rgba(124,58,237,0.25), inset 0 0 18px rgba(124,58,237,0.07)' }} />
-              {/* Corner TL */}
-              <div style={{ position: 'absolute', top: '-2px', left: '-2px', width: '18px', height: '18px', borderTop: '3px solid #a78bfa', borderLeft: '3px solid #a78bfa', borderRadius: '16px 0 0 0' }} />
-              {/* Corner TR */}
-              <div style={{ position: 'absolute', top: '-2px', right: '-2px', width: '18px', height: '18px', borderTop: '3px solid #a78bfa', borderRight: '3px solid #a78bfa', borderRadius: '0 16px 0 0' }} />
-              {/* Corner BL */}
-              <div style={{ position: 'absolute', bottom: '-2px', left: '-2px', width: '18px', height: '18px', borderBottom: '3px solid #a78bfa', borderLeft: '3px solid #a78bfa', borderRadius: '0 0 0 16px' }} />
-              {/* Corner BR */}
-              <div style={{ position: 'absolute', bottom: '-2px', right: '-2px', width: '18px', height: '18px', borderBottom: '3px solid #a78bfa', borderRight: '3px solid #a78bfa', borderRadius: '0 0 16px 0' }} />
-              {/* Scan line shimmer */}
-              <motion.div
-                animate={{ x: featureHeadingSelected ? ['0%', '100%'] : '0%' }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: 'linear', repeatType: 'loop' }}
-                style={{ position: 'absolute', top: 0, left: 0, width: '40%', height: '100%', background: 'linear-gradient(90deg, transparent, rgba(167,139,250,0.15), transparent)', borderRadius: '16px', pointerEvents: 'none' }}
-              />
-            </motion.div>
-
-            <motion.h2
-              className={styles.sectionTitle}
-              style={{ margin: 0, position: 'relative', zIndex: 1 }}
-              animate={{ color: featureHeadingSelected ? '#c4b5fd' : '#ffffff' }}
-              transition={{ duration: 0.3 }}
-            >
-              Smart Tools for AI-Powered Interview Practice
-            </motion.h2>
-
-            {/* Click hint */}
-            <motion.span
-              animate={{ opacity: featureHeadingSelected ? 0 : 0.4 }}
-              style={{ position: 'absolute', right: '-8px', top: '-22px', fontSize: '11px', color: 'rgba(255,255,255,0.5)', letterSpacing: '1px', fontWeight: 500, whiteSpace: 'nowrap' }}
-            >
-              click to select ↗
-            </motion.span>
-          </motion.div>
-
-          <motion.p 
-            className={styles.sectionSubtitle} 
-            style={{ maxWidth: '700px', margin: '0 auto' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Practice smarter, not harder — our AI-powered tools simulate real interview scenarios, give instant feedback, and help you improve with every session.
-          </motion.p>
-
-          {/* BENTO FEATURE GRID */}
-          <div className={styles.featureBentoGrid}>
-            {/* CARD 1: Generate scores based on pictures (TALL) */}
-            <motion.div 
-              className={`${styles.featureBentoCard} ${styles.featureBentoCardTall}`}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              onClick={() => setSelectedFeatureCard({ title: 'AI Visual Analysis', desc: 'Our AI analyzes your visual presentation and professional presence to provide scoring and feedback.', img: '/candidate-analysis.png' })}
-              style={{ padding: 0 }}
-            >
-              <ElectricBorder borderRadius={32} chaos={0.08} speed={0.8} color="#7C3AED" style={{ height: '100%', width: '100%' }}>
-                <div style={{ padding: '2.5rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <h3 className={styles.featureBentoCardTitle}>Generate scores based on pictures</h3>
-                  <p className={styles.featureBentoCardDesc}>Rate your candidate's looks. As real as ATS scores.</p>
-                  
-                  <div className={styles.bentoImageGrid}>
-                    <Image src="https://i.pravatar.cc/300?img=68" alt="Portrait" width={150} height={150} className={styles.bentoImage} />
-                    <Image src="https://i.pravatar.cc/300?img=12" alt="Portrait" width={150} height={150} className={styles.bentoImage} />
-                    <Image src="https://i.pravatar.cc/300?img=11" alt="Portrait" width={150} height={150} className={styles.bentoImage} />
-                    <div style={{ position: 'relative' }}>
-                      <Image src="https://i.pravatar.cc/300?img=32" alt="Portrait" width={150} height={150} className={styles.bentoImage} style={{ filter: 'grayscale(0)', border: '2px solid var(--primary)' }} />
-                      <div style={{ position: 'absolute', inset: 0, border: '2px solid var(--primary)', borderRadius: '16px', pointerEvents: 'none' }}>
-                        <div style={{ position: 'absolute', top: -5, left: -5, width: 10, height: 10, background: 'var(--primary)', borderRadius: '2px' }} />
-                        <div style={{ position: 'absolute', top: -5, right: -5, width: 10, height: 10, background: 'var(--primary)', borderRadius: '2px' }} />
-                        <div style={{ position: 'absolute', bottom: -5, left: -5, width: 10, height: 10, background: 'var(--primary)', borderRadius: '2px' }} />
-                        <div style={{ position: 'absolute', bottom: -5, right: -5, width: 10, height: 10, background: 'var(--primary)', borderRadius: '2px' }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ElectricBorder>
-            </motion.div>
-
-            {/* CARD 2: Track progress (WIDE TOP) */}
-            <motion.div 
-              className={styles.featureBentoCard}
-              initial={{ opacity: 0, y: -30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              onClick={() => setSelectedFeatureCard({ title: 'Pipeline Tracker', desc: 'Monitor every stage of your interview journey with our automated progress tracker.', img: '/prep-engine.png' })}
-              style={{ padding: 0 }}
-            >
-              <ElectricBorder borderRadius={32} chaos={0.08} speed={0.8} color="#7C3AED" style={{ height: '100%', width: '100%' }}>
-                <div style={{ padding: '2.5rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <h3 className={styles.featureBentoCardTitle}>Track progress</h3>
-                  <p className={styles.featureBentoCardDesc}>Track every step of the candidate's journey, from initial application to rejected appraisal.</p>
-                  
-                  <div className={styles.bentoProgressContainer}>
-                    <div className={styles.bentoProgressDots}>
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => (
-                        <div key={i} className={`${styles.bentoDot} ${i <= 3 ? styles.bentoDotActive : ''}`} />
-                      ))}
-                    </div>
-                    <div style={{ position: 'relative', height: '100px' }}>
-                      <div className={`${styles.bentoProgressStep} ${styles.bentoProgressStepActive}`} style={{ position: 'absolute', top: 0, left: '20%' }}>
-                        Application Submitted
-                      </div>
-                      <div style={{ position: 'absolute', top: '35px', left: '25%', fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)' }}>Manu</div>
-                      <div className={styles.bentoProgressStep} style={{ position: 'absolute', bottom: 0, right: '10%', borderColor: 'rgba(255,255,255,0.2)' }}>
-                        Interview started
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ElectricBorder>
-            </motion.div>
-
-            {/* CARD 4: Easy upload resumes (TALL RIGHT) */}
-            <motion.div 
-              className={`${styles.featureBentoCard} ${styles.featureBentoCardTall}`}
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              onClick={() => setSelectedFeatureCard({ title: 'Smart Resume Upload', desc: 'Our AI parses resumes instantly to extract key skills and experiences for tailored practice.', img: '/career-vault.png' })}
-              style={{ padding: 0 }}
-            >
-              <ElectricBorder borderRadius={32} chaos={0.08} speed={0.8} color="#7C3AED" style={{ height: '100%', width: '100%' }}>
-                <div style={{ padding: '2.5rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <h3 className={styles.featureBentoCardTitle}>Easy upload resumes manually</h3>
-                  <p className={styles.featureBentoCardDesc}>One click OR drag and drop candidate's resumes.</p>
-                  
-                  <div className={styles.bentoUploadArea}>
-                    <div style={{ width: '60px', height: '60px', borderRadius: '12px', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <ArrowUp size={24} />
-                    </div>
-                    <span style={{ fontSize: '0.9rem' }}>Upload Resume</span>
-                  </div>
-                  
-                  {/* Background grid pattern for the right card as seen in image */}
-                  <div style={{ position: 'absolute', inset: 0, zIndex: -1, opacity: 0.1, pointerEvents: 'none', backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-                </div>
-              </ElectricBorder>
-            </motion.div>
-
-            {/* CARD 3: Schedule interviews (SMALL MIDDLE BOTTOM) */}
-            <motion.div 
-              className={styles.featureBentoCard}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              onClick={() => setSelectedFeatureCard({ title: 'Seamless Scheduling', desc: 'Sync your calendar and automate interview coordination without the back-and-forth.', img: '/mock-interview.png' })}
-              style={{ padding: 0 }}
-            >
-              <ElectricBorder borderRadius={32} chaos={0.08} speed={0.8} color="#7C3AED" style={{ height: '100%', width: '100%' }}>
-                <div style={{ padding: '2.5rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <h3 className={styles.featureBentoCardTitle}>Schedule interviews seamlessly</h3>
-                  <p className={styles.featureBentoCardDesc}>Ask about DSA or Dev, we don't care.</p>
-                  
-                  <div className={styles.bentoImageSmallRow}>
-                    <Image src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=200&h=200" alt="Meeting" width={100} height={100} className={styles.bentoImageSmall} />
-                    <Image src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=200&h=200" alt="Collaboration" width={100} height={100} className={styles.bentoImageSmall} />
-                  </div>
-                </div>
-              </ElectricBorder>
-            </motion.div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* BLOG INSIGHTS */}
-      <section className={styles.section}>
-        <motion.div className="container" style={{ textAlign: 'center' }}>
-          <h2 className={styles.sectionTitle}>Dive Into Our Top Career Insights</h2>
-          <p className={styles.sectionSubtitle}>
-            Explore expert guides and actionable tips to help you prepare smarter, interview confidently, and land your dream job faster.
-          </p>
-
-          <div className={styles.blogContainer}>
-            {/* MAIN CARD */}
-            <motion.div 
-              className={`${styles.blogCard} ${styles.blogCardMain}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className={styles.blogImageWrapper}>
-                <Image src="/candidate-analysis.png" alt="AI Interview Prep" fill className={styles.blogImage} />
-              </div>
-              <div className={styles.blogCardContent}>
-                <span className={styles.blogTag}>Interview Prep</span>
-                <h3 className={styles.blogCardTitle}>Mastering AI-Powered Mock Interviews for Real Results</h3>
-                <p className={styles.blogCardDesc}>
-                  Discover how simulated interviews with instant AI feedback can transform your confidence, 
-                  highlight your strengths, and prepare you for real hiring challenges.
-                </p>
-                <div className={styles.blogCardFooter}>
-                  <div className={styles.blogReadTime}>
-                    <Clock size={16} /> 8 Min Read
-                  </div>
-                  <div className={styles.blogArrow}>
-                    <ArrowRight size={18} />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* SMALL CARD 1 */}
-            <motion.div 
-              className={`${styles.blogCard} ${styles.blogCardSmall}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <div className={styles.blogImageWrapper}>
-                <Image src="/career-vault.png" alt="Success Methods" fill className={styles.blogImage} />
-              </div>
-              <div className={styles.blogCardContent}>
-                <span className={styles.blogTag}>Career Growth</span>
-                <h3 className={styles.blogCardTitle}>Methods for Interview Success</h3>
-                <div className={styles.blogCardFooter}>
-                  <div className={styles.blogReadTime}>
-                    <Clock size={16} /> 5 Min Read
-                  </div>
-                  <div className={styles.blogArrow}>
-                    <ArrowRight size={18} />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* SMALL CARD 2 */}
-            <motion.div 
-              className={`${styles.blogCard} ${styles.blogCardSmall}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className={styles.blogImageWrapper}>
-                <Image src="/career-coach.png" alt="Feedback Loop" fill className={styles.blogImage} />
-              </div>
-              <div className={styles.blogCardContent}>
-                <span className={styles.blogTag}>Soft Skills</span>
-                <h3 className={styles.blogCardTitle}>Turning Feedback into Growth</h3>
-                <div className={styles.blogCardFooter}>
-                  <div className={styles.blogReadTime}>
-                    <Clock size={16} /> 6 Min Read
-                  </div>
-                  <div className={styles.blogArrow}>
-                    <ArrowRight size={18} />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* SMALL CARD 3 */}
-            <motion.div 
-              className={`${styles.blogCard} ${styles.blogCardSmall}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className={styles.blogImageWrapper}>
-                <Image src="/prep-engine.png" alt="Anxiety Management" fill className={styles.blogImage} />
-              </div>
-              <div className={styles.blogCardContent}>
-                <span className={styles.blogTag}>Wellness</span>
-                <h3 className={styles.blogCardTitle}>Overcoming Interview Anxiety</h3>
-                <div className={styles.blogCardFooter}>
-                  <div className={styles.blogReadTime}>
-                    <Clock size={16} /> 7 Min Read
-                  </div>
-                  <div className={styles.blogArrow}>
-                    <ArrowRight size={18} />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* CTA CARD */}
-            <motion.a 
-              href="/blog"
-              className={`${styles.blogCard} ${styles.blogCardCTA}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <span className={styles.blogTag}>Explore More</span>
-              <h3 className={styles.blogCardTitle} style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>
-                Want more expert career advice?
-              </h3>
-              <div className="btn btn-primary" style={{ background: 'white', color: 'var(--primary)', border: 'none' }}>
-                See All Insights <ArrowRight size={20} />
-              </div>
-            </motion.a>
-          </div>
-        </motion.div>
-      </section>
+      {/* STATS SECTION (TAILARK IN NUMBERS) */}
+      <StatsSection />
 
       {/* TESTIMONIALS */}
       <section className={styles.section}>
@@ -1394,6 +836,141 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PRICING SECTION */}
+      <section className={styles.pricingSection}>
+        <div className="container">
+          <div className={styles.pricingHeader}>
+            <span className={styles.pricingLabel}>Simple Pricing</span>
+            <h2 className={styles.pricingTitle}>Choose Your Perfect Plan</h2>
+            <p className={styles.pricingSubtitle}>
+              Transform your project with our comprehensive pricing options designed for every need.
+            </p>
+          </div>
+
+          <div className={styles.pricingToggle}>
+            <button 
+              className={styles.pricingToggleButton}
+              onClick={() => setBillingCycle('monthly')}
+              style={{
+                background: billingCycle === 'monthly' ? '#111' : 'transparent',
+                color: billingCycle === 'monthly' ? '#fff' : 'rgba(255,255,255,0.5)',
+                boxShadow: billingCycle === 'monthly' ? '0 4px 12px rgba(0,0,0,0.5)' : 'none'
+              }}
+            >
+              Monthly
+            </button>
+            <button 
+              className={styles.pricingToggleButton}
+              onClick={() => setBillingCycle('yearly')}
+              style={{
+                background: billingCycle === 'yearly' ? '#111' : 'transparent',
+                color: billingCycle === 'yearly' ? '#fff' : 'rgba(255,255,255,0.5)',
+                boxShadow: billingCycle === 'yearly' ? '0 4px 12px rgba(0,0,0,0.5)' : 'none'
+              }}
+            >
+              Yearly <span className={styles.saveBadge}>Save 17%</span>
+            </button>
+          </div>
+
+          <div className={styles.pricingGrid}>
+            {/* Starter Plan */}
+            <motion.div 
+              className={styles.pricingCard}
+              whileHover={{ y: -12 }}
+            >
+              <div className={styles.cardHeader}>
+                <h3 className={styles.planName}>Starter</h3>
+                <div className={styles.planIcon}><Layers size={20} /></div>
+              </div>
+              <p className={styles.planDesc}>For developers testing out Interview AI locally.</p>
+              <div className={styles.planPrice}>
+                <span className={styles.priceAmount}>$0</span>
+                <span className={styles.pricePeriod}>{billingCycle === 'monthly' ? '/mo' : '/yr'}</span>
+              </div>
+              <button className={`${styles.planBtn} ${styles.planBtnStarter}`}>Start today for free</button>
+              <span className={styles.featureLabel}>Included Features:</span>
+              <ul className={`${styles.featureList} ${styles.featureListFull}`}>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Presence</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Comments</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Notifications</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Text Editor</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Sync Datastore</li>
+              </ul>
+            </motion.div>
+
+            {/* Essential Automation Plan */}
+            <motion.div 
+              className={styles.pricingCard}
+              whileHover={{ y: -12 }}
+            >
+              <div className={styles.cardHeader}>
+                <h3 className={styles.planName}>Essential Automation</h3>
+                <div className={styles.planIcon}><Star size={20} /></div>
+              </div>
+              <p className={styles.planDesc}>Everything you need to automate simple work.</p>
+              <div className={styles.planPrice}>
+                <span className={styles.priceAmount}>{billingCycle === 'monthly' ? '$499' : '$4,990'}</span>
+                <span className={styles.pricePeriod}>{billingCycle === 'monthly' ? '/mo' : '/yr'}</span>
+              </div>
+              <button className={`${styles.planBtn} ${styles.planBtnConsultation}`}>Schedule a Consultation</button>
+              <span className={styles.featureLabel}>Included Features:</span>
+              <ul className={styles.featureList}>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> 1-2 basic automations</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Integration with 1 tool</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Basic chatbot or light</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Workflow testing</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Email support</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> 1 revision</li>
+              </ul>
+            </motion.div>
+
+            {/* Advanced AI Build Plan */}
+            <motion.div 
+              className={`${styles.pricingCard} ${styles.pricingCardFeatured}`}
+              whileHover={{ y: -12 }}
+            >
+              <div className={styles.popularBadge}>Most popular</div>
+              <div className={styles.cardHeader}>
+                <h3 className={styles.planName}>Advanced AI Build</h3>
+                <div className={styles.planIcon}><Briefcase size={20} /></div>
+              </div>
+              <p className={styles.planDesc}>Built for teams needing powerful, scalable AI automation.</p>
+              <div className={styles.planPrice}>
+                <span className={styles.priceAmount}>{billingCycle === 'monthly' ? '$1,500' : '$15,000'}</span>
+                <span className={styles.pricePeriod}>{billingCycle === 'monthly' ? '/mo' : '/yr'}</span>
+              </div>
+              <button className={`${styles.planBtn} ${styles.planBtnConsultation}`} style={{ borderImage: 'linear-gradient(to right, #8B5CF6, #EC4899) 1' }}>Book a Consultation</button>
+              <span className={styles.featureLabel}>Included Features:</span>
+              <ul className={styles.featureList}>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Custom AI agent</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Full testing + optimization</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Multi-tool integrations</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Documentation</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Automated workflows</li>
+                <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Two revisions</li>
+              </ul>
+            </motion.div>
+          </div>
+
+          <div className={styles.pricingBottomGrid}>
+            <div className={styles.supplementaryBox}>
+              <div>
+                <h4 className={styles.suppTitle}>Ongoing Support & Optimization</h4>
+                <p className={styles.suppDesc}>Small updates, tweaks, bug fixes, and light monitoring.</p>
+              </div>
+              <div className={styles.suppPrice}>
+                {billingCycle === 'monthly' ? '$199' : '$1,990'} <span className={styles.suppPricePeriod}>{billingCycle === 'monthly' ? '/mo' : '/yr'}</span>
+              </div>
+            </div>
+
+            <div className={`${styles.supplementaryBox} ${styles.consultantBox}`}>
+              <h4 className={styles.suppTitle}>Not Sure Which Plan is Right for You?</h4>
+              <button className={styles.consultantBtn}>Talk to an AI Consultant</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ SECTION */}
       <section className={styles.faqSection} style={{ position: 'relative' }}>
         <div className={styles.faqHeader} style={{ position: 'relative', zIndex: 1, marginBottom: '2rem' }}>
@@ -1478,13 +1055,23 @@ export default function Home() {
       {/* CTA SECTION */}
       <section className={styles.ctaWrapper}>
         <div className="container">
-          <div className={styles.ctaBox} style={{ position: 'relative', overflow: 'hidden' }}>
-            <div className={styles.ctaContent} style={{ position: 'relative', zIndex: 1 }}>
-              <h2 className={styles.ctaTitle}>Unlock Your Dream Role - One Session Away</h2>
-              <p className={styles.ctaSubtitle}>Join Interview AI powered interview simulator and step into your next opportunity with confidence.</p>
-              <CircleExpandButton href="/interview-builder" className="btn" expandColor="#ffffff" style={{ background: 'white', color: 'black', fontWeight: 700, padding: '1rem 2.5rem', borderRadius: '12px', fontSize: '1.1rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+          <div className={styles.ctaBox}>
+            <div className={styles.ctaContent}>
+              <div className={styles.ctaBadge}>
+                <div className={styles.ctaBadgeDot} />
+                AI-Powered Interview Simulator
+              </div>
+              <h2 className={styles.ctaTitle}>
+                Unlock Your <span className={styles.ctaTitleHighlight}>Dream Role</span> — One Session Away
+              </h2>
+              <p className={styles.ctaSubtitle}>
+                Join Interview AI powered interview simulator and step into your next opportunity with confidence.
+              </p>
+            </div>
+            <div className={styles.ctaButtonWrapper}>
+              <Link href="/interview-builder" className={styles.ctaBtn}>
                 Get Started Now <ArrowRight size={20} />
-              </CircleExpandButton>
+              </Link>
             </div>
           </div>
         </div>
@@ -1562,3 +1149,4 @@ export default function Home() {
     </main>
   );
 }
+

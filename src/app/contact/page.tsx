@@ -10,6 +10,8 @@ import {
     Clock
 } from "lucide-react";
 
+import Navbar from "@/components/Navbar";
+
 export default function ContactPage() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,27 +21,7 @@ export default function ContactPage() {
     return (
         <main className={styles.contactPage}>
             {/* NAVBAR */}
-            <div style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: 1000, background: 'rgba(5, 1, 13, 0.7)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                <div className="container">
-                    <nav className="navbar animate-fade" style={{ padding: '1rem 0' }}>
-                        <div className="brand">
-                            <Bot size={32} color="var(--primary)" />
-                            Interview AI
-                        </div>
-                        <ul className="nav-links">
-                            <li className="nav-link"><Link href="/">Home</Link></li>
-                            <li className="nav-link"><Link href="#">Career Preparation</Link></li>
-                            <li className="nav-link"><Link href="#">Learn & Grow</Link></li>
-                            <li className="nav-link"><Link href="/blog">Blog</Link></li>
-                            <li className="nav-link active"><Link href="/contact">Contact Us</Link></li>
-                        </ul>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                            <LoginLiquidMorph />
-                            <button className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', borderRadius: '10px' }}>Get Started</button>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+            <Navbar />
 
             <div className={styles.contactContainer}>
                 {/* HEADER */}
@@ -191,9 +173,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className={mainStyles.footerGiantText}>
-                    Interview AI
+                    interview
                 </div>
             </footer>
         </main>
     );
 }
+

@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import DarkVeil from "./DarkVeil";
-import { Calendar, Bot, Zap, BarChart3, Clock, ArrowRight } from "lucide-react";
+import { Calendar, Bot, Zap, BarChart3, Clock, ArrowRight, ChevronLeft, ChevronRight, Edit, FileText, Mic, XCircle, CheckCircle, File } from "lucide-react";
 
 const steps = [
   {
@@ -13,36 +13,365 @@ const steps = [
     color: "var(--primary)",
     icon: <Calendar size={24} />,
     visual: (
-      <div style={{ background: '#05010D', border: '1px solid var(--primary)', padding: '30px', borderRadius: '24px', boxShadow: '0 20px 40px rgba(124, 58, 237, 0.2)', width: '100%' }}>
-        <p style={{ margin: 0, color: 'var(--primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Calendar size={18} /> Connecting to Calendar...
-        </p>
-        <div style={{ height: '2px', background: 'rgba(124, 58, 237, 0.2)', width: '100%', margin: '20px 0' }}></div>
-        <p style={{ fontSize: '13px', color: '#94a3b8', margin: 0 }}>Syncing Zoom & Google Meet</p>
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', gap: '20px', padding: '20px' }}>
+        {/* Step Number and Line */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <div style={{
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+            background: '#fbbf24',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '24px',
+            fontWeight: 'bold',
+            color: '#000',
+            flexShrink: 0
+          }}>
+            1
+          </div>
+          <div style={{
+            height: '2px',
+            flex: 1,
+            background: 'linear-gradient(90deg, #fbbf24, transparent)'
+          }} />
+        </div>
+
+        {/* Meeting Card */}
+        <div style={{
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: 'none',
+          borderRadius: '0',
+          padding: '20px',
+          position: 'relative'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '16px' }}>
+            {/* Avatar */}
+            <div style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #8B5CF6, #7C3AED)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              color: 'white',
+              flexShrink: 0
+            }}>
+              JD
+            </div>
+            
+            {/* Meeting Info */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <h3 style={{ 
+                fontSize: '16px', 
+                fontWeight: 600, 
+                color: '#fff',
+                marginBottom: '6px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
+              }}>
+                Meeting Has Been Scheduled
+              </h3>
+              <div style={{ 
+                fontSize: '12px', 
+                color: 'rgba(255, 255, 255, 0.6)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '2px'
+              }}>
+                <span>July 13, 2025</span>
+                <span>10:00 am</span>
+              </div>
+            </div>
+            
+            {/* Edit Button */}
+            <button style={{
+              background: 'transparent',
+              border: 'none',
+              borderRadius: '0',
+              padding: '6px 12px',
+              color: '#fff',
+              fontSize: '12px',
+              fontWeight: 500,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              flexShrink: 0
+            }}>
+              <Edit size={12} />
+              Edit
+            </button>
+          </div>
+        </div>
+
+        {/* Calendar */}
+        <div style={{
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: 'none',
+          borderRadius: '0',
+          padding: '20px',
+          flex: 1
+        }}>
+          {/* Calendar Header */}
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between',
+            marginBottom: '16px'
+          }}>
+            <button style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'rgba(255, 255, 255, 0.4)',
+              cursor: 'pointer',
+              padding: '4px'
+            }}>
+              <ChevronLeft size={16} />
+            </button>
+            
+            <h3 style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              color: '#fff'
+            }}>
+              July 2025
+            </h3>
+            
+            <button style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'rgba(255, 255, 255, 0.4)',
+              cursor: 'pointer',
+              padding: '4px'
+            }}>
+              <ChevronRight size={16} />
+            </button>
+          </div>
+
+          {/* Calendar Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px' }}>
+            {/* Week day headers */}
+            {["S", "M", "T", "W", "T", "F", "S"].map((day, index) => (
+              <div key={index} style={{
+                textAlign: 'center',
+                fontSize: '10px',
+                fontWeight: 600,
+                color: 'rgba(255, 255, 255, 0.4)',
+                padding: '4px 0'
+              }}>
+                {day}
+              </div>
+            ))}
+            
+            {/* Calendar days */}
+            {["", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "", ""].map((day, index) => (
+              <div
+                key={index}
+                style={{
+                  aspectRatio: '1',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '11px',
+                  color: day === '13' ? '#000' : 'rgba(255, 255, 255, 0.7)',
+                  background: day === '13' ? '#fbbf24' : 'transparent',
+                  borderRadius: '6px',
+                  cursor: day === '13' ? 'pointer' : 'default',
+                  fontWeight: day === '13' ? 600 : 400,
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     )
   },
   {
     id: 2,
-    title: "AI Live Analysis",
-    desc: "As you speak, our AI analyzes your body language, keywords, and tone in real-time, providing a shadow coach that never misses a detail.",
+    title: "AI-Powered Note Taking",
+    desc: "Our intelligent assistant captures every discussion, decision, and action item in real-time with perfect accuracy, keeping your team aligned and informed at all times.",
     tag: "Step 2",
     color: "var(--primary)",
-    icon: <Bot size={24} />,
+    icon: <FileText size={24} />,
     visual: (
-      <div style={{ background: '#05010D', border: '1px solid var(--primary)', padding: '30px', borderRadius: '24px', width: '100%' }}>
-        <p style={{ margin: 0, color: 'var(--primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Bot size={18} /> AI Coach Active
-        </p>
-        <div style={{ height: '6px', background: '#1e293b', width: '100%', marginTop: '20px', borderRadius: '3px', overflow: 'hidden' }}>
-            <motion.div 
-              initial={{ width: "0%" }}
-              whileInView={{ width: "65%" }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              style={{ background: 'var(--primary)', height: '100%' }} 
-            />
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', gap: '8px', padding: '15px', paddingTop: '25px' }}>
+        {/* Audio File */}
+        <div style={{
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: 'none',
+          borderRadius: '0',
+          padding: '16px',
+          position: 'relative',
+          marginTop: '10px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+            {/* Audio Icon */}
+            <div style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '10px',
+              background: 'linear-gradient(135deg, #8B5CF6, #7C3AED)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              flexShrink: 0
+            }}>
+              <Mic size={20} />
+            </div>
+            
+            {/* Audio Info */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <h3 style={{ 
+                fontSize: '14px', 
+                fontWeight: 600, 
+                color: '#fff',
+                marginBottom: '4px',
+                lineHeight: 1.2,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}>
+                <span>Volume-02-Ep-13</span>
+                <span style={{ fontSize: '11px', color: 'rgba(255, 255, 255, 0.5)' }}>.</span>
+              </h3>
+              <div style={{ 
+                fontSize: '11px', 
+                color: 'rgba(255, 255, 255, 0.6)'
+              }}>
+                210.43mb
+              </div>
+            </div>
+          </div>
+          
+          {/* Waveform */}
+          <div style={{ 
+            height: '35px', 
+            background: 'transparent',
+            borderRadius: '0',
+            position: 'relative',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            padding: '0 8px',
+            gap: '1px'
+          }}>
+            {[3, 8, 12, 6, 15, 10, 18, 14, 8, 20, 16, 12, 6, 14, 18, 10, 8, 12, 16, 14, 10, 6, 8, 12, 18, 14, 10, 8, 6, 12, 16, 14, 8, 10, 12, 6, 8, 14, 18, 16].map((height, index) => (
+              <div key={index} style={{
+                width: '1.5px',
+                height: `${Math.min(height * 1.8, 32)}px`,
+                background: index < 15 ? '#8B5CF6' : 'rgba(139, 92, 246, 0.3)',
+                borderRadius: '1px',
+                flexShrink: 0
+              }} />
+            ))}
+          </div>
         </div>
-        <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '15px', margin: 0 }}>Analyzing Tone & Sentiment</p>
+
+        {/* Arrow connecting to AI Notes */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          padding: '4px 0'
+        }}>
+          <div style={{
+            width: '2px',
+            height: '20px',
+            background: 'linear-gradient(180deg, #8B5CF6, transparent)'
+          }} />
+        </div>
+
+        {/* AI Notes Card */}
+        <div style={{
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: 'none',
+          borderRadius: '0',
+          padding: '16px',
+          flex: 1,
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '0'
+        }}>
+          {/* AI Notes Header */}
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '8px',
+            marginBottom: '12px',
+            flexShrink: 0
+          }}>
+            <div style={{
+              width: '28px',
+              height: '28px',
+              borderRadius: '6px',
+              background: 'linear-gradient(135deg, #8B5CF6, #7C3AED)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white'
+            }}>
+              <FileText size={14} />
+            </div>
+            <h3 style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              color: '#fff'
+            }}>
+              AI Notes
+            </h3>
+          </div>
+
+          {/* Transcript Content */}
+          <div style={{
+            fontSize: '11px',
+            color: 'rgba(255, 255, 255, 0.7)',
+            lineHeight: 1.5,
+            flex: 1,
+            overflow: 'hidden'
+          }}>
+            <p style={{ margin: '0 0 10px 0' }}>
+              <strong>Q2 Product Roadmap Priorities</strong><br/>
+              Discussion focused on finalizing Q2 priorities. Main emphasis on user authentication improvements and mobile app performance optimization.
+            </p>
+            <p style={{ margin: '0 0 10px 0' }}>
+              <strong>Action Items:</strong><br/>
+              • Design team to prototype new auth flow by end of week<br/>
+              • Engineering to audit mobile performance bottlenecks<br/>
+              • Budget allocation review scheduled for next sprint
+            </p>
+            <p style={{ margin: '0' }}>
+              <strong>Key Decisions:</strong><br/>
+              Approved additional resources for mobile optimization. Deferred non-critical features to Q3.
+            </p>
+          </div>
+
+          {/* Transcript Label */}
+          <div style={{
+            position: 'absolute',
+            bottom: '8px',
+            right: '8px',
+            fontSize: '9px',
+            color: 'rgba(255, 255, 255, 0.4)',
+            fontStyle: 'italic',
+            flexShrink: 0
+          }}>
+            Transcript
+          </div>
+        </div>
       </div>
     )
   },
@@ -54,13 +383,155 @@ const steps = [
     color: "#319ce0",
     icon: <Zap size={24} />,
     visual: (
-      <div style={{ background: '#05010D', border: '1px solid #319ce0', padding: '30px', borderRadius: '24px', boxShadow: '0 20px 40px rgba(49, 156, 224, 0.15)', width: '100%' }}>
-        <p style={{ margin: 0, color: '#fff', fontSize: '15px' }}>"You're speaking a bit fast."</p>
-        <div style={{ display: 'flex', gap: '8px', marginTop: '15px' }}>
-          <div style={{ background: 'rgba(49, 156, 224, 0.2)', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', color: '#319ce0' }}>Pace</div>
-          <div style={{ background: 'rgba(49, 156, 224, 0.2)', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', color: '#319ce0' }}>Clarity</div>
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', position: 'relative' }}>
+        {/* Worst Audio Quality */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: 'none',
+          borderRadius: '0',
+          padding: '8px 16px',
+          marginBottom: '10px',
+          position: 'relative',
+          left: '-40px'
+        }}>
+          <XCircle size={16} color="#EF4444" />
+          <span style={{ fontSize: '12px', fontWeight: 500, color: '#fff' }}>Worst Audio Quality</span>
+          <span style={{ fontSize: '10px', color: 'rgba(255, 255, 255, 0.5)', position: 'absolute', right: '-35px', top: '50%', transform: 'translateY(-50%)', fontStyle: 'italic' }}>Before</span>
         </div>
-        <p style={{ fontSize: '13px', color: '#319ce0', marginTop: '15px', fontWeight: 600, margin: 0 }}>Recommendation: Pause for 2s</p>
+
+        {/* Audio File - Before */}
+        <div style={{
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: 'none',
+          borderRadius: '0',
+          padding: '12px',
+          width: '220px',
+          marginBottom: '20px',
+          position: 'relative',
+          left: '-20px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '8px',
+              background: 'transparent',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'rgba(255, 255, 255, 0.7)',
+              flexShrink: 0
+            }}>
+              <File size={16} />
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <h3 style={{ fontSize: '12px', fontWeight: 600, color: '#fff', marginBottom: '2px' }}>Volume-02-Ep-13.</h3>
+              <div style={{ fontSize: '10px', color: 'rgba(255, 255, 255, 0.6)' }}>210.43mb</div>
+            </div>
+          </div>
+          <div style={{
+            height: '30px',
+            background: 'transparent',
+            borderRadius: '0',
+            display: 'flex',
+            alignItems: 'center',
+            padding: '0 8px',
+            gap: '1px'
+          }}>
+            {[3, 8, 12, 6, 15, 10, 18, 14, 8, 20, 16, 12, 6, 14, 18, 10, 8, 12, 16, 14, 10, 6, 8, 12, 18, 14, 10, 8, 6, 12, 16, 14, 8, 10, 12, 6, 8, 14, 18, 16].map((height, index) => (
+              <div key={index} style={{
+                width: '1.5px',
+                height: `${Math.min(height * 1.5, 25)}px`,
+                background: 'rgba(255, 255, 255, 0.3)',
+                borderRadius: '1px',
+                flexShrink: 0
+              }} />
+            ))}
+          </div>
+        </div>
+
+        {/* Arrow */}
+        <div style={{
+          width: '2px',
+          height: '40px',
+          background: 'linear-gradient(180deg, #319ce0, transparent)',
+          marginBottom: '20px'
+        }} />
+
+        {/* Clear Audio Quality */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: 'none',
+          borderRadius: '0',
+          padding: '8px 16px',
+          marginBottom: '10px',
+          position: 'relative',
+          right: '-40px'
+        }}>
+          <CheckCircle size={16} color="#10B981" />
+          <span style={{ fontSize: '12px', fontWeight: 500, color: '#fff' }}>Clear Audio Quality</span>
+          <span style={{ fontSize: '10px', color: 'rgba(255, 255, 255, 0.5)', position: 'absolute', right: '-30px', top: '50%', transform: 'translateY(-50%)', fontStyle: 'italic' }}>After</span>
+        </div>
+
+        {/* Audio File - After */}
+        <div style={{
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: 'none',
+          borderRadius: '0',
+          padding: '12px',
+          width: '220px',
+          position: 'relative',
+          right: '-20px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '8px',
+              background: 'transparent',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#10B981',
+              flexShrink: 0
+            }}>
+              <File size={16} />
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <h3 style={{ fontSize: '12px', fontWeight: 600, color: '#fff', marginBottom: '2px' }}>Volume-02-Ep-13.</h3>
+              <div style={{ fontSize: '10px', color: 'rgba(255, 255, 255, 0.6)' }}>210.43mb</div>
+            </div>
+          </div>
+          <div style={{
+            height: '30px',
+            background: 'transparent',
+            borderRadius: '0',
+            display: 'flex',
+            alignItems: 'center',
+            padding: '0 8px',
+            gap: '1px'
+          }}>
+            {[3, 8, 12, 6, 15, 10, 18, 14, 8, 20, 16, 12, 6, 14, 18, 10, 8, 12, 16, 14, 10, 6, 8, 12, 18, 14, 10, 8, 6, 12, 16, 14, 8, 10, 12, 6, 8, 14, 18, 16].map((height, index) => (
+              <div key={index} style={{
+                width: '1.5px',
+                height: `${Math.min(height * 1.5, 25)}px`,
+                background: index < 20 ? '#10B981' : 'rgba(16, 185, 129, 0.3)',
+                borderRadius: '1px',
+                flexShrink: 0
+              }} />
+            ))}
+          </div>
+        </div>
       </div>
     )
   },
@@ -150,13 +621,13 @@ export default function InterviewStepsSection() {
                 width: '100%', 
                 maxWidth: '500px', 
                 aspectRatio: '1 / 1',
-                background: 'rgba(255, 255, 255, 0.02)', 
-                backdropFilter: 'blur(20px)', 
-                border: '1px solid rgba(255,255,255,0.08)', 
+                background: step.id === 1 ? 'transparent' : 'rgba(255, 255, 255, 0.02)', 
+                backdropFilter: step.id === 1 ? 'none' : 'blur(20px)', 
+                border: step.id === 1 ? 'none' : '1px solid rgba(255,255,255,0.08)', 
                 borderRadius: '48px', 
                 position: 'relative', 
                 overflow: 'hidden', 
-                boxShadow: activeStep === step.id ? '0 40px 80px rgba(0,0,0,0.6), 0 0 20px rgba(124, 58, 237, 0.1)' : '0 20px 40px rgba(0,0,0,0.4)',
+                boxShadow: step.id === 1 ? 'none' : (activeStep === step.id ? '0 40px 80px rgba(0,0,0,0.6), 0 0 20px rgba(139, 92, 246, 0.1)' : '0 20px 40px rgba(0,0,0,0.4)'),
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center',
@@ -185,15 +656,21 @@ export default function InterviewStepsSection() {
         <div style={{ flex: 1, height: '100vh', position: 'sticky', top: 0, display: 'flex', alignItems: 'center' }}>
           <div style={{ 
             padding: '60px',
-            background: 'rgba(15, 10, 26, 0.4)',
-            backdropFilter: 'blur(30px)',
-            borderRadius: '40px',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
-            boxShadow: '0 30px 60px rgba(0,0,0,0.3)',
             position: 'relative',
             marginLeft: '-60px', // Overlap effect
             zIndex: 10
           }}>
+            {/* Connector Line for right-side steps 2, 3, 4 */}
+            <div style={{
+              position: 'absolute',
+              left: '30px',
+              top: '100px',
+              bottom: '100px',
+              width: '1px',
+              background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent)',
+              zIndex: -1,
+              display: activeStep > 1 ? 'block' : 'none'
+            }} />
             {steps.map((step) => (
               <motion.div
                 key={step.id}
@@ -269,3 +746,4 @@ export default function InterviewStepsSection() {
     </section>
   );
 }
+

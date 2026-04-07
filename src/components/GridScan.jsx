@@ -276,8 +276,8 @@ export const GridScan = ({
   modelsPath = 'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@0.22.2/weights',
   sensitivity = 0.55,
   lineThickness = 1,
-  linesColor = '#3b1273', // Matched to site dark purple
-  scanColor = '#7C3AED',  // Matched to site primary violet
+  linesColor = '#2E1065', // Matched to site dark violet
+  scanColor = '#8B5CF6',  // Matched to site primary violet
   scanOpacity = 0.4,
   gridScale = 0.1,
   lineStyle = 'solid',
@@ -894,3 +894,4 @@ function centroid(points) {
 function dist2(a, b) {
   return Math.hypot(a.x - b.x, a.y - b.y);
 }
+

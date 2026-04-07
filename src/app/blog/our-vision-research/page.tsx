@@ -9,6 +9,8 @@ import {
     Twitter, Instagram, Linkedin, Facebook
 } from "lucide-react";
 
+import Navbar from "@/components/Navbar";
+
 const sections = [
     { id: "coaching", title: "Reimagining Coaching" },
     { id: "empathetic", title: "Empathetic AI Models" },
@@ -60,22 +62,7 @@ export default function ResearchPost() {
     return (
         <main className={styles.postPage}>
             {/* NAVBAR */}
-            <div className="container">
-                <nav className="navbar animate-fade">
-                    <div className="brand">
-                        <Bot size={32} color="var(--primary)" />
-                        Interview AI
-                    </div>
-                    <ul className="nav-links">
-                        <li className="nav-link"><Link href="/">Home</Link></li>
-                        <li className="nav-link"><Link href="/practice-interview">Career Preparation</Link></li>
-                        <li className="nav-link"><Link href="#">Learn & Grow</Link></li>
-                        <li className="nav-link active"><Link href="/blog">Blog</Link></li>
-                        <li className="nav-link"><Link href="/contact">Contact Us</Link></li>
-                    </ul>
-                    <button className="btn btn-primary">Get Started</button>
-                </nav>
-            </div>
+            <Navbar />
 
             {/* POST CONTENT */}
             <article>
@@ -242,9 +229,10 @@ export default function ResearchPost() {
                 </div>
 
                 <div className={mainStyles.footerGiantText}>
-                    Interview AI
+                    interview
                 </div>
             </footer>
         </main>
     );
 }
+

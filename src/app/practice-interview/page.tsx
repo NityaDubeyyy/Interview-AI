@@ -70,31 +70,12 @@ const coursesAgents = [
     { id: "leadership", name: "Leadership Coaching", icon: <Network size={32} />, desc: "Prepare for management and VP-level inquiries." }
 ];
 
+import Navbar from "@/components/Navbar";
+
 export default function PracticeInterviewPage() {
     return (
         <main className={styles.practicePage}>
-            <div style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: 1000, background: 'rgba(6, 9, 9, 0.7)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                <div className="container">
-                    <nav className="navbar animate-fade" style={{ background: 'transparent', padding: '1rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                            <div style={{ width: '12px', height: '12px', background: 'var(--primary)', borderRadius: '50%', boxShadow: '0 0 15px var(--primary)' }}></div>
-                            <span style={{ fontWeight: 800, fontSize: '1.25rem', color: 'white', letterSpacing: '-0.02em' }}>Hire IQ</span>
-                        </div>
-                        <ul className="nav-links" style={{ fontSize: '0.9rem', color: '#d4d4d8' }}>
-                            <li className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Link href="/">Home</Link></li>
-                            <li className="nav-link active" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Link href="/practice-interview">Solutions <ChevronDown size={14} /></Link></li>
-                            <li className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Link href="#">Resources <ChevronDown size={14} /></Link></li>
-                            <li className="nav-link"><Link href="#">Pricing</Link></li>
-                        </ul>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                            <LoginLiquidMorph />
-                            <Link href="/interview-builder" className="btn" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.6rem 1.25rem', borderRadius: '10px', background: 'white', color: 'black', fontWeight: 600, fontSize: '0.9rem' }}>
-                                Get Started <ArrowRight size={16} />
-                            </Link>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+            <Navbar />
 
             {/* HERO SECTION */}
             <section className={styles.heroSection}>
@@ -263,9 +244,10 @@ export default function PracticeInterviewPage() {
                 </div>
 
                 <div className={mainStyles.footerGiantText}>
-                    Interview AI
+                    interview
                 </div>
             </footer>
         </main>
     );
 }
+

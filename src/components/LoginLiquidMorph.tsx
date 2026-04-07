@@ -12,14 +12,14 @@
            position: relative; 
            overflow: hidden; 
            padding: 10px 24px; 
-           border: 1px solid rgba(124, 58, 237, 0.35); 
+           border: 1px solid rgba(139, 92, 246, 0.35); 
            border-radius: 9px; 
            cursor: pointer; 
            font-family: var(--font-inter), sans-serif; 
            font-size: 14px; 
            font-weight: 600; 
            background: #05010D; 
-           color: #7C3AED; 
+           color: #8B5CF6; 
            display: inline-flex; 
            align-items: center; 
            gap: 8px; 
@@ -39,8 +39,8 @@
            left: -50%; 
            background: radial-gradient( 
              ellipse at center, 
-             #7C3AED 0%, 
-             #6D28D9 55%, 
+             #8B5CF6 0%, 
+             #7C3AED 55%, 
              transparent 70% 
            ); 
            transition: top 0.55s cubic-bezier(0.23, 1, 0.32, 1); 
@@ -54,7 +54,7 @@
    
          .lb-liquid:hover { 
            color: #ffffff; 
-           border-color: rgba(124, 58, 237, 0.65); 
+           border-color: rgba(139, 92, 246, 0.65); 
          } 
    
          .lb-liquid:active { 
@@ -125,3 +125,4 @@
      </> 
    ); 
  } 
+

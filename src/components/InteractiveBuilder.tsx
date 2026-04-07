@@ -183,8 +183,8 @@ export default function InteractiveBuilder() {
             >
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
-                        {temp.brand === 'Microsoft' ? <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#7C3AED' }}>microsoft</span> : 
-                         temp.brand === 'Glassdoor' ? <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#7C3AED' }}>glassdoor</span> : 
+                        {temp.brand === 'Microsoft' ? <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#8B5CF6' }}>microsoft</span> : 
+                         temp.brand === 'Glassdoor' ? <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#8B5CF6' }}>glassdoor</span> : 
                          <span style={{ fontSize: '1rem', fontWeight: 900 }}>{temp.brand}</span>}
                     </div>
                     <h4 style={{ color: 'white', fontSize: '1.1rem', fontWeight: 600, marginBottom: '1.5rem' }}>{temp.name}</h4>
@@ -363,7 +363,7 @@ export default function InteractiveBuilder() {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            boxShadow: '0 0 25px rgba(124, 58, 237, 0.4)',
+            boxShadow: '0 0 25px rgba(139, 92, 246, 0.4)',
             opacity: currentStep === 'questions' ? 0.3 : 1
           }}
         >
@@ -378,3 +378,4 @@ export default function InteractiveBuilder() {
     </div>
   );
 }
+
