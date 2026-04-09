@@ -5,7 +5,7 @@
     radial-gradient(circle at 50% -20%, rgba(139, 92, 246, 0.15), transparent 70%),
     radial-gradient(circle at 50% 120%, rgba(139, 92, 246, 0.25), transparent 60%);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .heroContent {
@@ -149,9 +149,10 @@
 
 .logoCloudContainer {
   width: 100%;
-  padding: 8rem 0 8rem;
+  padding: 2rem 0 2rem;
   background: transparent;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   position: relative;
   display: flex;
   flex-direction: column;

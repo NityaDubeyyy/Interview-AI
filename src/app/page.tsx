@@ -259,7 +259,7 @@ export default function Home() {
         </div>
 
         {/* LOGO CLOUD SECTION */}
-        <div className="container" style={{ marginTop: '2rem', paddingBottom: '4rem' }}>
+        <div className="container" style={{ marginTop: '0.5rem', paddingBottom: '0rem' }}>
           <motion.div 
             initial={{ opacity: 0, y: 60, scale: 0.9 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
