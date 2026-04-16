@@ -11,6 +11,7 @@ import ScreensCandidatesSection from "@/components/ScreensCandidatesSection";
 import RecruitingFeaturesSection from "@/components/RecruitingFeaturesSection";
 import StatsSection from "@/components/StatsSection";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import TextHighlightSection from "@/components/TextHighlightSection";
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import {
@@ -259,11 +260,11 @@ export default function Home() {
         </div>
 
         {/* LOGO CLOUD SECTION */}
-        <div className="container" style={{ marginTop: '0.5rem', paddingBottom: '0rem' }}>
+        <div className="container" style={{ marginTop: '5rem', paddingBottom: '4rem', position: 'relative', zIndex: 10 }}>
           <motion.div 
-            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className={styles.logoCloudContainer}
           >
@@ -1077,74 +1078,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className={styles.footer}>
-        <div className="container">
-          <div className={styles.footerGrid}>
-            <div>
-              <div className={styles.footerBrand}>
-                <Layers size={32} color="var(--primary)" />
-                Interview AI
-              </div>
-              <div className={styles.footerContact}>
-                <div className={styles.footerContactItem}>
-                  <MapPin size={18} color="var(--primary)" />
-                  <span>1800, Walt Disney World, Bay Lake,<br />Orlando, United State</span>
-                </div>
-                <div className={styles.footerContactItem}>
-                  <Mail size={18} color="var(--primary)" />
-                  <span>support@interviewai.com</span>
-                </div>
-                <div className={styles.footerContactItem}>
-                  <PhoneCall size={18} color="var(--primary)" />
-                  <span>+1 (786) 259 4652</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className={styles.footerColTitle}>Company</div>
-              <div className={styles.footerLinks}>
-                <Link href="/contact">Contact Us</Link>
-                <Link href="/blog">Blog</Link>
-                <Link href="#">Pricing</Link>
-                <Link href="#">Sign in / Sign Up</Link>
-              </div>
-            </div>
-
-            <div>
-              <div className={styles.footerColTitle}>Quick Navigation</div>
-              <div className={styles.footerLinks}>
-                <Link href="/">Home</Link>
-                <Link href="/practice-interview">Career Preparation</Link>
-                <Link href="#">Learn & Grow</Link>
-              </div>
-            </div>
-
-            <div>
-              <div className={styles.footerColTitle}>Tools</div>
-              <div className={styles.footerLinks}>
-                <a href="#">Career Vault</a>
-                <a href="#">The Prep Engine</a>
-                <a href="#">Mock Interview</a>
-                <a href="#">Smart Career Coach</a>
-                <a href="#">Question Hub</a>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.footerBottom}>
-            <div>© 2026 InterviewAI. All rights reserved.</div>
-            <div className={styles.backToTop} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              Back to the top <ArrowUp size={16} />
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.footerGiantText}>
-          Interview AI
-        </div>
-      </footer>
+      <Footer />
 
     </main>
   );

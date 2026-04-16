@@ -71,6 +71,7 @@ const coursesAgents = [
 ];
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function PracticeInterviewPage() {
     return (
@@ -179,74 +180,7 @@ export default function PracticeInterviewPage() {
                 </section>
             </div>
 
-            {/* FOOTER */}
-            <footer className={mainStyles.footer}>
-                <div className="container">
-                    <div className={mainStyles.footerGrid}>
-                        <div>
-                            <div className={mainStyles.footerBrand}>
-                                <Bot size={32} color="var(--primary)" />
-                                Interview AI
-                            </div>
-                            <div className={mainStyles.footerContact}>
-                                <div className={mainStyles.footerContactItem}>
-                                    <MapPin size={18} color="var(--primary)" />
-                                    <span>1800, Walt Disney World, Bay Lake,<br />Orlando, United State</span>
-                                </div>
-                                <div className={mainStyles.footerContactItem}>
-                                    <Mail size={18} color="var(--primary)" />
-                                    <span>support@interviewai.com</span>
-                                </div>
-                                <div className={mainStyles.footerContactItem}>
-                                    <PhoneCall size={18} color="var(--primary)" />
-                                    <span>+1 (786) 259 4652</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className={mainStyles.footerColTitle}>Company</div>
-                            <div className={mainStyles.footerLinks}>
-                                <Link href="/contact">Contact Us</Link>
-                                <Link href="/blog">Blog</Link>
-                                <Link href="#">Pricing</Link>
-                                <Link href="#">Sign in / Sign Up</Link>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className={mainStyles.footerColTitle}>Quick Navigation</div>
-                            <div className={mainStyles.footerLinks}>
-                                <Link href="/">Home</Link>
-                                <Link href="/practice-interview">Career Preparation</Link>
-                                <Link href="#">Learn & Grow</Link>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className={mainStyles.footerColTitle}>Tools</div>
-                            <div className={mainStyles.footerLinks}>
-                                <Link href="#">Career Vault</Link>
-                                <Link href="#">The Prep Engine</Link>
-                                <Link href="#">Mock Interview</Link>
-                                <Link href="#">Smart Career Coach</Link>
-                                <Link href="#">Question Hub</Link>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={mainStyles.footerBottom}>
-                        <div>© 2026 InterviewAI. All rights reserved.</div>
-                        <div className={mainStyles.backToTop} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                            Back to the top <ArrowUp size={16} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={mainStyles.footerGiantText}>
-                    interview
-                </div>
-            </footer>
+            <Footer />
         </main>
     );
 }
