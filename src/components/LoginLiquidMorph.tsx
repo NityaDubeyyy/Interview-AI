@@ -18,8 +18,8 @@
            font-family: var(--font-inter), sans-serif; 
            font-size: 14px; 
            font-weight: 600; 
-           background: #05010D; 
-           color: #8B5CF6; 
+           background: #1E1B4B; 
+           color: #ffffff; 
            display: inline-flex; 
            align-items: center; 
            gap: 8px; 

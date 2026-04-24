@@ -1,116 +1,126 @@
 "use client";
 
-import Link from "next/link";
+import React, { useState } from "react";
 import styles from "./contact.module.css";
-import mainStyles from "../page.module.css";
-import LoginLiquidMorph from "@/components/LoginLiquidMorph";
-import {
-    Bot, ArrowUp, Mail, MapPin, PhoneCall,
-    Twitter, Instagram, Linkedin, Facebook, Send,
-    Clock
-} from "lucide-react";
+import { Check, Send } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+const bulletItems = [
+  "Faster interview screening with AI-driven insights",
+  "Higher candidate conversion through engaging hiring experiences",
+  "Custom workflows for volume hiring and campus recruitment",
+];
+
 export default function ContactPage() {
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        alert("Message sent! We'll get back to you shortly.");
-    };
+  const [submitted, setSubmitted] = useState(false);
 
-    return (
-        <main className={styles.contactPage}>
-            {/* NAVBAR */}
-            <Navbar />
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+  };
 
-            <div className={styles.contactContainer}>
-                {/* HEADER */}
-                <header className={styles.contactHeader}>
-                    <span className={styles.contactLabel}>Contact Us</span>
-                    <h1 className={styles.contactTitle}>Let&apos;s Build Your Career Together</h1>
-                    <p className={styles.contactSubtitle}>
-                        Have questions about our AI coaching? Want to discuss a custom training plan?
-                        We&apos;re here to help you navigate your journey to success.
-                    </p>
-                </header>
+  return (
+    <main className={styles.contactPage}>
+      <Navbar />
 
-                <section className={styles.contactGrid}>
-                    {/* INFO SECTION */}
-                    <div className={styles.infoSection}>
-                        <div className={styles.infoCard}>
-                            <div className={styles.infoIconWrapper}><Mail size={24} /></div>
-                            <h3 className={styles.infoTitle}>Email Us</h3>
-                            <p className={styles.infoValue}>support@interviewai.com<br />hello@interviewai.com</p>
-                        </div>
+      <div className={styles.contactSection}>
+        <div className={styles.contentPanel}>
+          <span className={styles.eyebrow}>Ready to scale your business?</span>
+          <h1 className={styles.headline}>Get in touch below and build the future of hiring.</h1>
+          <p className={styles.description}>
+            Share your goals with our team and discover how AI-powered interviewing can speed hiring, improve quality, and delight candidates.
+          </p>
 
-                        <div className={styles.infoCard}>
-                            <div className={styles.infoIconWrapper}><PhoneCall size={24} /></div>
-                            <h3 className={styles.infoTitle}>Call Anytime</h3>
-                            <p className={styles.infoValue}>+1 (786) 259 4652<br />+1 (800) 456 7890</p>
-                        </div>
+          <div className={styles.highlights}>
+            {bulletItems.map((text) => (
+              <div key={text} className={styles.highlightItem}>
+                <span className={styles.highlightIcon}>
+                  <Check size={16} />
+                </span>
+                <p>{text}</p>
+              </div>
+            ))}
+          </div>
 
-                        <div className={styles.infoCard}>
-                            <div className={styles.infoIconWrapper}><MapPin size={24} /></div>
-                            <h3 className={styles.infoTitle}>Visit HQ</h3>
-                            <p className={styles.infoValue}>1800 Walt Disney World, Bay Lake,<br />Orlando, FL 32836, United States</p>
-                        </div>
-
-                        <div className={styles.infoCard}>
-                            <div className={styles.infoIconWrapper}><Clock size={24} /></div>
-                            <h3 className={styles.infoTitle}>Support Hours</h3>
-                            <p className={styles.infoValue}>Monday - Friday: 9AM - 6PM EST<br />Saturday: 10AM - 2PM EST</p>
-                        </div>
-
-                        <div style={{ marginTop: '1rem' }}>
-                            <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1.5rem', color: '#1a1a1a' }}>Follow Our Journey</h4>
-                            <div className={styles.socialIcons}>
-                                <div className={styles.socialIcon}><Twitter size={20} /></div>
-                                <div className={styles.socialIcon}><Instagram size={20} /></div>
-                                <div className={styles.socialIcon}><Linkedin size={20} /></div>
-                                <div className={styles.socialIcon}><Facebook size={20} /></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* FORM SECTION */}
-                    <div className={styles.formSection}>
-                        <form onSubmit={handleSubmit}>
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Full Name</label>
-                                <input type="text" placeholder="Enter your full name" className={styles.formInput} required />
-                            </div>
-
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Email Address</label>
-                                <input type="email" placeholder="you@example.com" className={styles.formInput} required />
-                            </div>
-
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Subject</label>
-                                <select className={styles.formInput}>
-                                    <option>General Inquiry</option>
-                                    <option>Technical Support</option>
-                                    <option>Pricing & Plans</option>
-                                    <option>Business Partnerships</option>
-                                </select>
-                            </div>
-
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Your Message</label>
-                                <textarea placeholder="How can we help you today?" className={styles.formTextarea} required></textarea>
-                            </div>
-
-                            <button type="submit" className={styles.submitBtn}>
-                                Send Message <Send size={20} />
-                            </button>
-                        </form>
-                    </div>
-                </section>
+          <div className={styles.metaGrid}>
+            <div className={styles.metaCard}>
+              <p className={styles.metaLabel}>Sales inquiry</p>
+              <p className={styles.metaValue}>hello@virtualinterview.ai</p>
             </div>
+            <div className={styles.metaCard}>
+              <p className={styles.metaLabel}>Office hours</p>
+              <p className={styles.metaValue}>Mon - Fri, 9am - 6pm</p>
+            </div>
+            <div className={styles.metaCard}>
+              <p className={styles.metaLabel}>Call us</p>
+              <p className={styles.metaValue}>+1 (888) 424-4567</p>
+            </div>
+          </div>
+        </div>
 
-            <Footer />
-        </main>
-    );
+        <div className={styles.formPanel}>
+          <div className={styles.formHeader}>
+            <span>Contact us</span>
+            <h2>Tell us about your hiring challenge</h2>
+            <p>
+              We&apos;ll respond within one business day and help you choose the best solution for your team.
+            </p>
+          </div>
+
+          {submitted ? (
+            <div className={styles.successCard}>
+              <div className={styles.successCircle}>
+                <Check size={28} />
+              </div>
+              <h3>Thanks — your message is on its way.</h3>
+              <p>One of our experts will contact you soon with next steps.</p>
+              <button
+                type="button"
+                className={styles.submitBtn}
+                onClick={() => setSubmitted(false)}
+              >
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <form className={styles.contactForm} onSubmit={handleSubmit}>
+              <label className={styles.fieldLabel}>
+                Full name
+                <input type="text" placeholder="Jane Cooper" required />
+              </label>
+
+              <label className={styles.fieldLabel}>
+                Work email
+                <input type="email" placeholder="jane@company.com" required />
+              </label>
+
+              <label className={styles.fieldLabel}>
+                Company name
+                <input type="text" placeholder="Acme Recruiting" required />
+              </label>
+
+              <label className={styles.fieldLabel}>
+                Phone number
+                <input type="tel" placeholder="(123) 456-7890" />
+              </label>
+
+              <label className={styles.fieldLabel}>
+                Message
+                <textarea placeholder="Tell us what you want to achieve with your hiring program..." required />
+              </label>
+
+              <button type="submit" className={styles.submitBtn}>
+                Start the conversation <Send size={16} />
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+
+      <Footer />
+    </main>
+  );
 }
-

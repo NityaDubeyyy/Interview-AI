@@ -259,7 +259,7 @@ body {
     filter: blur(10px);
     transform-style: preserve-3d;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    background: linear-gradient(to bottom, #fff, #888);
+    background: linear-gradient(to bottom, #fff, #bbb);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

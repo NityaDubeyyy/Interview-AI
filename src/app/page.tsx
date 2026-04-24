@@ -13,6 +13,7 @@ import StatsSection from "@/components/StatsSection";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TextHighlightSection from "@/components/TextHighlightSection";
+import LogoCloud from "@/components/LogoCloud";
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import {
   PlayCircle, Star, ArrowRight, Video, Phone, Mic, Settings, Bell, Inbox,
@@ -260,66 +261,9 @@ export default function Home() {
         </div>
 
         {/* LOGO CLOUD SECTION */}
-        <div className="container" style={{ marginTop: '5rem', paddingBottom: '4rem', position: 'relative', zIndex: 10 }}>
-          <motion.div 
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className={styles.logoCloudContainer}
-          >
-            <div className={styles.logoCloudWrapper}>
-              <div className={styles.centralLogo}>
-                <div className={styles.logoPulseRing} />
-                <div className={styles.logoPulseRing} />
-                <div className={styles.logoPulseRing} />
-                <div className={styles.centralLogoInner}>
-                  {/* Custom Dot Pattern Icon matching the image */}
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-                    <circle cx="12" cy="4" r="2" />
-                    <circle cx="8" cy="8" r="2" />
-                    <circle cx="12" cy="8" r="2" />
-                    <circle cx="16" cy="8" r="2" />
-                    <circle cx="4" cy="12" r="2" />
-                    <circle cx="8" cy="12" r="2" />
-                    <circle cx="12" cy="12" r="2" />
-                    <circle cx="16" cy="12" r="2" />
-                    <circle cx="20" cy="12" r="2" />
-                    <circle cx="8" cy="16" r="2" />
-                    <circle cx="12" cy="16" r="2" />
-                    <circle cx="16" cy="16" r="2" />
-                    <circle cx="12" cy="20" r="2" />
-                  </svg>
-                </div>
-              </div>
-              
-              <div className={styles.logoCloud}>
-                {/* First Set of Logos */}
-                <div className={styles.logoItem}><Layers size={22} /><span>Leafe</span></div>
-                <div className={styles.logoItem}><Globe size={22} /><span>Merc</span></div>
-                <div className={styles.logoItem}><Zap size={22} /><span>luminous</span></div>
-                <div className={styles.logoItem}><LayoutGrid size={22} /><span>hue</span></div>
-                <div className={styles.logoItem}><ShieldCheck size={22} /><span>Safe</span></div>
-                <div className={styles.logoItem}><Users size={22} /><span>Collaborate</span></div>
-                <div className={styles.logoItem}><Clock size={22} /><span>FastTrack</span></div>
-                <div className={styles.logoItem}><Star size={22} /><span>Nexus</span></div>
-                <div className={styles.logoItem}><Plus size={22} /><span>Orbit</span></div>
-                <div className={styles.logoItem}><Sparkles size={22} /><span>Pulse</span></div>
+        <div className="container" style={{ marginTop: '2rem', paddingBottom: '2rem', position: 'relative', zIndex: 10 }}>
+          <LogoCloud title="Join thousands of forward-thinking recruitment teams" />
 
-                {/* Second Set for Seamless Loop */}
-                <div className={styles.logoItem}><Layers size={22} /><span>Leafe</span></div>
-                <div className={styles.logoItem}><Globe size={22} /><span>Merc</span></div>
-                <div className={styles.logoItem}><Zap size={22} /><span>luminous</span></div>
-                <div className={styles.logoItem}><LayoutGrid size={22} /><span>hue</span></div>
-                <div className={styles.logoItem}><ShieldCheck size={22} /><span>Safe</span></div>
-                <div className={styles.logoItem}><Users size={22} /><span>Collaborate</span></div>
-                <div className={styles.logoItem}><Clock size={22} /><span>FastTrack</span></div>
-                <div className={styles.logoItem}><Star size={22} /><span>Nexus</span></div>
-                <div className={styles.logoItem}><Plus size={22} /><span>Orbit</span></div>
-                <div className={styles.logoItem}><Sparkles size={22} /><span>Pulse</span></div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -629,7 +573,7 @@ export default function Home() {
                 transformStyle: 'preserve-3d'
               }}
               animate={{
-                translateX: `calc(-${currentTestimonial * (350 + 40)}px)`
+                translateX: `calc(50% - 175px - ${currentTestimonial * 390}px)`
               }}
               transition={{
                 type: "spring",
@@ -966,7 +910,7 @@ export default function Home() {
 
             <div className={`${styles.supplementaryBox} ${styles.consultantBox}`}>
               <h4 className={styles.suppTitle}>Not Sure Which Plan is Right for You?</h4>
-              <button className={styles.consultantBtn}>Talk to an AI Consultant</button>
+              <button className={styles.consultantBtn}>Talk to an Expert Consultant</button>
             </div>
           </div>
         </div>

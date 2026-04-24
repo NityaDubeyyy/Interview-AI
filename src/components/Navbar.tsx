@@ -34,7 +34,7 @@ export default function Navbar() {
   const solutions = [
     { name: "Async interviews", desc: "Video & audio interviews", href: "/solution/one-way-video-interview-software", icon: <Video size={18} /> },
     { name: "Talent assessments", desc: "Pre-employment tests", href: "/solution/talent-assessment-software", icon: <ClipboardCheck size={18} /> },
-    { name: "Resume screening", desc: "Coming soon", href: "#", icon: <FileSearch size={18} /> },
+    { name: "Application Review", desc: "AI agent for inbound recruiting", href: "/solution/application-review", icon: <FileSearch size={18} /> },
   ];
 
   const useCases = [
@@ -52,10 +52,10 @@ export default function Navbar() {
         right: 0,
         zIndex: 1000,
         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-        background: scrolled || activeDropdown ? "rgba(5, 1, 13, 0.95)" : "transparent",
-        backdropFilter: scrolled || activeDropdown ? "blur(20px)" : "none",
-        borderBottom: scrolled || activeDropdown ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid transparent",
-        padding: scrolled ? "0.5rem 0" : "1rem 0",
+        background: "rgba(10, 10, 18, 0.7)",
+        backdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+        padding: scrolled ? "0.4rem 0" : "0.7rem 0",
       }}
       onMouseLeave={() => setActiveDropdown(null)}
     >
@@ -180,18 +180,66 @@ export default function Navbar() {
               )}
             </li>
             <li className="nav-link">
-              <div style={{ display: "flex", alignItems: "center", gap: "4px", cursor: "pointer" }}>
-                Solutions <ChevronDown size={14} />
+              <Link href="/solution/application-review" style={{ display: "flex", alignItems: "center", gap: "4px", cursor: "pointer", color: "inherit", textDecoration: "none" }}>
+                Solutions
+              </Link>
+            </li>
+            <li 
+              className="nav-link"
+              onMouseEnter={() => setActiveDropdown("resources")}
+              style={{ position: "relative" }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "4px", cursor: "pointer", color: activeDropdown === "resources" ? "white" : "inherit" }}>
+                Resources <ChevronDown size={14} style={{ transform: activeDropdown === "resources" ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.3s ease" }} />
               </div>
+
+              {activeDropdown === "resources" && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "100%",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    paddingTop: "1.5rem",
+                    width: "max-content",
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "rgba(10, 10, 18, 0.98)",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      borderRadius: "16px",
+                      padding: "1.5rem",
+                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                      minWidth: "150px",
+                    }}
+                  >
+                    <Link href="/blog" style={{ textDecoration: "none", color: "rgba(255, 255, 255, 0.7)", fontSize: "0.95rem", fontWeight: 500, transition: "color 0.2s ease" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)"}>
+                      Blog
+                    </Link>
+                    <Link href="/comparison" style={{ textDecoration: "none", color: "rgba(255, 255, 255, 0.7)", fontSize: "0.95rem", fontWeight: 500, transition: "color 0.2s ease" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)"}>
+                      Comparison
+                    </Link>
+                  </div>
+                </div>
+              )}
             </li>
             <li className="nav-link">
-              <div style={{ display: "flex", alignItems: "center", gap: "4px", cursor: "pointer" }}>
-                Resources <ChevronDown size={14} />
-              </div>
+              <Link href="/case-studies" style={{ color: "white", textDecoration: "none" }}>
+                Case Study
+              </Link>
             </li>
             <li className="nav-link">
               <Link href="#" style={{ color: "white", textDecoration: "none" }}>
                 Pricing
+              </Link>
+            </li>
+            <li className="nav-link">
+              <Link href="/contact" style={{ color: "white", textDecoration: "none" }}>
+                Contact Us
               </Link>
             </li>
           </ul>

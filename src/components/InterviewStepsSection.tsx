@@ -588,8 +588,7 @@ export default function InterviewStepsSection() {
         background: '#05010D', 
         fontFamily: "'Inter', sans-serif", 
         color: '#ffffff',
-        position: 'relative',
-        minHeight: `${steps.length * 100}vh`
+        position: 'relative'
       }}
     >
       {/* Reduced intensity background for performance */}
@@ -597,11 +596,16 @@ export default function InterviewStepsSection() {
         <DarkVeil hueShift={20} noiseIntensity={0.03} scanlineIntensity={0.1} speed={0.1} warpAmount={0.2} resolutionScale={0.5} />
       </div>
 
-      <div className="container" style={{ display: 'flex', position: 'relative', zIndex: 1 }}>
-        
-        {/* LEFT SIDE: SCROLLING CARDS */}
-        <div style={{ flex: 1.2, padding: '10vh 0' }}>
-          {steps.map((step) => (
+      <div className="container" style={{ display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
+        <div style={{ width: '100%', textAlign: 'center', marginTop: '100px', marginBottom: '-5vh', position: 'relative', zIndex: 20 }}>
+          <h2 style={{ fontSize: '48px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', margin: 0 }}>
+            How It Works
+          </h2>
+        </div>
+        <div style={{ display: 'flex', flex: 1, position: 'relative' }}>
+          {/* LEFT SIDE: SCROLLING CARDS */}
+          <div style={{ flex: 1.2, padding: '10vh 0' }}>
+            {steps.map((step) => (
             <motion.div 
               key={step.id}
               className="step-card-scroll"
@@ -740,6 +744,7 @@ export default function InterviewStepsSection() {
               </motion.div>
             ))}
           </div>
+        </div>
         </div>
 
       </div>

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FAQSection from "@/components/FAQSection";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, Check, Plus, 
@@ -10,8 +11,6 @@ import {
 
 export default function RetailHiringPage() {
   const [activeFeature, setActiveFeature] = useState(0);
-  const [activeFaqTab, setActiveFaqTab] = useState("Product");
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const features = [
     {
@@ -68,24 +67,28 @@ export default function RetailHiringPage() {
     }
   ];
 
-  const faqData = {
-    Product: [
-      { q: "What is candidate screening software?", a: "Candidate screening software automates the early stages of hiring by evaluating applicants before live interviews. Instead of manually reviewing hundreds of resumes or scheduling dozens of phone screens, screening tools use a combination of video interviews, skills assessments, resume parsing, AI-generated summaries, and structured scoring to surface the best candidates faster." },
-      { q: "What screening methods does Truffle support?", a: "Truffle supports four core screening methods: one-way video interviews, automated resume screening, structured talent assessments (Personality, Situational Judgment, and Environment Fit), and text-based qualification checks." },
-      { q: "How does candidate screening software improve quality of hire?", a: "Screening software improves quality of hire by replacing unstructured evaluation with consistent, criteria-based assessment. Every candidate is measured against the same scoring rubric, reducing variability and bias." },
-      { q: "What's the difference between an ATS and candidate screening software?", a: "An applicant tracking system manages job postings and candidate pipelines. Candidate screening software focuses specifically on the evaluation layer — giving your team structured, comparable information before live conversations." },
-      { q: "Is Truffle's AI biased?", a: "Truffle's AI analyzes only transcripts of candidate responses. Demographic data isn't requested or used in scoring, and every match score includes transparent reasoning." }
-    ],
-    Support: [
-      { q: "Do you offer onboarding or training?", a: "Yes. We're happy to walk you and your team through the platform on a live call. Most teams are self-sufficient after a few minutes, but we're here to help." },
-      { q: "What kind of support do you offer?", a: "Direct access to our team via email, phone, and live chat. You're talking to the people who built the product." },
-      { q: "How long does setup take?", a: "Most teams are live in under 15 minutes. No implementation project or IT involvement required." }
-    ],
-    Pricing: [
-      { q: "What does Truffle cost?", a: "Truffle starts at $99/month. No per-seat pricing, so your whole hiring team gets access without long-term contracts." },
-      { q: "Is there a free trial?", a: "Yes. Every Truffle account starts with a free trial — no credit card required. You can run five candidates to see the experience." }
-    ]
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = features.findIndex(f => f.id === entry.target.id);
+            if (index !== -1) setActiveFeature(index);
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -70% 0px" }
+    );
+
+    features.forEach((f) => {
+      const el = document.getElementById(f.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+
 
   return (
     <main style={{ background: "#060212", color: "#fff", minHeight: "100vh" }}>
@@ -145,59 +148,56 @@ export default function RetailHiringPage() {
       <section id="features" style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "250px 1fr", gap: "80px" }}>
           {/* Side Nav */}
-          <div style={{ position: "sticky", top: "100px", height: "fit-content" }}>
+          <div style={{ position: "sticky", top: "120px", display: "flex", flexDirection: "column", gap: "12px", height: "fit-content" }}>
             {features.map((f, i) => (
-              <div 
+              <button 
                 key={f.id}
-                onClick={() => setActiveFeature(i)}
+                onClick={() => document.getElementById(f.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                 style={{ 
+                  textAlign: "left",
                   padding: "16px 20px", 
                   borderRadius: "12px", 
                   cursor: "pointer", 
-                  color: activeFeature === i ? "#fff" : "rgba(255, 255, 255, 0.4)",
-                  background: activeFeature === i ? "rgba(255, 255, 255, 0.05)" : "transparent",
+                  color: activeFeature === i ? "#a78bfa" : "rgba(255, 255, 255, 0.4)",
+                  background: activeFeature === i ? "rgba(139, 92, 246, 0.1)" : "transparent",
                   fontWeight: 600,
-                  marginBottom: "8px",
+                  border: "none",
                   transition: "all 0.2s"
                 }}
               >
                 {f.navLabel}
-              </div>
+              </button>
             ))}
           </div>
 
           {/* Feature Display */}
-          <AnimatePresence mode="wait">
-            <motion.div 
-              key={activeFeature}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}
-            >
-              <div>
-                <h2 style={{ fontSize: "2.5rem", fontWeight: 600, marginBottom: "24px", lineHeight: 1.2 }}>
-                  {features[activeFeature].title}
-                </h2>
-                <p style={{ fontSize: "1.1rem", color: "rgba(255, 255, 255, 0.6)", lineHeight: 1.6, marginBottom: "32px" }}>
-                  {features[activeFeature].description}
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                  {features[activeFeature].bullets.map((bullet, idx) => (
-                    <div key={idx} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                      <div style={{ width: "20px", height: "20px", borderRadius: "50%", background: "rgba(16, 185, 129, 0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Check size={12} color="#10b981" />
+          <div style={{ display: "flex", flexDirection: "column", gap: "150px" }}>
+            {features.map((f, i) => (
+              <div key={f.id} id={f.id} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", scrollMarginTop: "150px" }}>
+                <div>
+                  <h2 style={{ fontSize: "2.5rem", fontWeight: 600, marginBottom: "24px", lineHeight: 1.2 }}>
+                    {f.title}
+                  </h2>
+                  <p style={{ fontSize: "1.1rem", color: "rgba(255, 255, 255, 0.6)", lineHeight: 1.6, marginBottom: "32px" }}>
+                    {f.description}
+                  </p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                    {f.bullets.map((bullet, idx) => (
+                      <div key={idx} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                        <div style={{ width: "20px", height: "20px", borderRadius: "50%", background: "rgba(16, 185, 129, 0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                          <Check size={12} color="#10b981" />
+                        </div>
+                        <span style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.8)", lineHeight: 1.5 }}>{bullet}</span>
                       </div>
-                      <span style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.8)", lineHeight: 1.5 }}>{bullet}</span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                </div>
+                <div style={{ borderRadius: "24px", overflow: "hidden", background: "rgba(255, 255, 255, 0.02)", border: "1px solid rgba(255, 255, 255, 0.06)", padding: "24px" }}>
+                  <img src={f.image} alt={f.imageAlt} style={{ width: "100%", height: "auto" }} />
                 </div>
               </div>
-              <div style={{ borderRadius: "24px", overflow: "hidden", background: "rgba(255, 255, 255, 0.02)", border: "1px solid rgba(255, 255, 255, 0.06)", padding: "24px" }}>
-                <img src={features[activeFeature].image} alt={features[activeFeature].imageAlt} style={{ width: "100%", height: "auto" }} />
-              </div>
-            </motion.div>
-          </AnimatePresence>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -231,69 +231,7 @@ export default function RetailHiringPage() {
       </section>
 
       {/* 5. FAQ Section */}
-      <section style={{ padding: "140px 24px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "80px" }}>
-            <div style={{ display: "inline-block", background: "rgba(255, 255, 255, 0.05)", padding: "6px 14px", borderRadius: "100px", marginBottom: "24px" }}>
-              <span style={{ fontSize: "11px", fontWeight: 800, textTransform: "uppercase", color: "rgba(255, 255, 255, 0.6)" }}>FAQ</span>
-            </div>
-            <h2 style={{ fontSize: "3rem", fontWeight: 600, marginBottom: "24px" }}>FAQs about Truffle's candidate screening software</h2>
-            <p style={{ color: "rgba(255, 255, 255, 0.4)" }}>Quick answers to help you get the most out of your visit. 👋</p>
-          </div>
-
-          <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-            <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginBottom: "40px" }}>
-              {["Product", "Support", "Pricing"].map(tab => (
-                <button 
-                  key={tab}
-                  onClick={() => setActiveFaqTab(tab)}
-                  style={{ 
-                    padding: "12px 24px", 
-                    borderRadius: "100px", 
-                    border: "1px solid", 
-                    borderColor: activeFaqTab === tab ? "#fff" : "rgba(255, 255, 255, 0.1)",
-                    background: activeFaqTab === tab ? "#fff" : "transparent",
-                    color: activeFaqTab === tab ? "#000" : "#fff",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    transition: "all 0.2s"
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              {faqData[activeFaqTab as keyof typeof faqData].map((faq, i) => (
-                <div key={i} style={{ borderRadius: "16px", border: "1px solid rgba(255, 255, 255, 0.06)", overflow: "hidden" }}>
-                  <button 
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    style={{ width: "100%", textAlign: "left", padding: "24px", background: "transparent", border: "none", color: "#fff", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
-                  >
-                    <span style={{ fontWeight: 600 }}>{faq.q}</span>
-                    <Plus size={18} style={{ transform: openFaq === i ? "rotate(45deg)" : "none", transition: "transform 0.3s" }} />
-                  </button>
-                  <AnimatePresence>
-                    {openFaq === i && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div style={{ padding: "0 24px 24px", fontSize: "14px", color: "rgba(255, 255, 255, 0.5)", lineHeight: 1.6 }}>
-                          {faq.a}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <FAQSection />
 
       {/* 6. Traditional Assessments Banner */}
       <section style={{ padding: "80px 24px" }}>

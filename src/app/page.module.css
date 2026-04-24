@@ -2,7 +2,7 @@
   min-height: 100vh;
   background-color: var(--bg);
   background-image: 
-    radial-gradient(circle at 50% -20%, rgba(139, 92, 246, 0.15), transparent 70%),
+    radial-gradient(circle at 50% -10%, rgba(139, 92, 246, 0.3), transparent 80%),
     radial-gradient(circle at 50% 120%, rgba(139, 92, 246, 0.25), transparent 60%);
   position: relative;
   overflow: visible;
@@ -149,7 +149,7 @@
 
 .logoCloudContainer {
   width: 100%;
-  padding: 4rem 0 4rem;
+  padding: 2rem 0;
   background: transparent;
   overflow: visible;
   position: relative;
@@ -185,11 +185,11 @@
 
 .logoCloud {
   display: flex;
-  gap: 8rem;
+  gap: 5rem;
   align-items: center;
   width: max-content;
-  animation: scroll 50s linear infinite;
-  padding: 0 4rem;
+  animation: scroll 40s linear infinite;
+  padding-right: 5rem; /* Matches gap to ensure perfect seamless looping with translateX(-50%) */
 }
 
 .logoCloud:hover {
@@ -201,13 +201,13 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-50% - 4rem));
+    transform: translateX(-33.3333%);
   }
 }
 
 .centralLogo {
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,9 +220,9 @@
 }
 
 .centralLogoInner {
-  width: 70px;
-  height: 70px;
-  background: #8B5CF6;
+  width: 85px;
+  height: 85px;
+  background: #7C3AED;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -255,7 +255,7 @@
     opacity: 0.8;
   }
   100% {
-    transform: scale(2.5);
+    transform: scale(2);
     opacity: 0;
   }
 }
@@ -271,32 +271,13 @@
   transition: all 0.4s ease;
   cursor: default;
   white-space: nowrap;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .logoItem:hover {
-  filter: grayscale(0) brightness(1);
+  filter: grayscale(0) brightness(1.2);
   opacity: 1;
   transform: translateY(-2px);
-}
-
-.logoItem {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-  color: white;
-  filter: grayscale(1);
-  transition: all 0.3s ease;
-  cursor: default;
-  white-space: nowrap;
-  opacity: 0.6;
-}
-
-.logoItem:hover {
-  filter: grayscale(0);
-  opacity: 1;
 }
 
 .heroStats {
@@ -1237,10 +1218,10 @@
   line-height: 1.15;
   margin-bottom: 1rem;
   letter-spacing: -0.03em;
-  background: linear-gradient(180deg, #ffffff 0%, rgba(139, 92, 246, 0.45) 100%);
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.4) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
 }
 
 .faqSubtitle {
@@ -1755,10 +1736,10 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  padding: 10px 24px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 14px;
+  padding: 16px 36px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;

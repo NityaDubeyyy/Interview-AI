@@ -3,6 +3,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LogoCloud from "@/components/LogoCloud";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Play, Star, Zap, Smartphone, UserCheck, ShieldCheck, Users, Info, LayoutGrid, Layers, Sparkles, Cpu, Share2, Plus, ChevronLeft, ChevronRight, Bell, Clock, MoreHorizontal, MessageSquare, Filter, List, Search, LayoutDashboard, Globe } from "lucide-react";
 import styles from "@/app/page.module.css";
@@ -225,72 +226,38 @@ export default function SeasonalHiringPage() {
       </section>
 
       {/* 3. Logo Pulse Section (Infinite Marquee) */}
-      <section className={styles.logoCloudContainer} style={{ background: "#060212", padding: "120px 0" }}>
-         <div className={styles.logoCloudWrapper}>
-            {/* Moving Logos */}
-            <div className={styles.logoCloud}>
-               {/* Set 1 */}
-               <div className={styles.logoItem}><Sparkles size={22} /><span>Pulse</span></div>
-               <div className={styles.logoItem}><Layers size={22} /><span>Leafe</span></div>
-               <div className={styles.logoItem}><Globe size={22} /><span>Merc</span></div>
-               <div className={styles.logoItem}><Zap size={22} /><span>luminous</span></div>
-               <div className={styles.logoItem}><LayoutGrid size={22} /><span>Iron</span></div>
-               <div className={styles.logoItem}><ShieldCheck size={22} /><span>Safe</span></div>
-               <div className={styles.logoItem}><Users size={22} /><span>Collaborate</span></div>
-               <div className={styles.logoItem}><Star size={22} /><span>Nexus</span></div>
+      <LogoCloud title="Seasonal hiring software loved by 100s of great companies" />
 
-               {/* Set 2 for loop */}
-               <div className={styles.logoItem}><Sparkles size={22} /><span>Pulse</span></div>
-               <div className={styles.logoItem}><Layers size={22} /><span>Leafe</span></div>
-               <div className={styles.logoItem}><Globe size={22} /><span>Merc</span></div>
-               <div className={styles.logoItem}><Zap size={22} /><span>luminous</span></div>
-               <div className={styles.logoItem}><LayoutGrid size={22} /><span>Iron</span></div>
-               <div className={styles.logoItem}><ShieldCheck size={22} /><span>Safe</span></div>
-               <div className={styles.logoItem}><Users size={22} /><span>Collaborate</span></div>
-               <div className={styles.logoItem}><Star size={22} /><span>Nexus</span></div>
-            </div>
-
-            {/* Fixed Central Logo */}
-            <div className={styles.centralLogo}>
-               <div className={styles.logoPulseRing} />
-               <div className={styles.logoPulseRing} />
-               <div className={styles.logoPulseRing} />
-               <div className={styles.centralLogoInner} style={{ background: "#8b5cf6", borderRadius: "12px" }}>
-                  <Plus color="#fff" size={24} />
-               </div>
-            </div>
-         </div>
-      </section>
 
       {/* 4. Setup Section (Image 4) */}
-      <section style={{ width: "100%", background: "#ffffff", padding: "140px 24px", color: "#0f172a", display: "flex", justifyContent: "center" }}>
+      <section style={{ width: "100%", background: "#060212", padding: "140px 24px", color: "#fff", display: "flex", justifyContent: "center" }}>
         <div style={{ maxWidth: "1200px", width: "100%", display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "100px", alignItems: "center" }}>
            {/* Left: Mockup */}
-           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} style={{ background: "#f8fafc", borderRadius: "32px", padding: "40px", border: "1px solid #e2e8f0" }}>
-              <div style={{ background: "#fff", borderRadius: "20px", border: "1px solid #e2e8f0", padding: "32px", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
+           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} style={{ background: "rgba(255, 255, 255, 0.02)", borderRadius: "32px", padding: "40px", border: "1px solid rgba(255, 255, 255, 0.08)" }}>
+              <div style={{ background: "#0c0e14", borderRadius: "20px", border: "1px solid rgba(255, 255, 255, 0.1)", padding: "32px", boxShadow: "0 20px 40px rgba(0,0,0,0.3)" }}>
                  <h3 style={{ fontSize: "16px", fontWeight: 700, marginBottom: "24px" }}>Create interview</h3>
                  <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                     <div style={{ display: "flex", gap: "16px" }}>
                        <div style={{ width: "24px", height: "24px", background: "#3b82f6", color: "#fff", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 700 }}>1</div>
                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "12px" }}>Paste job description</div>
-                          <div style={{ background: "#f1f5f9", height: "12px", borderRadius: "6px", width: "100%", marginBottom: "8px" }}></div>
-                          <div style={{ background: "#f1f5f9", height: "12px", borderRadius: "6px", width: "80%" }}></div>
+                          <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "12px", color: "#fff" }}>Paste job description</div>
+                          <div style={{ background: "rgba(255,255,255,0.05)", height: "12px", borderRadius: "6px", width: "100%", marginBottom: "8px" }}></div>
+                          <div style={{ background: "rgba(255,255,255,0.05)", height: "12px", borderRadius: "6px", width: "80%" }}></div>
                        </div>
                     </div>
                     <div style={{ display: "flex", gap: "16px" }}>
                        <div style={{ width: "24px", height: "24px", background: "#3b82f6", color: "#fff", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 700 }}>2</div>
                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "12px" }}>Select or create questions</div>
+                          <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "12px", color: "#fff" }}>Select or create questions</div>
                           <div style={{ display: "flex", gap: "12px" }}>
                              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
                                 {["Tell us about a time you...", "How would you handle...", "What's your approach to..."].map((q, i) => (
-                                  <div key={i} style={{ fontSize: "10px", color: "rgba(15,23,42,0.4)", border: "1px solid #e2e8f0", padding: "8px", borderRadius: "6px" }}>{q}</div>
+                                  <div key={i} style={{ fontSize: "10px", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", padding: "8px", borderRadius: "6px" }}>{q}</div>
                                 ))}
                              </div>
-                             <div style={{ width: "140px", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "12px" }}>
+                             <div style={{ width: "140px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "10px", padding: "12px" }}>
                                 <div style={{ fontSize: "9px", color: "#3b82f6", fontWeight: 700, display: "flex", alignItems: "center", gap: "4px", marginBottom: "8px" }}><Sparkles size={8}/> Generating custom scoring</div>
-                                {[1,2,3].map(i => <div key={i} style={{ height: "6px", background: "#e2e8f0", borderRadius: "3px", marginBottom: "6px", width: i === 3 ? "60%" : "100%" }}></div>)}
+                                {[1,2,3].map(i => <div key={i} style={{ height: "6px", background: "rgba(255,255,255,0.05)", borderRadius: "3px", marginBottom: "6px", width: i === 3 ? "60%" : "100%" }}></div>)}
                              </div>
                           </div>
                        </div>
@@ -298,21 +265,21 @@ export default function SeasonalHiringPage() {
                     <div style={{ display: "flex", gap: "16px" }}>
                        <div style={{ width: "24px", height: "24px", background: "#3b82f6", color: "#fff", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 700 }}>3</div>
                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "12px" }}>Complete intake and customize branding</div>
-                          <div style={{ border: "1px solid #e2e8f0", padding: "12px", borderRadius: "10px", display: "flex", justifyContent: "space-between", marginBottom: "12px" }}>
-                             <div><div style={{ fontSize: "11px", fontWeight: 700 }}>Personalize Truffle's AI for your position</div><div style={{ fontSize: "9px", color: "rgba(15,23,42,0.4)" }}>Answer two quick questions to improve match accuracy</div></div>
-                             <Cpu size={16} color="#cbd5e1" />
+                          <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "12px", color: "#fff" }}>Complete intake and customize branding</div>
+                          <div style={{ border: "1px solid rgba(255,255,255,0.08)", padding: "12px", borderRadius: "10px", display: "flex", justifyContent: "space-between", marginBottom: "12px" }}>
+                             <div><div style={{ fontSize: "11px", fontWeight: 700, color: "#fff" }}>Personalize Truffle&apos;s AI for your position</div><div style={{ fontSize: "9px", color: "rgba(255,255,255,0.3)" }}>Answer two quick questions to improve match accuracy</div></div>
+                             <Cpu size={16} color="rgba(255,255,255,0.2)" />
                           </div>
-                          <div style={{ border: "1px solid #e2e8f0", padding: "12px", borderRadius: "10px", display: "flex", justifyContent: "space-between" }}>
-                             <div><div style={{ fontSize: "11px", fontWeight: 700 }}>Customize brand experience</div><div style={{ fontSize: "9px", color: "rgba(15,23,42,0.4)" }}>Add your logo, colors, and messaging</div></div>
+                          <div style={{ border: "1px solid rgba(255,255,255,0.08)", padding: "12px", borderRadius: "10px", display: "flex", justifyContent: "space-between" }}>
+                             <div><div style={{ fontSize: "11px", fontWeight: 700, color: "#fff" }}>Customize brand experience</div><div style={{ fontSize: "9px", color: "rgba(255,255,255,0.3)" }}>Add your logo, colors, and messaging</div></div>
                              <Sparkles size={16} color="#3b82f6" />
                           </div>
                        </div>
                     </div>
                  </div>
-                 <div style={{ marginTop: "32px", paddingTop: "24px", borderTop: "1px solid #e2e8f0", textAlign: "center" }}>
-                    <div style={{ fontSize: "12px", fontWeight: 700, marginBottom: "16px" }}>Congratulations - your interview is ready to share!</div>
-                    <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "12px", fontSize: "10px", color: "rgba(15,23,42,0.5)", display: "flex", alignItems: "center", gap: "8px" }}>
+                 <div style={{ marginTop: "32px", paddingTop: "24px", borderTop: "1px solid rgba(255,255,255,0.08)", textAlign: "center" }}>
+                    <div style={{ fontSize: "12px", fontWeight: 700, marginBottom: "16px", color: "#fff" }}>Congratulations - your interview is ready to share!</div>
+                    <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "8px", padding: "12px", fontSize: "10px", color: "rgba(255,255,255,0.4)", display: "flex", alignItems: "center", gap: "8px" }}>
                        <Share2 size={12} color="#3b82f6" /> https://app.hiretruffle.com/j/senior-developer-123
                     </div>
                  </div>
@@ -321,27 +288,27 @@ export default function SeasonalHiringPage() {
 
            {/* Right: Content */}
            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div style={{ display: "inline-block", background: "#f1f5f9", borderRadius: "100px", padding: "6px 16px", marginBottom: "24px" }}>
-                 <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(15, 23, 42, 0.6)", letterSpacing: "1px" }}>LIVE IN 10 MINUTES — NOT NEXT QUARTER</span>
+              <div style={{ display: "inline-block", background: "rgba(255,255,255,0.04)", borderRadius: "100px", padding: "6px 16px", marginBottom: "24px" }}>
+                 <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(255, 255, 255, 0.6)", letterSpacing: "1px" }}>LIVE IN 10 MINUTES — NOT NEXT QUARTER</span>
               </div>
-              <h2 style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: "24px", color: "#0f172a" }}>Set up your first interview before lunch</h2>
-              <p style={{ fontSize: "18px", color: "rgba(15, 23, 42, 0.6)", lineHeight: 1.6, marginBottom: "40px" }}>You can go from "we need 20 people by October" to "candidates are recording answers" in the same afternoon.</p>
+              <h2 style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: "24px", color: "#fff" }}>Set up your first interview before lunch</h2>
+              <p style={{ fontSize: "18px", color: "rgba(255, 255, 255, 0.6)", lineHeight: 1.6, marginBottom: "40px" }}>You can go from &quot;we need 20 people by October&quot; to &quot;candidates are recording answers&quot; in the same afternoon.</p>
               
               <div style={{ position: "relative", marginBottom: "60px", display: "inline-block" }}>
                  <div style={{ position: "absolute", inset: "-4px", background: "linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899)", filter: "blur(12px)", opacity: 0.3, borderRadius: "100px" }}></div>
-                 <button style={{ position: "relative", background: "#0f172a", color: "#fff", border: "none", padding: "16px 36px", borderRadius: "100px", fontSize: "16px", fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: "10px" }}>
+                 <button style={{ position: "relative", background: "#fff", color: "#0f172a", border: "none", padding: "16px 36px", borderRadius: "100px", fontSize: "16px", fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: "10px" }}>
                     Start free trial <ArrowRight size={18} style={{ transform: "rotate(-45deg)" }} />
                  </button>
               </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "32px", color: "#0f172a" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "32px", color: "rgba(255, 255, 255, 0.8)" }}>
                  {[
                     "Edit questions, set scoring criteria, add your branding.",
                     "AI helps you generate questions and rubrics",
                     "Invite candidates via a unique link, email, or integrations"
                  ].map((feature, i) => (
-                    <div key={i} style={{ display: "flex", gap: "16px", alignItems: "center", borderTop: i === 0 ? "none" : "1px solid #f1f5f9", paddingTop: i === 0 ? 0 : "32px" }}>
-                       <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#ecfdf5", display: "flex", alignItems: "center", justifyContent: "center" }}><Check size={14} color="#10b981" /></div>
+                    <div key={i} style={{ display: "flex", gap: "16px", alignItems: "center", borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.06)", paddingTop: i === 0 ? 0 : "32px" }}>
+                       <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "rgba(16, 185, 129, 0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}><Check size={14} color="#10b981" /></div>
                        <span style={{ fontSize: "16px", fontWeight: 600 }}>{feature}</span>
                     </div>
                  ))}
@@ -382,18 +349,18 @@ export default function SeasonalHiringPage() {
                         { name: "Jamie Park", email: "jamie.park@email.com", score: 71, color: "#f59e0b", tag: "Quick learner; clear KPI wins, lighter on de-escalation." },
                         { name: "Corey Morgan", email: "cmorgan@email.com", score: 56, color: "#ef4444", tag: "Customer-first mindset; answers generic, lacks metrics." }
                      ].map((c, i) => (
-                        <div key={i} style={{ background: "#fff", borderRadius: "16px", padding: "20px", display: "flex", justifyContent: "space-between", alignItems: "center", color: "#111" }}>
+                        <div key={i} style={{ background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "16px", padding: "20px", display: "flex", justifyContent: "space-between", alignItems: "center", color: "#fff" }}>
                            <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
                               <div style={{ width: "48px", height: "48px", borderRadius: "12px", background: c.color === "#10b981" ? "#818cf8" : (c.color === "#f59e0b" ? "#f87171" : "#10b981"), opacity: 0.8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", fontWeight: 700, color: "#fff" }}>{c.name.split(' ').map(n=>n[0]).join('')}</div>
                               <div>
                                  <div style={{ fontWeight: 600 }}>{c.name}</div>
-                                 <div style={{ fontSize: "12px", color: "rgba(15,23,42,0.4)" }}>{c.email}</div>
-                                 <div style={{ fontSize: "11px", color: "rgba(15,23,42,0.6)", marginTop: "4px" }}>{c.tag}</div>
+                                 <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>{c.email}</div>
+                                 <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", marginTop: "4px" }}>{c.tag}</div>
                               </div>
                            </div>
                            <div style={{ textAlign: "right" }}>
                               <div style={{ fontSize: "20px", fontWeight: 700, color: c.color }}>{c.score}%</div>
-                              <div style={{ width: "60px", height: "4px", background: "#f1f5f9", borderRadius: "2px", marginTop: "4px" }}>
+                              <div style={{ width: "60px", height: "4px", background: "rgba(255,255,255,0.05)", borderRadius: "2px", marginTop: "4px" }}>
                                  <div style={{ width: `${c.score}%`, height: "100%", background: c.color, borderRadius: "2px" }}></div>
                               </div>
                            </div>
@@ -409,10 +376,10 @@ export default function SeasonalHiringPage() {
       <section style={{ padding: "140px 24px" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "100px", alignItems: "center" }}>
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-               <div style={{ background: "#f8fafc", borderRadius: "32px", padding: "40px", border: "1px solid #e2e8f0" }}>
+               <div style={{ background: "rgba(255, 255, 255, 0.02)", borderRadius: "32px", padding: "40px", border: "1px solid rgba(255, 255, 255, 0.08)" }}>
                   <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden", aspectRatio: "16/9", background: "#000" }}>
                      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                     <div style={{ position: "absolute", top: "12px", left: "12px", background: "rgba(0,0,0,0.4)", color: "#fff", padding: "4px 8px", borderRadius: "6px", fontSize: "11px" }}>0:45</div>
+                     <div style={{ position: "absolute", top: "12px", left: "12px", background: "rgba(0,0,0,0.6)", color: "#fff", padding: "4px 8px", borderRadius: "6px", fontSize: "11px" }}>0:45</div>
                      <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                         <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "rgba(255,255,255,0.3)", backdropFilter: "blur(10px)", display: "flex", alignItems: "center", justifyContent: "center" }}><Play size={24} fill="#fff" /></div>
                      </div>
@@ -464,44 +431,44 @@ export default function SeasonalHiringPage() {
             </motion.div>
             
             <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
-               <div style={{ background: "#f8fafc", borderRadius: "32px", padding: "60px", border: "1px solid #e2e8f0" }}>
-                  <div style={{ background: "#fff", borderRadius: "16px", padding: "24px", color: "#111", width: "100%", maxWidth: "450px", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }}>
-                     <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "24px", borderBottom: "1px solid #f1f5f9", paddingBottom: "16px" }}>
-                        <ChevronLeft size={16} color="#cbd5e1" />
+               <div style={{ background: "rgba(255, 255, 255, 0.02)", borderRadius: "32px", padding: "60px", border: "1px solid rgba(255, 255, 255, 0.08)" }}>
+                  <div style={{ background: "#0c0e14", borderRadius: "16px", padding: "24px", color: "#fff", width: "100%", maxWidth: "450px", boxShadow: "0 20px 40px rgba(0,0,0,0.3)", border: "1px solid rgba(255, 255, 255, 0.08)" }}>
+                     <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "24px", borderBottom: "1px solid rgba(255, 255, 255, 0.1)", paddingBottom: "16px" }}>
+                        <ChevronLeft size={16} color="rgba(255, 255, 255, 0.3)" />
                         <div style={{ flex: 1 }}>
                            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                              <span style={{ fontWeight: 700, fontSize: "14px" }}>Pace & Urgency</span>
-                              <span style={{ fontSize: "10px", color: "#64748b", background: "#f1f5f9", padding: "2px 8px", borderRadius: "10px" }}>Fast-paced, juggling priorities</span>
+                              <span style={{ fontWeight: 700, fontSize: "14px", color: "#fff" }}>Pace & Urgency</span>
+                              <span style={{ fontSize: "10px", color: "#3b82f6", background: "rgba(59, 130, 246, 0.1)", padding: "2px 8px", borderRadius: "10px" }}>Fast-paced, juggling priorities</span>
                            </div>
-                           <div style={{ fontSize: "11px", color: "#94a3b8", marginTop: "2px" }}>I feel energized when things are busy and I'm juggling multiple priorities</div>
+                           <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.4)", marginTop: "2px" }}>I feel energized when things are busy and I&apos;m juggling multiple priorities</div>
                         </div>
                      </div>
-                     <div style={{ fontSize: "10px", color: "#94a3b8", textTransform: "uppercase", fontWeight: 700, marginBottom: "16px" }}>Question 1 of 6</div>
-                     <div style={{ fontWeight: 700, fontSize: "14px", marginBottom: "20px" }}>Which better describes this role?</div>
+                     <div style={{ fontSize: "10px", color: "rgba(255, 255, 255, 0.3)", textTransform: "uppercase", fontWeight: 700, marginBottom: "16px" }}>Question 1 of 6</div>
+                     <div style={{ fontWeight: 700, fontSize: "14px", marginBottom: "20px", color: "#fff" }}>Which better describes this role?</div>
                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                        <div style={{ border: "2px solid #3b82f6", borderRadius: "8px", padding: "16px", background: "#f0f7ff", position: "relative" }}>
+                        <div style={{ border: "2px solid #3b82f6", borderRadius: "8px", padding: "16px", background: "rgba(59, 130, 246, 0.05)", position: "relative" }}>
                            <div style={{ position: "absolute", top: "12px", left: "12px", width: "16px", height: "16px", borderRadius: "50%", border: "2px solid #3b82f6", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#3b82f6" }}></div></div>
                            <div style={{ marginLeft: "28px" }}>
                               <div style={{ display: "flex", alignItems: "center", gap: "4px", marginBottom: "4px" }}>
                                  <span style={{ fontSize: "11px", fontWeight: 700, color: "#3b82f6" }}>Option A</span>
-                                 <span style={{ fontSize: "9px", color: "#fff", background: "#c7d2fe", padding: "1px 6px", borderRadius: "4px" }}>AI suggested</span>
+                                 <span style={{ fontSize: "9px", color: "#fff", background: "#3b82f6", padding: "1px 6px", borderRadius: "4px" }}>AI suggested</span>
                               </div>
-                              <div style={{ fontSize: "11px", color: "#1e3a8a", lineHeight: 1.4 }}>I feel energized when things are busy and I'm juggling multiple priorities</div>
+                              <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.7)", lineHeight: 1.4 }}>I feel energized when things are busy and I&apos;m juggling multiple priorities</div>
                            </div>
                         </div>
-                        <div style={{ border: "1px solid #e2e8f0", borderRadius: "8px", padding: "16px", background: "#fff" }}>
+                        <div style={{ border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "8px", padding: "16px", background: "rgba(255, 255, 255, 0.02)" }}>
                            <div style={{ display: "flex", gap: "12px" }}>
-                              <div style={{ width: "16px", height: "16px", borderRadius: "50%", border: "1px solid #cbd5e1" }}></div>
+                              <div style={{ width: "16px", height: "16px", borderRadius: "50%", border: "1px solid rgba(255, 255, 255, 0.2)" }}></div>
                               <div>
-                                 <div style={{ fontSize: "11px", fontWeight: 700, color: "#64748b", marginBottom: "4px" }}>Option B</div>
-                                 <div style={{ fontSize: "11px", color: "#64748b", lineHeight: 1.4 }}>I do my best work when I can give my full attention to one thing at a time</div>
+                                 <div style={{ fontSize: "11px", fontWeight: 700, color: "rgba(255, 255, 255, 0.4)", marginBottom: "4px" }}>Option B</div>
+                                 <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.4)", lineHeight: 1.4 }}>I do my best work when I can give my full attention to one thing at a time</div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div style={{ display: "flex", justifyContent: "space-between", marginTop: "24px", paddingTop: "16px", borderTop: "1px solid #f1f5f9" }}>
-                        <div style={{ fontSize: "11px", color: "#94a3b8", display: "flex", alignItems: "center", gap: "4px" }}><Share2 size={12} /> Swap question</div>
-                        <div style={{ fontSize: "11px", color: "#94a3b8", display: "flex", alignItems: "center", gap: "4px" }}><Plus size={12} /> Remove</div>
+                     <div style={{ display: "flex", justifyContent: "space-between", marginTop: "24px", paddingTop: "16px", borderTop: "1px solid rgba(255, 255, 255, 0.1)" }}>
+                        <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.3)", display: "flex", alignItems: "center", gap: "4px" }}><Share2 size={12} /> Swap question</div>
+                        <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.3)", display: "flex", alignItems: "center", gap: "4px" }}><Plus size={12} /> Remove</div>
                      </div>
                   </div>
                </div>
@@ -544,40 +511,37 @@ export default function SeasonalHiringPage() {
                ))}
             </div>
          </div>
-      </section>
-
-
-      {/* 9. AI Resistance Section (Image 1) */}
-      <section style={{ padding: "140px 24px", background: "#f8fafc", color: "#0f172a" }}>
+        {/* 9. AI Resistance Section (Image 1) */}
+      <section style={{ padding: "140px 24px", background: "#060212", color: "#fff" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "100px", alignItems: "center" }}>
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-               <div style={{ display: "inline-block", background: "#f1f5f9", borderRadius: "100px", padding: "6px 16px", marginBottom: "24px" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(15, 23, 42, 0.6)", letterSpacing: "1px" }}>CANDIDATE SCREENING FOR THE AGE OF AI</span>
+               <div style={{ display: "inline-block", background: "rgba(255,255,255,0.04)", borderRadius: "100px", padding: "6px 16px", marginBottom: "24px" }}>
+                  <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(255, 255, 255, 0.6)", letterSpacing: "1px" }}>CANDIDATE SCREENING FOR THE AGE OF AI</span>
                </div>
-               <h2 style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)", fontWeight: 600, marginBottom: "28px", lineHeight: 1.1 }}>Traditional assessments are broken. AI can fake them in seconds.</h2>
-               <p style={{ color: "rgba(15, 23, 42, 0.6)", fontSize: "1.1rem", lineHeight: 1.6, marginBottom: "40px" }}>
-                  Getting polished take-home responses that don't match interview performance? With Truffle's talent assessment software, you finally see the real candidate with no scripts and no AI assistance.
+               <h2 style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)", fontWeight: 600, marginBottom: "28px", lineHeight: 1.1, color: "#fff" }}>Traditional assessments are broken. AI can fake them in seconds.</h2>
+               <p style={{ color: "rgba(255, 255, 255, 0.6)", fontSize: "1.1rem", lineHeight: 1.6, marginBottom: "40px" }}>
+                  Getting polished take-home responses that don&apos;t match interview performance? With Truffle&apos;s talent assessment software, you finally see the real candidate with no scripts and no AI assistance.
                </p>
-               <button style={{ background: "#060212", color: "#fff", border: "none", padding: "16px 36px", borderRadius: "12px", fontSize: "1rem", fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: "10px" }}>
+               <button style={{ background: "#fff", color: "#060212", border: "none", padding: "16px 36px", borderRadius: "12px", fontSize: "1rem", fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: "10px" }}>
                   Start free trial <ArrowRight size={18} style={{ transform: "rotate(-45deg)" }} />
                </button>
             </motion.div>
             
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} style={{ position: "relative" }}>
                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, #f87171 0%, #3b82f6 100%)", opacity: 0.1, filter: "blur(60px)", borderRadius: "50%" }}></div>
-               <div style={{ position: "relative", zIndex: 1, background: "#fff", border: "12px solid #0f172a", borderRadius: "40px", width: "320px", height: "640px", margin: "0 auto", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 50px 100px -20px rgba(0,0,0,0.3)" }}>
+               <div style={{ position: "relative", zIndex: 1, background: "rgba(255, 255, 255, 0.03)", border: "12px solid #1a1c22", borderRadius: "40px", width: "320px", height: "640px", margin: "0 auto", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 50px 100px -20px rgba(0,0,0,0.5)" }}>
                   <div style={{ padding: "32px 24px 16px" }}>
                      <div style={{ display: "flex", justifyContent: "center", marginBottom: "24px" }}><Sparkles size={24} color="#3b82f6" /></div>
-                     <div style={{ fontSize: "14px", fontWeight: 600, marginBottom: "8px" }}>Question 1 of 5</div>
-                     <div style={{ display: "flex", gap: "12px", fontSize: "10px", color: "#94a3b8", marginBottom: "12px" }}>
+                     <div style={{ fontSize: "14px", fontWeight: 600, marginBottom: "8px", color: "#fff" }}>Question 1 of 5</div>
+                     <div style={{ display: "flex", gap: "12px", fontSize: "10px", color: "rgba(255,255,255,0.4)", marginBottom: "12px" }}>
                         <span style={{ display: "flex", alignItems: "center", gap: "4px" }}><Clock size={10} /> 2 minutes max</span>
                         <span style={{ display: "flex", alignItems: "center", gap: "4px" }}><Plus size={10} style={{ transform: "rotate(45deg)" }} /> 2 retakes available</span>
                      </div>
-                     <p style={{ fontSize: "12px", fontWeight: 700, color: "#111", lineHeight: 1.4 }}>Tell me about a time you dealt with a difficult customer. How did you handle the situation?</p>
+                     <p style={{ fontSize: "12px", fontWeight: 700, color: "#fff", lineHeight: 1.4 }}>Tell me about a time you dealt with a difficult customer. How did you handle the situation?</p>
                   </div>
                   
-                  <div style={{ flex: 1, background: "#f8fafc", position: "relative", margin: "0 16px", borderRadius: "16px", overflow: "hidden" }}>
-                     <img src="https://images.unsplash.com/photo-1573496359142-f8d87734a5a2?auto=format&fit=crop&q=80&w=600" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <div style={{ flex: 1, background: "rgba(255,255,255,0.02)", position: "relative", margin: "0 16px", borderRadius: "16px", overflow: "hidden" }}>
+                     <img src="https://images.unsplash.com/photo-1573496359142-f8d87734a5a2?auto=format&fit=crop&q=80&w=600" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
                      <div style={{ position: "absolute", top: "12px", left: "12px", display: "flex", alignItems: "center", gap: "8px", background: "rgba(0,0,0,0.5)", padding: "4px 8px", borderRadius: "4px", color: "#fff", fontSize: "10px" }}>
                         <div style={{ width: "6px", height: "6px", background: "#ef4444", borderRadius: "50%" }}></div> Recording • 1:15
                      </div>
@@ -589,8 +553,8 @@ export default function SeasonalHiringPage() {
                   <div style={{ padding: "16px 24px 32px" }}>
                      <button style={{ width: "100%", background: "#3b82f6", color: "#fff", border: "none", padding: "12px", borderRadius: "8px", fontWeight: 700, fontSize: "13px", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginBottom: "16px" }}>Next Question <ChevronRight size={16} /></button>
                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <span style={{ fontSize: "10px", color: "#94a3b8", maxWidth: "1200px" }}>Want to pick up on another device or need to get to a quiet space?</span>
-                        <span style={{ fontSize: "10px", color: "#3b82f6", fontWeight: 700 }}>Finish later</span>
+                        <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.3)", maxWidth: "1200px" }}>Want to pick up on another device or need to get to a quiet space?</span>
+                        <span style={{ fontSize: "10px", color: "#3b82f6", fontWeight: 700, cursor: "pointer" }}>Finish later</span>
                      </div>
                   </div>
                </div>
@@ -599,36 +563,36 @@ export default function SeasonalHiringPage() {
       </section>
 
       {/* 10. Recruiter Transformation Section (Reduced Height) */}
-      <section style={{ padding: "80px 24px", background: "#f8fafc" }}>
+      <section style={{ padding: "80px 24px", background: "#060212" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1.1fr 2fr", gap: "20px", alignItems: "stretch", minHeight: "450px" }}>
             {/* Left Content Card */}
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} style={{ background: "#060212", borderRadius: "32px", padding: "40px 32px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} style={{ background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(255, 255, 255, 0.08)", borderRadius: "32px", padding: "40px 32px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 600, color: "#fff", lineHeight: 1.1, marginBottom: "24px", maxWidth: "350px" }}>Truffle is candidate screening software built for the AI-age</h2>
-               <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "1rem", lineHeight: 1.5, marginBottom: "32px", maxWidth: "340px" }}>
+               <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "1rem", lineHeight: 1.5, marginBottom: "32px", maxWidth: "340px" }}>
                   Stop spending all your time on applicant screening. Start making faster, more confident hiring decisions with structured data — not gut feel.
                </p>
                <button style={{ background: "#fff", color: "#060212", border: "none", padding: "14px 32px", borderRadius: "12px", fontSize: "0.95rem", fontWeight: 700, cursor: "pointer" }}>Start free trial</button>
             </motion.div>
 
             {/* Right Visualization Card (Slider Style) */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} style={{ position: "relative", borderRadius: "32px", overflow: "hidden", display: "flex", gap: "4px", minHeight: "450px" }}>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} style={{ position: "relative", borderRadius: "32px", overflow: "hidden", display: "flex", gap: "4px", minHeight: "450px", border: "1px solid rgba(255, 255, 255, 0.08)" }}>
                {/* Before Side */}
                <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
-                  <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&q=80&w=800" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) contrast(1.1)" }} />
+                  <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&q=80&w=800" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.5) contrast(1.1)" }} />
                   <div style={{ position: "absolute", top: "180px", left: "20px", background: "#ef4444", color: "#fff", padding: "4px 10px", borderRadius: "100px", fontSize: "10px", fontWeight: 700 }}>249 Applications</div>
                   <div style={{ position: "absolute", top: "140px", right: "20px", background: "#f59e0b", color: "#fff", padding: "4px 10px", borderRadius: "100px", fontSize: "10px", fontWeight: 700, display: "flex", alignItems: "center", gap: "6px" }}><Clock size={10} /> 4+ Hours to review</div>
-                  <div style={{ position: "absolute", bottom: "20px", left: "20px", background: "rgba(255,255,255,0.3)", backdropFilter: "blur(10px)", color: "#fff", padding: "4px 12px", borderRadius: "100px", fontSize: "11px", fontWeight: 700 }}>Before</div>
+                  <div style={{ position: "absolute", bottom: "20px", left: "20px", background: "rgba(255,255,255,0.2)", backdropFilter: "blur(10px)", color: "#fff", padding: "4px 12px", borderRadius: "100px", fontSize: "11px", fontWeight: 700 }}>Before</div>
                   
                   {/* Floating Video Icons */}
-                  <div style={{ position: "absolute", top: "25%", left: "10%", background: "rgba(255,255,255,0.2)", backdropFilter: "blur(5px)", padding: "8px", borderRadius: "8px" }}><Play size={14} fill="#fff" color="#fff" /></div>
-                  <div style={{ position: "absolute", top: "45%", right: "15%", background: "rgba(255,255,255,0.2)", backdropFilter: "blur(5px)", padding: "8px", borderRadius: "8px" }}><Play size={14} fill="#fff" color="#fff" /></div>
+                  <div style={{ position: "absolute", top: "25%", left: "10%", background: "rgba(255,255,255,0.1)", backdropFilter: "blur(5px)", padding: "8px", borderRadius: "8px" }}><Play size={14} fill="#fff" color="#fff" /></div>
+                  <div style={{ position: "absolute", top: "45%", right: "15%", background: "rgba(255,255,255,0.1)", backdropFilter: "blur(5px)", padding: "8px", borderRadius: "8px" }}><Play size={14} fill="#fff" color="#fff" /></div>
                </div>
 
                {/* After Side */}
                <div style={{ position: "relative", flex: 1, overflow: "hidden" }}>
-                  <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  <div style={{ position: "absolute", top: "24px", right: "24px", background: "#fff", padding: "12px", borderRadius: "12px", boxShadow: "0 15px 30px rgba(0,0,0,0.15)", width: "160px" }}>
-                     <div style={{ fontSize: "10px", fontWeight: 800, color: "rgba(0,0,0,0.4)", marginBottom: "10px", letterSpacing: "0.05em" }}>Top Candidates</div>
+                  <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.8)" }} />
+                  <div style={{ position: "absolute", top: "24px", right: "24px", background: "#1a1c22", padding: "12px", borderRadius: "12px", boxShadow: "0 15px 30px rgba(0,0,0,0.5)", width: "160px", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
+                     <div style={{ fontSize: "10px", fontWeight: 800, color: "rgba(255,255,255,0.4)", marginBottom: "10px", letterSpacing: "0.05em" }}>Top Candidates</div>
                      {[
                         { name: "Mateo Rodriguez", score: 95, color: "#10b981", bg: "#8b5cf6" },
                         { name: "Jamie Park", score: 87, color: "#10b981", bg: "#f87171" },
@@ -636,7 +600,7 @@ export default function SeasonalHiringPage() {
                      ].map((c, i) => (
                         <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
                            <div style={{ width: "18px", height: "18px", borderRadius: "4px", background: c.bg, color: "#fff", fontSize: "6px", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>{c.name.split(' ').map(n=>n[0]).join('')}</div>
-                           <div style={{ flex: 1, fontSize: "9px", fontWeight: 700, color: "#111" }}>{c.name}</div>
+                           <div style={{ flex: 1, fontSize: "9px", fontWeight: 700, color: "#fff" }}>{c.name}</div>
                            <div style={{ fontSize: "8px", fontWeight: 800, color: c.color }}>{c.score}%</div>
                         </div>
                      ))}
@@ -645,8 +609,8 @@ export default function SeasonalHiringPage() {
                </div>
 
                {/* Slider Handle Mockup */}
-               <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, width: "2px", background: "#fff", transform: "translateX(-50%)", zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <div style={{ width: "32px", height: "32px", background: "#fff", borderRadius: "50%", boxShadow: "0 4px 12px rgba(0,0,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+               <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, width: "2px", background: "rgba(255, 255, 255, 0.3)", transform: "translateX(-50%)", zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ width: "32px", height: "32px", background: "#fff", borderRadius: "50%", boxShadow: "0 4px 12px rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                      <div style={{ display: "flex", gap: "2px" }}>
                         <div style={{ width: "2px", height: "12px", background: "#000", borderRadius: "1px" }}></div>
                         <div style={{ width: "2px", height: "12px", background: "#000", borderRadius: "1px" }}></div>

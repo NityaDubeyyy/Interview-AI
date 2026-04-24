@@ -8,7 +8,7 @@ export default function StatsSection() {
   return (
     <section style={{ 
       position: "relative", 
-      padding: "100px 24px", 
+      padding: "40px 24px 100px 24px", 
       backgroundColor: "#050508", 
       color: "#ffffff", 
       overflow: "hidden",
@@ -51,13 +51,13 @@ export default function StatsSection() {
             color: "var(--primary, #a78bfa)",
             marginBottom: "24px"
           }}>
-             Platform Scale
+             Our Impact
           </div>
           <h2 style={{ fontSize: "3.5rem", fontWeight: "600", marginBottom: "24px", lineHeight: "1.1", letterSpacing: "-0.02em" }}>
-            Tailark in numbers
+            Work We've Done
           </h2>
           <p style={{ fontSize: "17px", color: "rgba(255,255,255,0.6)", lineHeight: "1.6" }}>
-            Gemini is evolving to be more than just the models. It supports an entire ecosystem to the APIs and platforms helping developers and businesses innovate.
+            Our platform has empowered thousands of professionals to master their interviewing skills. See how we've helped candidates prepare effectively and land their dream roles.
           </p>
         </motion.div>
 
@@ -93,10 +93,10 @@ export default function StatsSection() {
                <Star size={24} />
             </div>
             <div style={{ fontSize: "4rem", fontWeight: "700", color: "#ffffff", lineHeight: "1", marginBottom: "12px", letterSpacing: "-0.03em" }}>
-              +1200
+              +50k
             </div>
             <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.5)", fontWeight: "500", textTransform: "uppercase", letterSpacing: "1px" }}>
-              Stars on GitHub
+              Mock Interviews
             </p>
           </motion.div>
 
@@ -125,10 +125,10 @@ export default function StatsSection() {
                <TrendingUp size={24} />
             </div>
             <div style={{ fontSize: "4rem", fontWeight: "700", color: "#ffffff", lineHeight: "1", marginBottom: "12px", letterSpacing: "-0.03em" }}>
-              56%
+              92%
             </div>
             <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.5)", fontWeight: "500", textTransform: "uppercase", letterSpacing: "1px" }}>
-              Conversion rate
+              Offer Rate
             </p>
           </motion.div>
 
@@ -157,10 +157,10 @@ export default function StatsSection() {
                <Cpu size={24} />
             </div>
             <div style={{ fontSize: "4rem", fontWeight: "700", color: "#ffffff", lineHeight: "1", marginBottom: "12px", letterSpacing: "-0.03em" }}>
-              +500
+              +10k
             </div>
             <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.5)", fontWeight: "500", textTransform: "uppercase", letterSpacing: "1px" }}>
-              Powered Apps
+              Careers Launched
             </p>
           </motion.div>
 

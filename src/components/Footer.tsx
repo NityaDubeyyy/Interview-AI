@@ -5,32 +5,29 @@ import Link from "next/link";
 import { Layers, MapPin, Mail, PhoneCall, ArrowUp } from "lucide-react";
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
     <footer 
       style={{ 
-        background: "#05010d", 
-        padding: "80px 0 40px", 
-        color: "rgba(255, 255, 255, 0.5)", 
-        borderTop: "1px solid rgba(255, 255, 255, 0.05)", 
-        position: "relative", 
-        overflow: "hidden" 
+        background: "radial-gradient(circle at top left, rgba(124, 58, 237, 0.18), transparent 24%), #05010D", 
+        padding: "96px 0 64px", 
+        color: "rgba(226, 232, 240, 0.88)", 
+        fontFamily: "var(--font-inter), sans-serif",
+        position: "relative",
+        overflow: "visible"
       }}
     >
-      <div className="container" style={{ position: "relative", zIndex: 2 }}>
+      <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
         <div 
           style={{ 
             display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
+            gridTemplateColumns: "1.5fr 1fr 1fr 1fr 1.5fr", 
             gap: "40px", 
-            marginBottom: "80px" 
           }}
         >
           {/* Brand & Contact */}
-          <div style={{ gridColumn: "span 2" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <div 
               style={{ 
                 display: "flex", 
@@ -38,71 +35,75 @@ export default function Footer() {
                 gap: "12px", 
                 fontSize: "24px", 
                 fontWeight: 700, 
-                color: "white", 
-                marginBottom: "32px",
-                letterSpacing: "-0.02em"
+                color: "#E2E8F0", 
+                letterSpacing: "-0.02em",
+                marginBottom: "8px"
               }}
             >
-              <div style={{ padding: "6px", background: "linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)", borderRadius: "8px" }}>
-                <Layers size={20} color="white" />
+              <div style={{ padding: "10px", background: "#7C3AED", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Layers size={22} color="white" />
               </div>
-              Interview AI
+              <span style={{ color: "#CBD5E1" }}>Interview AI</span>
             </div>
-            <div 
-              style={{ 
-                display: "flex", 
-                flexDirection: "column", 
-                gap: "20px", 
-                fontSize: "14px", 
-                color: "rgba(255, 255, 255, 0.5)" 
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", lineHeight: 1.5 }}>
-                <MapPin size={18} color="#8B5CF6" style={{ marginTop: "2px", flexShrink: 0 }} />
-                <span>1800, Walt Disney World, Bay Lake,<br />Orlando, United State</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", lineHeight: 1.5 }}>
-                <Mail size={18} color="#8B5CF6" style={{ marginTop: "2px", flexShrink: 0 }} />
-                <span>support@interviewai.com</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", lineHeight: 1.5 }}>
-                <PhoneCall size={18} color="#8B5CF6" style={{ marginTop: "2px", flexShrink: 0 }} />
-                <span>+1 (786) 259 4652</span>
-              </div>
+            
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", fontSize: "14px", lineHeight: 1.6 }}>
+              <MapPin size={18} color="#8B5CF6" style={{ flexShrink: 0, marginTop: "2px" }} />
+              <span style={{ color: "rgba(255, 255, 255, 0.7)" }}>1800, Walt Disney World, Bay Lake,<br />Orlando, United State</span>
+            </div>
+            
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", fontSize: "14px" }}>
+              <Mail size={18} color="#8B5CF6" style={{ flexShrink: 0 }} />
+              <span style={{ color: "rgba(255, 255, 255, 0.7)" }}>support@interviewai.com</span>
+            </div>
+            
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", fontSize: "14px" }}>
+              <PhoneCall size={18} color="#8B5CF6" style={{ flexShrink: 0 }} />
+              <span style={{ color: "rgba(255, 255, 255, 0.7)" }}>+1 (786) 259 4652</span>
             </div>
           </div>
 
           {/* Company */}
-          <div>
-            <div style={{ color: "white", fontWeight: 700, marginBottom: "24px", fontSize: "16px" }}>Company</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", fontSize: "14px" }}>
-              <Link href="/contact" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Contact Us</Link>
-              <Link href="/blog" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Blog</Link>
-              <Link href="#" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Pricing</Link>
-              <Link href="#" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Sign in / Sign Up</Link>
-            </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div style={{ color: "#E2E8F0", fontWeight: 700, fontSize: "16px" }}>Company</div>
+            <Link href="/contact" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Contact Us</Link>
+            <Link href="/blog" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Blog</Link>
+            <Link href="#" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Pricing</Link>
+            <Link href="#" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Sign in / Sign Up</Link>
           </div>
 
           {/* Quick Navigation */}
-          <div>
-            <div style={{ color: "white", fontWeight: 700, marginBottom: "24px", fontSize: "16px" }}>Quick Navigation</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", fontSize: "14px" }}>
-              <Link href="/" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Home</Link>
-              <Link href="/practice-interview" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Career Preparation</Link>
-              <Link href="#" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Learn & Grow</Link>
-            </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div style={{ color: "#E2E8F0", fontWeight: 700, fontSize: "16px" }}>Quick Navigation</div>
+            <Link href="/" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Home</Link>
+            <Link href="/practice-interview" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Career Preparation</Link>
+            <Link href="#" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Learn &amp; Grow</Link>
           </div>
 
           {/* Tools */}
-          <div>
-            <div style={{ color: "white", fontWeight: 700, marginBottom: "24px", fontSize: "16px" }}>Tools</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", fontSize: "14px" }}>
-              <Link href="#" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Career Vault</Link>
-              <Link href="#" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>The Prep Engine</Link>
-              <Link href="#" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Mock Interview</Link>
-              <Link href="#" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Smart Career Coach</Link>
-              <Link href="#" style={{ color: "rgba(255, 255, 255, 0.6)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"}>Question Hub</Link>
-            </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div style={{ color: "#E2E8F0", fontWeight: 700, fontSize: "16px" }}>Tools</div>
+            <Link href="#" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Career Vault</Link>
+            <Link href="#" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>The Prep Engine</Link>
+            <Link href="#" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Mock Interview</Link>
+            <Link href="#" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Smart Career Coach</Link>
+            <Link href="#" style={{ color: "rgba(226, 232, 240, 0.78)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(226, 232, 240, 0.78)"}>Question Hub</Link>
+          </div>
+
+          {/* Legal */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ color: "#E2E8F0", fontWeight: 700, fontSize: "16px", marginBottom: "8px" }}>Legal</div>
+            {[
+              "Terms of Service",
+              "Privacy Policy",
+              "Disclaimer",
+              "Cookies Policy"
+            ].map((policy, idx) => (
+              <div key={idx} style={{ padding: "12px 0", borderBottom: idx < 3 ? "1px solid rgba(255, 255, 255, 0.05)" : "none" }}>
+                <Link href="#" style={{ color: "rgba(255, 255, 255, 0.7)", textDecoration: "none", fontSize: "14px", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "white"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)"}>
+                  {policy}
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -112,25 +113,26 @@ export default function Footer() {
             justifyContent: "space-between", 
             alignItems: "center", 
             paddingTop: "32px", 
-            borderTop: "1px solid rgba(255, 255, 255, 0.05)", 
-            fontSize: "13px" 
+            borderTop: "1px solid rgba(226, 232, 240, 0.12)", 
+            fontSize: "13px",
+            marginTop: "64px"
           }}
         >
-          <div>© 2026 InterviewAI. All rights reserved.</div>
+          <div style={{ color: "rgba(226, 232, 240, 0.72)" }}>© {new Date().getFullYear()} InterviewAI. All rights reserved.</div>
           <div 
             onClick={scrollToTop} 
             style={{ 
               display: "flex", 
               alignItems: "center", 
               gap: "8px", 
-              color: "white", 
+              color: "#E2E8F0", 
               fontWeight: 600, 
               cursor: "pointer",
-              opacity: 0.6,
+              opacity: 0.85,
               transition: "opacity 0.2s"
             }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = "1"}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = "0.6"}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = "0.85"}
           >
             Back to the top <ArrowUp size={16} />
           </div>
@@ -142,17 +144,18 @@ export default function Footer() {
         style={{ 
           position: "absolute", 
           bottom: "-5vw", 
-          left: 0, 
-          width: "100%", 
-          fontSize: "14vw", 
+          left: "50%", 
+          transform: "translateX(-50%)",
+          width: "220%", 
+          fontSize: "15vw", 
           fontWeight: 900, 
-          color: "rgba(255, 255, 255, 0.02)", 
+          color: "rgba(255, 255, 255, 0.06)", 
           textAlign: "center", 
-          lineHeight: 1, 
+          lineHeight: 0.8, 
           whiteSpace: "nowrap", 
           pointerEvents: "none", 
           zIndex: 1, 
-          letterSpacing: "-0.04em",
+          letterSpacing: "-0.05em",
           userSelect: "none",
           fontFamily: "var(--font-inter), sans-serif"
         }}

@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight, Check, Play, Star, Users, Briefcase, UserCheck, ShieldCheck, LayoutDashboard, Clock, Smartphone, Bell, Share2, Layers, Zap, PenTool, BarChart3, Lock, Globe, LayoutGrid, Plus, Sparkles, Monitor, Headphones, CreditCard, ChevronRight } from "lucide-react";
 import TruffleCTASection from "@/components/TruffleCTASection";
+import LogoCloud from "@/components/LogoCloud";
 import { motion } from "framer-motion";
 import styles from "@/app/page.module.css";
 
@@ -13,7 +14,6 @@ export default function HighVolumeHiringPage() {
     <main style={{ minHeight: "100vh", backgroundColor: "#060212", color: "#fff", fontFamily: "'Inter', sans-serif" }}>
       <Navbar />
 
-      {/* Hero Section - Image 1 (from first set) */}
       <section
         style={{
           position: "relative",
@@ -118,7 +118,7 @@ export default function HighVolumeHiringPage() {
         </div>
       </section>
 
-      {/* Dashboard Visualization (Image 2 from first set) */}
+   
       <section style={{ padding: "0 24px 120px", display: "flex", justifyContent: "center" }}>
         <motion.div
            initial={{ opacity: 0, y: 50 }}
@@ -180,70 +180,10 @@ export default function HighVolumeHiringPage() {
         </motion.div>
       </section>
 
-      {/* LOGO CLOUD SECTION */}
-      <section className="container" style={{ marginTop: '2rem', paddingBottom: '4rem', position: 'relative', zIndex: 10 }}>
-        <p style={{ fontSize: "18px", color: "rgba(255,255,255,0.4)", marginBottom: "24px", textAlign: "center" }}>High-volume hiring software loved by 100s of great companies</p>
-        <motion.div 
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className={styles.logoCloudContainer}
-        >
-          <div className={styles.logoCloudWrapper}>
-            <div className={styles.centralLogo}>
-              <div className={styles.logoPulseRing} />
-              <div className={styles.logoPulseRing} />
-              <div className={styles.logoPulseRing} />
-              <div className={styles.centralLogoInner}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-                  <circle cx="12" cy="4" r="2" />
-                  <circle cx="8" cy="8" r="2" />
-                  <circle cx="12" cy="8" r="2" />
-                  <circle cx="16" cy="8" r="2" />
-                  <circle cx="4" cy="12" r="2" />
-                  <circle cx="8" cy="12" r="2" />
-                  <circle cx="12" cy="12" r="2" />
-                  <circle cx="16" cy="12" r="2" />
-                  <circle cx="20" cy="12" r="2" />
-                  <circle cx="8" cy="16" r="2" />
-                  <circle cx="12" cy="16" r="2" />
-                  <circle cx="16" cy="16" r="2" />
-                  <circle cx="12" cy="20" r="2" />
-                </svg>
-              </div>
-            </div>
-            
-            <div className={styles.logoCloud}>
-              {/* First Set of Logos */}
-              <div className={styles.logoItem}><Layers size={22} /><span>Leafe</span></div>
-              <div className={styles.logoItem}><Globe size={22} /><span>Merc</span></div>
-              <div className={styles.logoItem}><Zap size={22} /><span>luminous</span></div>
-              <div className={styles.logoItem}><LayoutGrid size={22} /><span>hue</span></div>
-              <div className={styles.logoItem}><ShieldCheck size={22} /><span>Safe</span></div>
-              <div className={styles.logoItem}><Users size={22} /><span>Collaborate</span></div>
-              <div className={styles.logoItem}><Clock size={22} /><span>FastTrack</span></div>
-              <div className={styles.logoItem}><Star size={22} /><span>Nexus</span></div>
-              <div className={styles.logoItem}><Plus size={22} /><span>Orbit</span></div>
-              <div className={styles.logoItem}><Sparkles size={22} /><span>Pulse</span></div>
+        <LogoCloud title="High-volume hiring software loved by 100s of great companies" />
 
-              {/* Second Set for Seamless Loop */}
-              <div className={styles.logoItem}><Layers size={22} /><span>Leafe</span></div>
-              <div className={styles.logoItem}><Globe size={22} /><span>Merc</span></div>
-              <div className={styles.logoItem}><Zap size={22} /><span>luminous</span></div>
-              <div className={styles.logoItem}><LayoutGrid size={22} /><span>hue</span></div>
-              <div className={styles.logoItem}><ShieldCheck size={22} /><span>Safe</span></div>
-              <div className={styles.logoItem}><Users size={22} /><span>Collaborate</span></div>
-              <div className={styles.logoItem}><Clock size={22} /><span>FastTrack</span></div>
-              <div className={styles.logoItem}><Star size={22} /><span>Nexus</span></div>
-              <div className={styles.logoItem}><Plus size={22} /><span>Orbit</span></div>
-              <div className={styles.logoItem}><Sparkles size={22} /><span>Pulse</span></div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
 
-      {/* Feature Section (Image 4 from first set) */}
+    
       <section style={{ padding: "140px 24px" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "100px", alignItems: "center" }}>
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -272,9 +212,7 @@ export default function HighVolumeHiringPage() {
          </div>
       </section>
 
-      {/* --- NEW SECTIONS --- */}
-
-      {/* Review 100 Candidates (New Image 1) */}
+     
       <section style={{ padding: "140px 24px", background: "linear-gradient(to bottom, transparent, rgba(138, 92, 246, 0.05))" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "100px", alignItems: "center" }}>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -327,34 +265,33 @@ export default function HighVolumeHiringPage() {
          </div>
       </section>
 
-      {/* Completion is a Signal (New Image 2) */}
       <section style={{ padding: "140px 24px" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "100px", alignItems: "center" }}>
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                <div style={{ background: "rgba(255, 255, 255, 0.03)", borderRadius: "32px", padding: "60px", border: "1px solid rgba(255, 255, 255, 0.1)", display: "flex", justifyContent: "center" }}>
-                  <div style={{ background: "#fff", borderRadius: "20px", padding: "24px", color: "#111", width: "100%", maxWidth: "320px", boxShadow: "0 20px 40px rgba(0,0,0,0.5)" }}>
+                  <div style={{ background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "20px", padding: "24px", color: "#fff", width: "100%", maxWidth: "320px", boxShadow: "0 20px 40px rgba(0,0,0,0.5)" }}>
                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
                         <span style={{ fontWeight: 700 }}>Review status</span>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#666" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "rgba(255, 255, 255, 0.5)" }}>
                            Auto nudge <div style={{ width: "32px", height: "18px", background: "#3b82f6", borderRadius: "10px", padding: "2px", display: "flex", justifyContent: "flex-end" }}><div style={{ width: "14px", height: "14px", background: "#fff", borderRadius: "50%" }}></div></div>
                         </div>
                      </div>
                      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                         {[
-                           { name: "Alex", status: "Done", icon: <Check size={14} color="#10b981" />, bg: "#ecfdf5", color: "#10b981" },
-                           { name: "Jordan", status: "Nudged", icon: <Bell size={14} color="#3b82f6" />, bg: "#eff6ff", color: "#3b82f6" },
-                           { name: "Sam", status: "Pending", icon: <Clock size={14} color="#666" />, bg: "#f5f5f5", color: "#666" }
+                           { name: "Alex", status: "Done", icon: <Check size={14} color="#10b981" />, bg: "rgba(16, 185, 129, 0.1)", color: "#10b981" },
+                           { name: "Jordan", status: "Nudged", icon: <Bell size={14} color="#3b82f6" />, bg: "rgba(59, 130, 246, 0.1)", color: "#3b82f6" },
+                           { name: "Sam", status: "Pending", icon: <Clock size={14} color="rgba(255, 255, 255, 0.4)" />, bg: "rgba(255, 255, 255, 0.05)", color: "rgba(255, 255, 255, 0.4)" }
                         ].map((u, i) => (
                            <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                               <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                                 <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "#eee" }}></div>
+                                 <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "rgba(255, 255, 255, 0.1)" }}></div>
                                  <span style={{ fontWeight: 600 }}>{u.name}</span>
                               </div>
                               <div style={{ display: "flex", alignItems: "center", gap: "4px", padding: "4px 8px", borderRadius: "6px", background: u.bg, color: u.color, fontSize: "11px", fontWeight: 700 }}>{u.icon} {u.status}</div>
                            </div>
                         ))}
                      </div>
-                     <div style={{ marginTop: "20px", fontSize: "11px", color: "#999" }}>1 of 3 reviews complete</div>
+                     <div style={{ marginTop: "20px", fontSize: "11px", color: "rgba(255, 255, 255, 0.4)" }}>1 of 3 reviews complete</div>
                   </div>
                </div>
             </motion.div>
@@ -378,7 +315,7 @@ export default function HighVolumeHiringPage() {
          </div>
       </section>
 
-      {/* Collaborate on Candidates (New Image 3) */}
+     
       <section style={{ padding: "140px 24px", background: "linear-gradient(to top, transparent, rgba(138, 92, 246, 0.05))" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "100px", alignItems: "center" }}>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -400,19 +337,19 @@ export default function HighVolumeHiringPage() {
             
             <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
                <div style={{ background: "rgba(255, 255, 255, 0.03)", borderRadius: "32px", padding: "40px", border: "1px solid rgba(255, 255, 255, 0.1)", display: "flex", justifyContent: "center" }}>
-                  <div style={{ background: "#fff", borderRadius: "16px", padding: "24px", color: "#111", width: "100%", maxWidth: "400px", boxShadow: "0 20px 40px rgba(0,0,0,0.5)" }}>
-                     <div style={{ display: "flex", gap: "8px", borderBottom: "1px solid #eee", paddingBottom: "16px", marginBottom: "20px" }}>
-                        <div style={{ fontSize: "12px", color: "#666", padding: "6px 12px", borderRadius: "6px" }}>Simple</div>
-                        <div style={{ fontSize: "12px", color: "#666", padding: "6px 12px", borderRadius: "6px" }}>By question</div>
-                        <div style={{ fontSize: "12px", color: "#3b82f6", background: "#eff6ff", padding: "6px 12px", borderRadius: "6px", fontWeight: 600 }}>Scorecard</div>
+                  <div style={{ background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "16px", padding: "24px", color: "#fff", width: "100%", maxWidth: "400px", boxShadow: "0 20px 40px rgba(0,0,0,0.5)" }}>
+                     <div style={{ display: "flex", gap: "8px", borderBottom: "1px solid rgba(255, 255, 255, 0.1)", paddingBottom: "16px", marginBottom: "20px" }}>
+                        <div style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.5)", padding: "6px 12px", borderRadius: "6px" }}>Simple</div>
+                        <div style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.5)", padding: "6px 12px", borderRadius: "6px" }}>By question</div>
+                        <div style={{ fontSize: "12px", color: "#fff", background: "rgba(59, 130, 246, 0.2)", padding: "6px 12px", borderRadius: "6px", fontWeight: 600 }}>Scorecard</div>
                      </div>
                      <div style={{ fontWeight: 700, marginBottom: "20px" }}>Scorecard</div>
                      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                         {["Communication Skills", "Problem Solving", "Leadership Potential", "Cultural Fit"].map((skill, i) => (
                            <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                              <span style={{ fontSize: "14px", color: "#444" }}>{skill}</span>
+                              <span style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.7)" }}>{skill}</span>
                               <div style={{ display: "flex", gap: "2px" }}>
-                                 {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill={s <= (4-i%2) ? "#eee" : "none"} color="#eee" />)}
+                                 {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill={s <= (4-i%2) ? "rgba(255, 255, 255, 0.1)" : "none"} color="rgba(255, 255, 255, 0.1)" />)}
                               </div>
                            </div>
                         ))}
@@ -423,7 +360,7 @@ export default function HighVolumeHiringPage() {
          </div>
       </section>
 
-      {/* Tools with Guardrails (New Image 4) */}
+   
       <section style={{ padding: "140px 24px" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "64px" }}>
@@ -472,18 +409,13 @@ export default function HighVolumeHiringPage() {
 }
 
 
-// -------------------------------------------------------------------------------------
-// Broken Assessment Section
-// -------------------------------------------------------------------------------------
-
 function BrokenAssessmentSection() {
   return (
     <section style={{ width: "100%", background: "#060212", padding: "100px 24px", display: "flex", justifyContent: "center" }}>
       <div style={{ maxWidth: "1200px", width: "100%", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "60px", alignItems: "center" }}>
         
-        {/* Left Content */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-          {/* Badge */}
+    
           <div style={{ padding: "4px 16px", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "99px", marginBottom: "32px", display: "inline-block" }}>
             <span style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", color: "rgba(255, 255, 255, 0.7)", textTransform: "uppercase" }}>
               CANDIDATE SCREENING FOR THE AGE OF AI
@@ -498,9 +430,9 @@ function BrokenAssessmentSection() {
             Stop trying to guess potential from a one-page PDF. Truffle lets candidates showcase their personality and drive through async video, giving you the context you need to hire with confidence.
           </p>
 
-          {/* Button with glow */}
+         
           <div style={{ position: "relative", display: "inline-block" }}>
-            {/* Glow background */}
+        
             <div style={{ position: "absolute", top: "10px", left: "-5%", right: "-5%", bottom: "-10px", background: "linear-gradient(90deg, #38bdf8, #818cf8, #e879f9)", filter: "blur(15px)", opacity: 0.5, zIndex: 0, borderRadius: "20px" }} />
             
             <button
@@ -547,7 +479,7 @@ function BrokenAssessmentSection() {
                </div>
             </div>
 
-            {/* Question Info */}
+         
             <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px" }}>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "#fff" }}>Question 1 of 3</div>
               <div style={{ display: "flex", gap: "12px", color: "rgba(255,255,255,0.6)", fontSize: "0.75rem" }}>
@@ -559,17 +491,17 @@ function BrokenAssessmentSection() {
               Tell me about your most successful project and the impact it had.
             </p>
 
-            {/* Video Record Area */}
+           
             <div style={{ position: "relative", width: "100%", height: "300px", borderRadius: "12px", overflow: "hidden", marginBottom: "20px", background: "#000" }}>
               <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" alt="Candidate recording" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.9 }} />
               
-              {/* Recording Indicator */}
+            
               <div style={{ position: "absolute", top: "12px", left: "12px", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", padding: "4px 12px", borderRadius: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
                 <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#ef4444", boxShadow: "0 0 8px #ef4444" }} />
                 <span style={{ fontSize: "0.75rem", color: "white", fontWeight: 500 }}>Recording • 0:42</span>
               </div>
 
-              {/* Stop Recording Button */}
+            
               <div style={{ position: "absolute", bottom: "16px", left: "0", right: "0", display: "flex", justifyContent: "center" }}>
                 <div style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)", padding: "8px 20px", borderRadius: "20px", fontSize: "0.85rem", fontWeight: 600, color: "#fff", boxShadow: "0 4px 12px rgba(0,0,0,0.2)", display: "flex", alignItems: "center", gap: "6px" }}>
                   Stop Recording
@@ -577,12 +509,11 @@ function BrokenAssessmentSection() {
               </div>
             </div>
 
-            {/* Submit Button */}
             <button style={{ width: "100%", background: "#38bdf8", color: "#060212", border: "none", padding: "14px", borderRadius: "8px", fontSize: "0.95rem", fontWeight: 700, cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", gap: "4px" }}>
               Next Question <ChevronRight size={18} />
             </button>
 
-            {/* Footer */}
+           
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "16px" }}>
                <span style={{ fontSize: "0.75rem", color: "rgba(255, 255, 255, 0.5)", lineHeight: 1.4, maxWidth: "180px" }}>Want to pick up on another device or need to get to a quiet space?</span>
                <span style={{ fontSize: "0.8rem", color: "#38bdf8", fontWeight: 600, cursor: "pointer" }}>Finish later</span>
@@ -590,7 +521,7 @@ function BrokenAssessmentSection() {
 
           </div>
 
-          {/* Floating Actions on bottom right of the visual area */}
+        
           <div style={{ position: "absolute", bottom: "20px", right: "20px", width: "32px", height: "32px", background: "rgba(0,0,0,0.5)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.1)" }}>
              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M14 9.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-1.5 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M14 3.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-1.5 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M10 14.5c0 .83-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5s1.5-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5z"/><path d="M10 20.5c0 .83-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5s1.5-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5z"/></svg>
           </div>

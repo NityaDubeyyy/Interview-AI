@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight, Check, Play, Star, Users, Briefcase, UserCheck, ShieldCheck, LayoutDashboard, Clock, Smartphone, Bell, Share2, Layers, Zap, PenTool, BarChart3, Lock, Globe, LayoutGrid, Plus, Sparkles, Monitor, Headphones, CreditCard } from "lucide-react";
 import TruffleCTASection from "@/components/TruffleCTASection";
+import FAQSection from "@/components/FAQSection";
+import LogoCloud from "@/components/LogoCloud";
 import { motion } from "framer-motion";
 import styles from "@/app/page.module.css";
 
@@ -181,66 +183,22 @@ export default function CampusHiringPage() {
       </section>
 
       {/* LOGO CLOUD SECTION */}
-      <section className="container" style={{ marginTop: '2rem', paddingBottom: '4rem', position: 'relative', zIndex: 10 }}>
-        <p style={{ fontSize: "18px", color: "rgba(255,255,255,0.4)", marginBottom: "24px", textAlign: "center" }}>Trusted by top university recruiting teams</p>
-        <motion.div 
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className={styles.logoCloudContainer}
-        >
-          <div className={styles.logoCloudWrapper}>
-            <div className={styles.centralLogo}>
-              <div className={styles.logoPulseRing} />
-              <div className={styles.logoPulseRing} />
-              <div className={styles.logoPulseRing} />
-              <div className={styles.centralLogoInner}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-                  <circle cx="12" cy="4" r="2" />
-                  <circle cx="8" cy="8" r="2" />
-                  <circle cx="12" cy="8" r="2" />
-                  <circle cx="16" cy="8" r="2" />
-                  <circle cx="4" cy="12" r="2" />
-                  <circle cx="8" cy="12" r="2" />
-                  <circle cx="12" cy="12" r="2" />
-                  <circle cx="16" cy="12" r="2" />
-                  <circle cx="20" cy="12" r="2" />
-                  <circle cx="8" cy="16" r="2" />
-                  <circle cx="12" cy="16" r="2" />
-                  <circle cx="16" cy="16" r="2" />
-                  <circle cx="12" cy="20" r="2" />
-                </svg>
-              </div>
-            </div>
-            
-            <div className={styles.logoCloud}>
-              <div className={styles.logoItem}><Layers size={22} /><span>Acme Univ</span></div>
-              <div className={styles.logoItem}><Globe size={22} /><span>Global Edu</span></div>
-              <div className={styles.logoItem}><Zap size={22} /><span>TechInst</span></div>
-              <div className={styles.logoItem}><LayoutGrid size={22} /><span>Beacon</span></div>
-              <div className={styles.logoItem}><ShieldCheck size={22} /><span>SafeStudy</span></div>
-              <div className={styles.logoItem}><Users size={22} /><span>CampusConnect</span></div>
-              <div className={styles.logoItem}><Clock size={22} /><span>GradHire</span></div>
-              <div className={styles.logoItem}><Star size={22} /><span>Future</span></div>
-              <div className={styles.logoItem}><Plus size={22} /><span>Talent</span></div>
-              <div className={styles.logoItem}><Sparkles size={22} /><span>Spark</span></div>
+      <LogoCloud 
+        title="Trusted by top university recruiting teams" 
+        logos={[
+          { icon: <Layers size={22} />, label: "Acme Univ" },
+          { icon: <Globe size={22} />, label: "Global Edu" },
+          { icon: <Zap size={22} />, label: "TechInst" },
+          { icon: <LayoutGrid size={22} />, label: "Beacon" },
+          { icon: <ShieldCheck size={22} />, label: "SafeStudy" },
+          { icon: <Users size={22} />, label: "CampusConnect" },
+          { icon: <Clock size={22} />, label: "GradHire" },
+          { icon: <Star size={22} />, label: "Future" },
+          { icon: <Plus size={22} />, label: "Talent" },
+          { icon: <Sparkles size={22} />, label: "Spark" },
+        ]}
+      />
 
-               {/* Second Set for Loop */}
-               <div className={styles.logoItem}><Layers size={22} /><span>Acme Univ</span></div>
-              <div className={styles.logoItem}><Globe size={22} /><span>Global Edu</span></div>
-              <div className={styles.logoItem}><Zap size={22} /><span>TechInst</span></div>
-              <div className={styles.logoItem}><LayoutGrid size={22} /><span>Beacon</span></div>
-              <div className={styles.logoItem}><ShieldCheck size={22} /><span>SafeStudy</span></div>
-              <div className={styles.logoItem}><Users size={22} /><span>CampusConnect</span></div>
-              <div className={styles.logoItem}><Clock size={22} /><span>GradHire</span></div>
-              <div className={styles.logoItem}><Star size={22} /><span>Future</span></div>
-              <div className={styles.logoItem}><Plus size={22} /><span>Talent</span></div>
-              <div className={styles.logoItem}><Sparkles size={22} /><span>Spark</span></div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
 
       {/* Feature Section: Gen Z Experience */}
       <section style={{ padding: "140px 24px" }}>
@@ -362,63 +320,6 @@ export default function CampusHiringPage() {
   );
 }
 
-// FAQ Section
-function FAQSection() {
-  const [activeTab, setActiveTab] = useState("Product");
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const faqData: Record<string, { q: string; a: string }[]> = {
-    Product: [
-      { q: "How does Truffle handle campus hiring volume?", a: "Truffle is built for scale. Our AI screening can handle thousands of concurrent student interviews, providing instant summaries and scores to help your team prioritize top candidates immediately." },
-      { q: "Is it mobile-friendly for students?", a: "Yes, Truffle is 100% web-based and optimized for mobile. Students can complete their interviews from their dorm, the library, or anywhere on campus without downloading an app." },
-      { q: "Can we use Truffle at career fairs?", a: "Absolutely. Many teams display a QR code at their booth. Students scan, apply, and start their async interview instantly, giving you a pipeline of high-intent candidates before the fair ends." }
-    ],
-    Support: [
-      { q: "Do you offer training for university recruiters?", a: "Yes, we provide live onboarding for your entire campus recruiting team to ensure everyone knows how to set up roles and review candidates efficiently." },
-      { q: "Can we customize the branding?", a: "Yes, you can fully brand the candidate experience with your company logo, colors, and even a custom welcome video from your team." }
-    ]
-  };
-
-  const currentFaqs = faqData[activeTab] || [];
-
-  return (
-    <section style={{ width: "100%", background: "transparent", padding: "120px 24px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div style={{ maxWidth: "800px", width: "100%", margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <div style={{ padding: "4px 16px", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "99px", marginBottom: "24px" }}>
-          <span style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", color: "rgba(255, 255, 255, 0.5)", textTransform: "uppercase" }}>FAQ</span>
-        </div>
-        <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, color: "#fff", lineHeight: 1.1, marginBottom: "16px", textAlign: "center" }}>Campus Hiring FAQs</h2>
-        <div style={{ display: "flex", gap: "32px", borderBottom: "1px solid rgba(255,255,255,0.1)", marginBottom: "48px", width: "100%", justifyContent: "center" }}>
-          {["Product", "Support"].map((tab) => (
-            <div
-              key={tab}
-              onClick={() => { setActiveTab(tab); setOpenIndex(null); }}
-              style={{
-                paddingBottom: "16px",
-                cursor: "pointer",
-                color: activeTab === tab ? "#fff" : "rgba(255, 255, 255, 0.5)",
-                fontWeight: activeTab === tab ? 600 : 500,
-                borderBottom: activeTab === tab ? "2px solid #fff" : "none",
-                marginBottom: "-1px"
-              }}
-            >{tab}</div>
-          ))}
-        </div>
-        <div style={{ width: "100%" }}>
-          {currentFaqs.map((item, i) => (
-            <div key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-              <div onClick={() => setOpenIndex(openIndex === i ? null : i)} style={{ padding: "24px 0", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h4 style={{ fontSize: "1.05rem", fontWeight: 500 }}>{item.q}</h4>
-                <Plus size={18} style={{ transform: openIndex === i ? "rotate(45deg)" : "none", transition: "0.3s" }} />
-              </div>
-              {openIndex === i && <p style={{ paddingBottom: "24px", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{item.a}</p>}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // Broken Assessment Section
 function BrokenAssessmentSection() {
