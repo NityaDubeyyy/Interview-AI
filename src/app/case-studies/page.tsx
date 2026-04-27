@@ -88,31 +88,37 @@ export default function CaseStudiesPage() {
           {[
             {
               logo: "stripe",
+              slug: "stripe",
               sub: "65% Faster.",
               title: "How Stripe is scaling their marketing websites.",
             },
             {
               logo: "hulu",
+              slug: "hulu",
               sub: "High-performance.",
               title: "How Hulu is building and scaling their marketing websites.",
             },
             {
               logo: "▲ Vercel",
+              slug: "vercel",
               sub: "Fast and secure.",
               title: "How Vercel is building and scaling their marketing websites.",
             },
             {
               logo: "Beacon",
+              slug: "beacon",
               sub: "Improved workflow.",
               title: "How Beacon is transforming their marketing websites.",
             },
             {
               logo: "supabase", // In a real app we'd use their logo icon
+              slug: "supabase",
               sub: "Improved workflow.",
               title: "How Supabase is transforming their marketing websites.",
             },
             {
               logo: "OpenAI",
+              slug: "openai",
               sub: "Improved workflow.",
               title: "How OpenAI is transforming their marketing websites.",
             }
@@ -148,7 +154,7 @@ export default function CaseStudiesPage() {
                 {item.title}
               </h3>
               <div style={{ marginTop: "auto" }}>
-                <Link href="#" style={{ display: "flex", alignItems: "center", gap: "8px", color: "rgba(255,255,255,0.6)", textDecoration: "none", fontSize: "13px", fontWeight: 500 }}>
+                <Link href={`/case-studies/${item.slug}`} style={{ display: "flex", alignItems: "center", gap: "8px", color: "rgba(255,255,255,0.6)", textDecoration: "none", fontSize: "13px", fontWeight: 500 }}>
                   Read Story <ArrowRight size={12} />
                 </Link>
               </div>
