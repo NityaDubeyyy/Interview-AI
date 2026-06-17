@@ -1,6 +1,6 @@
 .contactPage {
   min-height: 100vh;
-  background: #0a0a0a;
+  background: transparent;
   color: #ffffff;
 }
 
@@ -43,8 +43,8 @@
 }
 
 .headline {
-  font-size: clamp(2.75rem, 5vw, 4.25rem);
-  line-height: 1.05;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
   font-weight: 800;
   max-width: 720px;
 }
@@ -67,27 +67,29 @@
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  background: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%);
-  padding: 1.5rem 1.75rem;
-  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.25rem 1.5rem;
+  border-radius: 18px;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .highlightItem:hover {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.4);
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.3);
 }
 
 .highlightIcon {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #7C3AED;
-  color: #FFFFFF;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.2);
+  color: #8B5CF6;
   flex-shrink: 0;
 }
 

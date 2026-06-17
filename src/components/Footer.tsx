@@ -15,7 +15,7 @@ export default function Footer() {
         color: "rgba(226, 232, 240, 0.88)", 
         fontFamily: "var(--font-inter), sans-serif",
         position: "relative",
-        overflow: "visible"
+        overflow: "hidden"
       }}
     >
       <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
@@ -143,7 +143,7 @@ export default function Footer() {
       <div 
         style={{ 
           position: "absolute", 
-          bottom: "-5vw", 
+          bottom: "-4vw", 
           left: "50%", 
           transform: "translateX(-50%)",
           width: "220%", 

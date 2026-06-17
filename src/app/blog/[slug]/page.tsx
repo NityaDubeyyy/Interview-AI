@@ -4,11 +4,12 @@ import { getBlogPostBySlug, getAllBlogPosts } from "@data/blog-data";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ChevronLeft, Clock, Calendar, Tag } from "lucide-react";
+import { Metadata } from "next";
 
 interface BlogPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static params for all blog posts
@@ -19,6 +20,36 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found | Intellix AI",
+    };
+  }
+
+  return {
+    title: `${post.title} | Intellix Blog`,
+    description: post.description,
+    keywords: [...post.tags, "AI", "Interview Prep", "Hiring"],
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      publishedTime: post.date,
+      authors: post.authors.map(a => a.name),
+      url: `https://intellix.ai/blog/${post.slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    }
+  };
+}
+
 export default async function BlogPostPage({ params }: BlogPageProps) {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
@@ -27,8 +58,37 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.description,
+    "image": "https://intellix.ai/og-image.jpg",  
+    "author": post.authors.map(a => ({
+      "@type": "Person",
+      "name": a.name
+    })),
+    "publisher": {
+      "@type": "Organization",
+      "name": "Intellix AI",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://intellix.ai/logo.png"
+      }
+    },
+    "datePublished": post.date,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://intellix.ai/blog/${post.slug}`
+    }
+  };
+
   return (
-    <main style={{ backgroundColor: "#0a0a0a", color: "#ffffff", minHeight: "100vh", fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}>
+    <main style={{ backgroundColor: "transparent", color: "#ffffff", minHeight: "100vh", fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
       
       <article style={{ paddingTop: "140px", paddingBottom: "100px", maxWidth: "800px", margin: "0 auto", paddingLeft: "24px", paddingRight: "24px" }}>

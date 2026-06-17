@@ -46,7 +46,7 @@ export default function BlogPage() {
   const morePosts = posts.slice(2);
 
   return (
-    <main style={{ backgroundColor: "#0a0a0a", color: "#ffffff", minHeight: "100vh", fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}>
+    <main style={{ backgroundColor: "transparent", color: "#ffffff", minHeight: "100vh", fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif" }}>
       <Navbar />
       
       <div style={{ paddingTop: "140px", paddingBottom: "100px", maxWidth: "1200px", margin: "0 auto", paddingLeft: "24px", paddingRight: "24px" }}>

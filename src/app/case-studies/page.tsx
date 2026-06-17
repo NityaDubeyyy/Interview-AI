@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function CaseStudiesPage() {
   return (
-    <main style={{ backgroundColor: "#03000a", color: "#ffffff", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif" }}>
+    <main style={{ backgroundColor: "transparent", color: "#ffffff", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif" }}>
       <Navbar />
       
       <div style={{ paddingTop: "140px", paddingBottom: "100px", px: "24px", maxWidth: "1200px", margin: "0 auto", paddingLeft: "24px", paddingRight: "24px" }}>

@@ -184,7 +184,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
 
   if (!study) {
     return (
-      <main style={{ backgroundColor: "#03000a", color: "#ffffff", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif" }}>
+      <main style={{ backgroundColor: "transparent", color: "#ffffff", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif" }}>
         <Navbar />
         <div style={{ paddingTop: "180px", textAlign: "center", paddingBottom: "100px" }}>
           <h1 style={{ fontSize: "2rem", fontWeight: 700 }}>Case Study Not Found</h1>
@@ -198,7 +198,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
   }
 
   return (
-    <main style={{ backgroundColor: "#03000a", color: "#ffffff", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif" }}>
+    <main style={{ backgroundColor: "transparent", color: "#ffffff", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif" }}>
       <Navbar />
       
       {/* Article Container */}
