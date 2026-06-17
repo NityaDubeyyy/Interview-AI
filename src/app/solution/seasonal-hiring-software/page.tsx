@@ -34,7 +34,7 @@ export default function SeasonalHiringPage() {
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} style={{ display: "flex", gap: "20px", justifyContent: "center", marginBottom: "40px" }}>
-            <button style={{ background: "#060212", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", padding: "16px 36px", borderRadius: "14px", fontSize: "1.05rem", fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", background: "linear-gradient(180deg, #0f172a 0%, #060212 100%)" }}>
+            <button style={{ color: "#fff", border: "1px solid rgba(255,255,255,0.2)", padding: "16px 36px", borderRadius: "14px", fontSize: "1.05rem", fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", background: "linear-gradient(180deg, #0f172a 0%, #060212 100%)" }}>
               Start free trial <ArrowRight size={20} style={{ transform: "rotate(-45deg)" }} />
             </button>
             <button style={{ background: "rgba(255, 255, 255, 0.03)", color: "#fff", border: "1px solid rgba(255, 255, 255, 0.1)", padding: "16px 36px", borderRadius: "14px", fontSize: "1.05rem", fontWeight: 600, cursor: "pointer" }}>
@@ -198,7 +198,7 @@ export default function SeasonalHiringPage() {
                       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                          <div style={{ background: "rgba(255,255,255,0.03)", padding: "12px", borderRadius: "10px", borderLeft: "4px solid #3b82f6" }}>
                             <div style={{ fontSize: "10px", color: "#3b82f6", fontWeight: 700, marginBottom: "4px" }}>0:00 Customer Orientation</div>
-                            <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.6)", lineHeight: 1.4 }}>I've been working the front desk at my aunt's dental office for about two years, and the thing I love most is when a nervous patient walks in and I can just, like, talk them down a little? You learn to read people fast...</p>
+                            <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.6)", lineHeight: 1.4 }}>I&apos;ve been working the front desk at my aunt&apos;s dental office for about two years, and the thing I love most is when a nervous patient walks in and I can just, like, talk them down a little? You learn to read people fast...</p>
                          </div>
                          <div style={{ background: "rgba(255,255,255,0.03)", padding: "12px", borderRadius: "10px" }}>
                             <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.4)", fontWeight: 700, marginBottom: "4px" }}>0:22 Adaptability</div>
@@ -326,14 +326,14 @@ export default function SeasonalHiringPage() {
                </div>
                <h2 style={{ fontSize: "3.5rem", fontWeight: 600, marginBottom: "28px", lineHeight: 1.1, color: "#fff" }}>Review 100 candidates in the time it takes to phone-screen 1</h2>
                <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "1.1rem", lineHeight: 1.6, marginBottom: "40px" }}>
-                  Applications pour in. Your team can't phone-screen everyone. Truffle's AI transcribes every response, generates summaries, produces match scores with reasoning, and sorts candidates so the most aligned rise to the top.
+                  Applications pour in. Your team can&apos;t phone-screen everyone. Truffle&apos;s AI transcribes every response, generates summaries, produces match scores with reasoning, and sorts candidates so the most aligned rise to the top.
                </p>
                <button style={{ background: "#060212", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", padding: "14px 28px", borderRadius: "10px", fontSize: "1rem", fontWeight: 600, display: "flex", alignItems: "center", gap: "8px", marginBottom: "40px" }}>
                   Start free trial <ArrowRight size={18} style={{ transform: "rotate(-45deg)" }} />
                </button>
                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                   {["Custom Match % based on your criteria", "AI explains why each score makes sense", "Transparent rubrics attached to every question"].map((bullet, i) => (
-                    <div key={i} style={{ display: "flex", gap: "16px", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: i === 0 ? 0 : "20px", borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
+                    <div key={i} style={{ display: "flex", gap: "16px", alignItems: "center", paddingTop: i === 0 ? 0 : "20px", borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
                        <Check size={18} color="rgba(255,255,255,0.6)" />
                        <span style={{ color: "rgba(255,255,255,0.8)" }}>{bullet}</span>
                     </div>
@@ -389,16 +389,16 @@ export default function SeasonalHiringPage() {
             
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                <div style={{ display: "inline-block", background: "#f1f5f9", borderRadius: "100px", padding: "6px 16px", marginBottom: "24px" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(15, 23, 42, 0.6)", letterSpacing: "1px" }}>CANDIDATES APPLY AT MIDNIGHT. THAT'S FINE.</span>
+                  <span style={{ fontSize: "11px", fontWeight: 800, color: "rgba(15, 23, 42, 0.6)", letterSpacing: "1px" }}>CANDIDATES APPLY AT MIDNIGHT. THAT&apos;S FINE.</span>
                </div>
-               <h2 style={{ fontSize: "3.5rem", fontWeight: 600, marginBottom: "28px", lineHeight: 1.1, color: "#fff" }}>Async interviews that work around everyone's schedule</h2>
+               <h2 style={{ fontSize: "3.5rem", fontWeight: 600, marginBottom: "28px", lineHeight: 1.1, color: "#fff" }}>Async interviews that work around everyone&apos;s schedule</h2>
                <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "1.1rem", lineHeight: 1.6, marginBottom: "40px" }}>
                   Truffle lets candidates record answers from their phone whenever works for them — 6am, midnight, Sunday morning. And with automatic reminders at 24 and 72 hours, the ones who forget get a nudge back.
                </p>
                <button style={{ background: "#060212", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", padding: "14px 28px", borderRadius: "10px", fontSize: "1rem", fontWeight: 600, marginBottom: "40px" }}>Start free trial</button>
                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                   {["Assign teammates by roles or interviews", "Built-in scorecards", "Instant visibility into who's a yes, who's a maybe, and why"].map((bullet, i) => (
-                    <div key={i} style={{ display: "flex", gap: "16px", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: i === 0 ? 0 : "24px", borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
+                    <div key={i} style={{ display: "flex", gap: "16px", alignItems: "center", paddingTop: i === 0 ? 0 : "24px", borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.06)" }}>
                        <Check size={18} color="rgba(255,255,255,0.6)" />
                        <span style={{ color: "rgba(255,255,255,0.8)" }}>{bullet}</span>
                     </div>
@@ -417,7 +417,7 @@ export default function SeasonalHiringPage() {
                </div>
                <h2 style={{ fontSize: "3.5rem", fontWeight: 600, marginBottom: "28px", lineHeight: 1.1, color: "#fff" }}>Reduce early no-shows with better expectation alignment</h2>
                <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "1.1rem", lineHeight: 1.6, marginBottom: "40px" }}>
-                  Truffle's environment fit assessment surfaces alignment between what candidates want and what the role actually looks like — schedule realities, pace, physical demands, team dynamics. It's based on realistic job preview principles: set accurate expectations early and you get fewer surprises later.
+                  Truffle&apos;s environment fit assessment surfaces alignment between what candidates want and what the role actually looks like — schedule realities, pace, physical demands, team dynamics. It&apos;s based on realistic job preview principles: set accurate expectations early and you get fewer surprises later.
                </p>
                <button style={{ background: "#060212", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", padding: "14px 28px", borderRadius: "10px", fontSize: "1rem", fontWeight: 600, marginBottom: "40px" }}>Start free trial</button>
                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -511,7 +511,9 @@ export default function SeasonalHiringPage() {
                ))}
             </div>
          </div>
-        {/* 9. AI Resistance Section (Image 1) */}
+      </section>
+
+      {/* 9. AI Resistance Section (Image 1) */}
       <section style={{ padding: "140px 24px", background: "#060212", color: "#fff" }}>
          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "100px", alignItems: "center" }}>
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -623,13 +625,13 @@ export default function SeasonalHiringPage() {
 
       <Footer />
 
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes pulse {
           0% { transform: scale(0.95); opacity: 0.5; }
           50% { transform: scale(1.05); opacity: 0.8; }
           100% { transform: scale(0.95); opacity: 0.5; }
         }
-      `}</style>
+      ` }} />
     </main>
   );
 }
