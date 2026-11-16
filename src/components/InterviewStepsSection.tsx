@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import DarkVeil from "./DarkVeil";
 import { Calendar, Bot, Zap, BarChart3, Clock, ArrowRight, ChevronLeft, ChevronRight, Edit, FileText, Mic, XCircle, CheckCircle, File } from "lucide-react";
@@ -565,6 +566,7 @@ const steps = [
 ];
 
 export default function InterviewStepsSection() {
+  const router = useRouter();
   const containerRef = useRef(null);
   const [activeStep, setActiveStep] = useState(1);
 
@@ -591,35 +593,90 @@ export default function InterviewStepsSection() {
         position: 'relative'
       }}
     >
+      <style>{`
+        .steps-split-container {
+          display: flex;
+          position: relative;
+        }
+
+        .steps-left-col {
+          flex: 1.2;
+          padding: 10vh 0;
+        }
+
+        .steps-right-col {
+          flex: 1;
+          height: 100vh;
+          position: sticky;
+          top: 0;
+          display: flex;
+          align-items: center;
+        }
+
+        .step-scroll-item {
+          height: 80vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 40px;
+        }
+
+        @media (max-width: 1024px) {
+          .steps-split-container {
+            flex-direction: column !important;
+          }
+          .steps-left-col {
+            padding: 3rem 0 1rem !important;
+          }
+          .steps-right-col {
+            height: auto !important;
+            position: relative !important;
+            top: auto !important;
+            padding: 0 1rem 4rem !important;
+          }
+          .step-scroll-item {
+            height: auto !important;
+            padding: 0 1rem !important;
+            margin-bottom: 2rem;
+          }
+          .step-desc-mobile {
+            display: block !important;
+            margin-top: 1.5rem;
+            text-align: center;
+          }
+          .steps-right-col-inner {
+            margin-left: 0 !important;
+            padding: 1.5rem !important;
+          }
+        }
+      `}</style>
+
       {/* Reduced intensity background for performance */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0, opacity: 0.08, pointerEvents: 'none' }}>
         <DarkVeil hueShift={20} noiseIntensity={0.03} scanlineIntensity={0.1} speed={0.1} warpAmount={0.2} resolutionScale={0.5} />
       </div>
 
       <div className="container" style={{ display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
-        <div style={{ width: '100%', textAlign: 'center', marginTop: '100px', marginBottom: '-5vh', position: 'relative', zIndex: 20 }}>
-          <h2 style={{ fontSize: '48px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', margin: 0 }}>
+        <div style={{ width: '100%', textAlign: 'center', marginTop: '80px', marginBottom: '2rem', position: 'relative', zIndex: 20 }}>
+          <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 48px)', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', margin: 0 }}>
             How It Works
           </h2>
+          <p style={{ color: "rgba(255, 255, 255, 0.6)", fontSize: "1.05rem", marginTop: "0.5rem" }}>
+            A streamlined 4-step preparation workflow engineered for your next opportunity
+          </p>
         </div>
-        <div style={{ display: 'flex', flex: 1, position: 'relative' }}>
+
+        <div className="steps-split-container">
           {/* LEFT SIDE: SCROLLING CARDS */}
-          <div style={{ flex: 1.2, padding: '10vh 0' }}>
+          <div className="steps-left-col">
             {steps.map((step) => (
             <motion.div 
               key={step.id}
-              className="step-card-scroll"
+              className="step-scroll-item"
               initial={{ opacity: 0.3, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ margin: "-40% 0px -40% 0px" }}
+              viewport={{ margin: "-20% 0px -20% 0px" }}
               transition={{ duration: 0.6 }}
-              style={{ 
-                height: '80vh', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                padding: '0 40px'
-              }}
             >
               <div style={{ 
                 width: '100%', 
@@ -628,20 +685,21 @@ export default function InterviewStepsSection() {
                 background: step.id === 1 ? 'transparent' : 'rgba(255, 255, 255, 0.02)', 
                 backdropFilter: step.id === 1 ? 'none' : 'blur(20px)', 
                 border: step.id === 1 ? 'none' : '1px solid rgba(255,255,255,0.08)', 
-                borderRadius: '48px', 
+                borderRadius: '36px', 
                 position: 'relative', 
                 overflow: 'hidden', 
                 boxShadow: step.id === 1 ? 'none' : (activeStep === step.id ? '0 40px 80px rgba(0,0,0,0.6), 0 0 20px rgba(139, 92, 246, 0.1)' : '0 20px 40px rgba(0,0,0,0.4)'),
                 display: 'flex', 
+                flexDirection: 'column',
                 alignItems: 'center', 
                 justifyContent: 'center',
-                padding: '40px',
+                padding: '30px',
                 transition: 'all 0.5s ease'
               }}>
-                <div style={{ position: 'absolute', top: '30px', left: '30px', width: '50px', height: '50px', background: step.color, borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', boxShadow: `0 0 20px ${step.color}44` }}>
+                <div style={{ position: 'absolute', top: '24px', left: '24px', width: '44px', height: '44px', background: step.color, borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', boxShadow: `0 0 20px ${step.color}44` }}>
                   {step.icon}
                 </div>
-                <div style={{ position: 'absolute', top: '30px', right: '30px', fontSize: '14px', fontWeight: 700, opacity: 0.2 }}>
+                <div style={{ position: 'absolute', top: '24px', right: '24px', fontSize: '13px', fontWeight: 700, opacity: 0.4 }}>
                   {step.tag}
                 </div>
                 
@@ -657,14 +715,15 @@ export default function InterviewStepsSection() {
         </div>
 
         {/* RIGHT SIDE: STICKY DETAILS */}
-        <div style={{ flex: 1, height: '100vh', position: 'sticky', top: 0, display: 'flex', alignItems: 'center' }}>
-          <div style={{ 
-            padding: '60px',
+        <div className="steps-right-col">
+          <div className="steps-right-col-inner" style={{ 
+            padding: '40px',
             position: 'relative',
-            marginLeft: '-60px', // Overlap effect
-            zIndex: 10
+            marginLeft: '-30px',
+            zIndex: 10,
+            width: '100%'
           }}>
-            {/* Connector Line for right-side steps 2, 3, 4 */}
+            {/* Connector Line */}
             <div style={{
               position: 'absolute',
               left: '30px',
@@ -689,45 +748,46 @@ export default function InterviewStepsSection() {
                 <div style={{ 
                   background: `${step.color}15`, 
                   color: step.color, 
-                  padding: '8px 20px', 
+                  padding: '6px 18px', 
                   borderRadius: '99px', 
-                  fontSize: '14px', 
+                  fontSize: '13px', 
                   fontWeight: 700, 
                   width: 'fit-content', 
-                  marginBottom: '30px', 
+                  marginBottom: '20px', 
                   border: `1px solid ${step.color}33`,
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px'
                 }}>
-                  <Clock size={16} /> {step.tag}
+                  <Clock size={15} /> {step.tag}
                 </div>
-                <h2 style={{ 
-                  fontSize: '48px', 
+                <h3 style={{ 
+                  fontSize: 'clamp(2rem, 3.5vw, 42px)', 
                   fontWeight: 800, 
-                  marginBottom: '24px', 
-                  lineHeight: 1.1, 
-                  letterSpacing: '-0.04em', 
+                  marginBottom: '16px', 
+                  lineHeight: 1.15, 
+                  letterSpacing: '-0.03em', 
                   background: 'linear-gradient(to bottom, #ffffff, #94a3b8)', 
                   WebkitBackgroundClip: 'text', 
                   WebkitTextFillColor: 'transparent' 
                 }}>
                   {step.title}
-                </h2>
+                </h3>
                 <p style={{ 
-                  fontSize: '18px', 
+                  fontSize: '16px', 
                   color: '#94a3b8', 
                   lineHeight: 1.6, 
-                  marginBottom: '40px'
+                  marginBottom: '32px'
                 }}>
                   {step.desc}
                 </p>
                 <motion.button
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => router.push('/role-setup')}
                   style={{
-                    background: 'transparent',
-                    border: `1px solid ${step.color}44`,
+                    background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(124, 58, 237, 0.3) 100%)',
+                    border: `1px solid ${step.color}66`,
                     color: '#fff',
                     padding: '12px 24px',
                     borderRadius: '12px',
@@ -736,10 +796,11 @@ export default function InterviewStepsSection() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '10px',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 20px rgba(139, 92, 246, 0.25)'
                   }}
                 >
-                  Learn More <ArrowRight size={18} color={step.color} />
+                  Start This Step Now <ArrowRight size={18} color={step.color} />
                 </motion.button>
               </motion.div>
             ))}

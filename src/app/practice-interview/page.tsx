@@ -83,8 +83,28 @@ export default function PracticeInterviewPage() {
                 <div className={styles.heroLabel}>Practice Arena</div>
                 <h1 className={styles.heroTitle}>Master Every Scenario with AI Agents</h1>
                 <p className={styles.heroSubtitle}>
-                    From high-stakes Technical Interviews to English Fluency exams—choose your specialized AI Agent and start practicing.
+                    From high-stakes Technical Interviews to English Fluency exams—choose your specialized AI Agent or configure a custom role setup.
                 </p>
+                <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+                    <Link href="/role-setup" style={{ textDecoration: 'none' }}>
+                        <button style={{
+                            padding: '0.85rem 1.75rem',
+                            background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
+                            border: 'none',
+                            borderRadius: '12px',
+                            color: 'white',
+                            fontWeight: 700,
+                            fontSize: '0.95rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            boxShadow: '0 4px 20px rgba(139, 92, 246, 0.4)'
+                        }}>
+                            Configure Target Role & Questions <ArrowRight size={18} />
+                        </button>
+                    </Link>
+                </div>
             </section>
 
             <div className={styles.mainContent}>
@@ -127,9 +147,11 @@ export default function PracticeInterviewPage() {
                                 <div className={styles.iconBox}>{agent.icon}</div>
                                 <h3 className={styles.agentName}>{agent.name}</h3>
                                 <p className={styles.agentDesc}>{agent.desc}</p>
-                                <div className={styles.startBtn}>
-                                    Start Practice <span><ArrowRight size={18} /></span>
-                                </div>
+                                <Link href="/role-setup" style={{ textDecoration: 'none' }}>
+                                    <div className={styles.startBtn}>
+                                        Start Practice <span><ArrowRight size={18} /></span>
+                                    </div>
+                                </Link>
                             </div>
                         ))}
                     </div>

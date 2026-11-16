@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import TypewriterTitle from "@/components/TypewriterTitle";
 import LoginLiquidMorph from "@/components/LoginLiquidMorph";
@@ -173,6 +174,7 @@ function BentoSpotlightCard({
 }
 
 export default function Home() {
+  const router = useRouter();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [activeFaqCategory, setActiveFaqCategory] = useState("Product");
   const [featureHeadingSelected, setFeatureHeadingSelected] = useState(false);
@@ -203,7 +205,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            style={{ fontSize: '4.5rem', fontWeight: 700, lineHeight: 1.1, marginBottom: '1rem' }}
+            style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 700, lineHeight: 1.15, marginBottom: '1rem' }}
           >
             <span className="hero-word">Reduce</span>
             <span className="hero-word">Hiring</span>
@@ -219,7 +221,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.6)', maxWidth: '800px', margin: '0 auto 2rem', lineHeight: 1.6 }}
+            style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: 'rgba(255, 255, 255, 0.65)', maxWidth: '800px', margin: '0 auto 2rem', lineHeight: 1.6 }}
           >
             Streamline interviews, analyse candidates with AI, and make faster, <br /> data-driven hiring decisions — all in one unified platform.
           </motion.p>
@@ -229,12 +231,24 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginBottom: '4rem' }}
+            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3.5rem' }}
           >
-            <button className={styles.btnPrimary} style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)', color: 'white', padding: '0.85rem 2rem', borderRadius: '999px', boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)', display: 'flex', alignItems: 'center', gap: '0.6rem', border: 'none', fontWeight: 600, fontSize: '0.95rem' }}>
+            <button 
+              className={styles.btnPrimary} 
+              onClick={() => router.push('/role-setup')}
+              style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)', color: 'white', padding: '0.85rem 2rem', borderRadius: '999px', boxShadow: '0 10px 30px rgba(139, 92, 246, 0.35)', display: 'flex', alignItems: 'center', gap: '0.6rem', border: 'none', fontWeight: 700, fontSize: '0.95rem', cursor: 'pointer' }}
+            >
               Start a project <ArrowUpRight size={18} />
             </button>
-            <button className={styles.btnOutline} style={{ background: 'rgba(10, 10, 18, 0.8)', border: '1px solid rgba(255, 255, 255, 0.15)', color: 'white', padding: '0.85rem 2rem', borderRadius: '999px', display: 'flex', alignItems: 'center', gap: '0.6rem', fontWeight: 500, fontSize: '0.95rem' }}>
+            <button 
+              className={styles.btnOutline} 
+              onClick={() => {
+                const el = document.getElementById('bento-process');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else router.push('/case-studies');
+              }}
+              style={{ background: 'rgba(10, 10, 18, 0.8)', border: '1px solid rgba(255, 255, 255, 0.2)', color: 'white', padding: '0.85rem 2rem', borderRadius: '999px', display: 'flex', alignItems: 'center', gap: '0.6rem', fontWeight: 600, fontSize: '0.95rem', cursor: 'pointer' }}
+            >
               Explore work
             </button>
           </motion.div>
@@ -247,7 +261,7 @@ export default function Home() {
             transition={{ delay: 0.8, duration: 1 }}
             style={{ width: '100%', maxWidth: '1100px', margin: '0 auto', position: 'relative', perspective: '2000px' }}
           >
-            <div className={`image-card ${styles.dashboardFrame}`} style={{ border: '1px solid rgba(255, 255, 255, 0.1)', position: 'relative', zIndex: 1, width: '100%', height: '600px', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 30px 100px rgba(139, 92, 246, 0.15)' }}>
+            <div className={`image-card ${styles.dashboardFrame}`} style={{ border: '1px solid rgba(255, 255, 255, 0.1)', position: 'relative', zIndex: 1, width: '100%', height: 'clamp(280px, 45vw, 600px)', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 30px 100px rgba(139, 92, 246, 0.15)' }}>
               <video 
                 autoPlay 
                 loop 
@@ -274,7 +288,7 @@ export default function Home() {
       <ScreensCandidatesSection />
 
       {/* HOW IT WORKS / MARVELLOUS INSIGHTS SECTION */}
-      <section className={styles.section} style={{ position: 'relative', overflow: 'hidden', padding: '100px 24px', zIndex: 1 }}>
+      <section className={styles.section} id="bento-process" style={{ position: 'relative', overflow: 'hidden', padding: '100px 24px', zIndex: 1 }}>
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: -1, opacity: 0.3, filter: 'sepia(1) hue-rotate(240deg) saturate(2)' }}>
           <DarkVeil hueShift={40} noiseIntensity={0.05} scanlineIntensity={0.2} speed={0.1} warpAmount={0.5} />
         </div>
@@ -304,13 +318,14 @@ export default function Home() {
               dimmed={hoveredBento !== null && hoveredBento !== 'box1'}
               onHoverStart={() => setHoveredBento('box1')}
               onHoverEnd={() => setHoveredBento(null)}
+              onClick={() => router.push('/role-setup')}
               glowColor="rgba(139, 92, 246, 0.4)"
               accentColor="rgba(139, 92, 246, 0.12)"
-              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
+              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'pointer' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ borderColor: 'rgba(139, 92, 246, 0.35)', boxShadow: '0 20px 40px rgba(139, 92, 246, 0.15)' }}
+              whileHover={{ borderColor: 'rgba(139, 92, 246, 0.5)', scale: 1.01, boxShadow: '0 20px 40px rgba(139, 92, 246, 0.2)' }}
             >
               {/* Subtle background glow */}
               <div style={{ position: 'absolute', top: '50%', left: '50%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(124,58,237,0.1), transparent 70%)', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }}></div>
@@ -348,8 +363,10 @@ export default function Home() {
                  </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', zIndex: 1 }}>
-                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px' }}>Step 1: Add Resume</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.5, maxWidth: '350px' }}>Let our smart engine tailor your AI-coaches to your career goals and profile.</p>
+                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  Step 1: Add Resume <ArrowRight size={16} color="#8b5cf6" />
+                </h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, maxWidth: '350px' }}>Let our smart engine tailor your AI-coaches to your career goals and profile.</p>
               </div>
             </BentoSpotlightCard>
 
@@ -359,13 +376,14 @@ export default function Home() {
               dimmed={hoveredBento !== null && hoveredBento !== 'box2'}
               onHoverStart={() => setHoveredBento('box2')}
               onHoverEnd={() => setHoveredBento(null)}
+              onClick={() => router.push('/role-setup')}
               glowColor="rgba(96, 165, 250, 0.35)"
               accentColor="rgba(96, 165, 250, 0.10)"
-              style={{ background: 'linear-gradient(180deg, rgba(20,20,20,0.6) 0%, rgba(30,30,30,0.4) 100%)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
+              style={{ background: 'linear-gradient(180deg, rgba(20,20,20,0.6) 0%, rgba(30,30,30,0.4) 100%)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'pointer' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ borderColor: 'rgba(96, 165, 250, 0.35)', boxShadow: '0 20px 40px rgba(96, 165, 250, 0.12)' }}
+              whileHover={{ borderColor: 'rgba(96, 165, 250, 0.5)', scale: 1.01, boxShadow: '0 20px 40px rgba(96, 165, 250, 0.15)' }}
             >
               {/* Blur glow behind the pillars */}
               <div style={{ position: 'absolute', top: '30%', left: '50%', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%)', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }}></div>
@@ -373,7 +391,7 @@ export default function Home() {
                  {/* 3D Pillars visual */}
                  <div style={{ display: 'flex', alignItems: 'flex-end', gap: '12px' }}>
                     {[120, 160, 110, 130, 80, 100].map((h, i) => (
-                      <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                       <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <div style={{ width: '16px', height: '6px', background: '#e0f2fe', borderRadius: '50%', marginBottom: '-3px', zIndex: 2, boxShadow: '0 0 10px rgba(255,255,255,0.8)' }}></div>
                         <div style={{ width: '16px', height: `${h}px`, background: 'linear-gradient(180deg, rgba(255,255,255,0.5), transparent)', borderRadius: '8px' }}></div>
                       </div>
@@ -381,8 +399,10 @@ export default function Home() {
                  </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', zIndex: 1 }}>
-                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px' }}>Step 2: Define Your Role</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.5 }}>Set your target role or industry we'll fine-tune every tip for that position.</p>
+                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  Step 2: Define Your Role <ArrowRight size={16} color="#60a5fa" />
+                </h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5 }}>Set your target role or industry we'll fine-tune every tip for that position.</p>
               </div>
             </BentoSpotlightCard>
 
@@ -392,13 +412,14 @@ export default function Home() {
               dimmed={hoveredBento !== null && hoveredBento !== 'box3'}
               onHoverStart={() => setHoveredBento('box3')}
               onHoverEnd={() => setHoveredBento(null)}
+              onClick={() => router.push('/interview-cockpit')}
               glowColor="rgba(52, 211, 153, 0.35)"
               accentColor="rgba(52, 211, 153, 0.10)"
-              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
+              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'pointer' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ borderColor: 'rgba(52, 211, 153, 0.35)', boxShadow: '0 20px 40px rgba(52, 211, 153, 0.12)' }}
+              whileHover={{ borderColor: 'rgba(52, 211, 153, 0.5)', scale: 1.01, boxShadow: '0 20px 40px rgba(52, 211, 153, 0.15)' }}
             >
               <div style={{ flex: 1, marginBottom: '30px', display: 'flex', gap: '16px', minHeight: '140px' }}>
                  <div style={{ flex: 1, background: 'linear-gradient(180deg, rgba(255,255,255,0.05), transparent)', borderRadius: '24px', padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.02)' }}>
@@ -413,8 +434,10 @@ export default function Home() {
                  </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px' }}>Step 3: Launch AI Coach</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.5 }}>Practice live interviews with real-time feedback and smart follow-ups.</p>
+                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  Step 3: Launch AI Coach <ArrowRight size={16} color="#34d399" />
+                </h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5 }}>Practice live interviews with real-time feedback and smart follow-ups.</p>
               </div>
             </BentoSpotlightCard>
 
@@ -424,17 +447,20 @@ export default function Home() {
               dimmed={hoveredBento !== null && hoveredBento !== 'box4'}
               onHoverStart={() => setHoveredBento('box4')}
               onHoverEnd={() => setHoveredBento(null)}
+              onClick={() => router.push('/interview-cockpit')}
               glowColor="rgba(251, 191, 36, 0.35)"
               accentColor="rgba(251, 191, 36, 0.10)"
-              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'default' }}
+              style={{ background: 'rgba(20, 20, 20, 0.6)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '32px', padding: '40px', display: 'flex', flexDirection: 'column', backdropFilter: 'blur(20px)', cursor: 'pointer' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ borderColor: 'rgba(251, 191, 36, 0.35)', boxShadow: '0 20px 40px rgba(251, 191, 36, 0.12)' }}
+              whileHover={{ borderColor: 'rgba(251, 191, 36, 0.5)', scale: 1.01, boxShadow: '0 20px 40px rgba(251, 191, 36, 0.15)' }}
             >
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '40px' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px' }}>Step 4: Get Report</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.5, maxWidth: '250px' }}>Review strengths, improvement areas, and AI-suggested answers to boost performance.</p>
+                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#fff', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  Step 4: Get Report <ArrowRight size={16} color="#fbbf24" />
+                </h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, maxWidth: '250px' }}>Review strengths, improvement areas, and AI-suggested answers to boost performance.</p>
               </div>
               <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', gap: '8px', minHeight: '120px', position: 'relative' }}>
                 {/* Visual Chart Graphic with Colors */}
@@ -782,7 +808,7 @@ export default function Home() {
       </section>
 
       {/* PRICING SECTION */}
-      <section className={styles.pricingSection}>
+      <section className={styles.pricingSection} id="pricing">
         <div className="container">
           <div className={styles.pricingHeader}>
             <span className={styles.pricingLabel}>Simple Pricing</span>
@@ -832,7 +858,13 @@ export default function Home() {
                 <span className={styles.priceAmount}>$0</span>
                 <span className={styles.pricePeriod}>{billingCycle === 'monthly' ? '/mo' : '/yr'}</span>
               </div>
-              <button className={`${styles.planBtn} ${styles.planBtnStarter}`}>Start today for free</button>
+              <button 
+                className={`${styles.planBtn} ${styles.planBtnStarter}`}
+                onClick={() => router.push('/role-setup')}
+                style={{ cursor: 'pointer' }}
+              >
+                Start today for free
+              </button>
               <span className={styles.featureLabel}>Included Features:</span>
               <ul className={`${styles.featureList} ${styles.featureListFull}`}>
                 <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Presence</li>
@@ -857,7 +889,13 @@ export default function Home() {
                 <span className={styles.priceAmount}>{billingCycle === 'monthly' ? '$499' : '$4,990'}</span>
                 <span className={styles.pricePeriod}>{billingCycle === 'monthly' ? '/mo' : '/yr'}</span>
               </div>
-              <button className={`${styles.planBtn} ${styles.planBtnConsultation}`}>Schedule a Consultation</button>
+              <button 
+                className={`${styles.planBtn} ${styles.planBtnConsultation}`}
+                onClick={() => router.push('/contact')}
+                style={{ cursor: 'pointer' }}
+              >
+                Schedule a Consultation
+              </button>
               <span className={styles.featureLabel}>Included Features:</span>
               <ul className={styles.featureList}>
                 <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> 1-2 basic automations</li>
@@ -884,7 +922,13 @@ export default function Home() {
                 <span className={styles.priceAmount}>{billingCycle === 'monthly' ? '$1,500' : '$15,000'}</span>
                 <span className={styles.pricePeriod}>{billingCycle === 'monthly' ? '/mo' : '/yr'}</span>
               </div>
-              <button className={`${styles.planBtn} ${styles.planBtnConsultation}`} style={{ borderImage: 'linear-gradient(to right, #8B5CF6, #EC4899) 1' }}>Book a Consultation</button>
+              <button 
+                className={`${styles.planBtn} ${styles.planBtnConsultation}`} 
+                onClick={() => router.push('/contact')}
+                style={{ borderImage: 'linear-gradient(to right, #8B5CF6, #EC4899) 1', cursor: 'pointer' }}
+              >
+                Book a Consultation
+              </button>
               <span className={styles.featureLabel}>Included Features:</span>
               <ul className={styles.featureList}>
                 <li className={styles.featureItem}><ChevronRight className={styles.checkIcon} size={14} /> Custom AI agent</li>
@@ -910,7 +954,13 @@ export default function Home() {
 
             <div className={`${styles.supplementaryBox} ${styles.consultantBox}`}>
               <h4 className={styles.suppTitle}>Not Sure Which Plan is Right for You?</h4>
-              <button className={styles.consultantBtn}>Talk to an Expert Consultant</button>
+              <button 
+                className={styles.consultantBtn}
+                onClick={() => router.push('/contact')}
+                style={{ cursor: 'pointer' }}
+              >
+                Talk to an Expert Consultant
+              </button>
             </div>
           </div>
         </div>

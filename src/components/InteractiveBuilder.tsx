@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { 
   FileText, Settings, LineChart, Plus, Trash2, ChevronDown, LayoutGrid, ArrowUpRight, 
   Briefcase, Users, Milestone, ChevronLeft, ChevronRight, Check, Sparkles, Globe
@@ -51,6 +52,7 @@ type BuildStep = 'role' | 'template' | 'team' | 'skills' | 'rounds' | 'questions
 const STEP_ORDER: BuildStep[] = ['role', 'template', 'team', 'skills', 'rounds', 'questions'];
 
 export default function InteractiveBuilder() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState(1);
   const [currentStep, setCurrentStep] = useState<BuildStep>('role');
   const [selections, setSelections] = useState({
@@ -140,7 +142,7 @@ export default function InteractiveBuilder() {
         <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>Choose from a list of vetted templates related to your role, create your own, or skip planning for now.</p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
         {/* Custom Template Card */}
         <button 
             onClick={() => setSelections(prev => ({ ...prev, template: 'Custom' }))}
@@ -327,7 +329,7 @@ export default function InteractiveBuilder() {
       </div>
 
       {/* Main Controls Area */}
-      <div style={{ padding: '2rem 4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.01)' }}>
+      <div style={{ padding: '1.5rem clamp(1rem, 4vw, 4rem)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.01)', flexWrap: 'wrap', gap: '1rem' }}>
         <button 
           onClick={goBack} 
           disabled={currentStep === 'role'}
@@ -348,31 +350,51 @@ export default function InteractiveBuilder() {
           <ChevronLeft size={18} /> Back
         </button>
 
-        <button 
-          onClick={goNext}
-          disabled={currentStep === 'questions'}
-          style={{ 
-            background: 'var(--primary)', 
-            color: 'white',
-            padding: '0.75rem 2.5rem',
-            borderRadius: '10px',
-            fontSize: '0.9rem',
-            fontWeight: 700,
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            boxShadow: '0 0 25px rgba(139, 92, 246, 0.4)',
-            opacity: currentStep === 'questions' ? 0.3 : 1
-          }}
-        >
-          Continue <ChevronRight size={18} />
-        </button>
+        {currentStep === 'questions' ? (
+          <button 
+            onClick={() => router.push('/interview-cockpit')}
+            style={{ 
+              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', 
+              color: 'white',
+              padding: '0.75rem 2rem',
+              borderRadius: '10px',
+              fontSize: '0.9rem',
+              fontWeight: 700,
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              boxShadow: '0 0 25px rgba(16, 185, 129, 0.4)'
+            }}
+          >
+            Launch Interview Cockpit <ArrowUpRight size={18} />
+          </button>
+        ) : (
+          <button 
+            onClick={goNext}
+            style={{ 
+              background: 'var(--primary)', 
+              color: 'white',
+              padding: '0.75rem 2.5rem',
+              borderRadius: '10px',
+              fontSize: '0.9rem',
+              fontWeight: 700,
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              boxShadow: '0 0 25px rgba(139, 92, 246, 0.4)'
+            }}
+          >
+            Continue <ChevronRight size={18} />
+          </button>
+        )}
       </div>
 
       {/* Dynamic Content */}
-      <div style={{ padding: '1rem 4rem 4rem', minHeight: '700px' }}>
+      <div style={{ padding: '1rem clamp(1rem, 4vw, 4rem) 3rem', minHeight: '500px' }}>
         {renderStepContent()}
       </div>
     </div>

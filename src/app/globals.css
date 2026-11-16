@@ -27,7 +27,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -43,13 +46,14 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   min-height: 100vh;
-  padding-top: 5rem;
+  padding-top: 4.5rem;
 }
 
 .btn-primary {
   background: var(--primary);
   color: white;
   box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.3);
+  transition: all 0.25s ease;
 }
 
 .btn-primary:hover {
@@ -58,11 +62,18 @@ body {
   box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
 }
 
-/* Container */
+/* Responsive Container */
 .container {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1.5rem;
+  }
 }
 
 /* Reusable Components */

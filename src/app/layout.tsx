@@ -67,6 +67,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { InterviewProvider } from "@/context/InterviewContext";
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -92,7 +94,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        <InterviewProvider>
+          {children}
+        </InterviewProvider>
         {/* Global Bottom Blur Overlay */}
         <div 
           style={{
