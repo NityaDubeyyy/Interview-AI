@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { InterviewQuestion, generateInterviewQuestions } from "@/data/question-bank";
+import { SpeakingMetrics } from "@/utils/speechMetrics";
 
 export interface InterviewSession {
   roleTitle: string;
@@ -11,6 +12,7 @@ export interface InterviewSession {
   currentQuestionIndex: number;
   answers: Record<string, string>; // questionId -> answer text
   timeSpent: Record<string, number>; // questionId -> seconds spent
+  speakingMetrics: Record<string, SpeakingMetrics>; // questionId -> speaking metrics (WPM, fillers, duration)
   isCompleted: boolean;
   submittedAt: string | null;
 }
@@ -18,7 +20,7 @@ export interface InterviewSession {
 interface InterviewContextType {
   session: InterviewSession;
   startSession: (roleTitle: string, domain: string, experienceLevel: string, customQuestions?: InterviewQuestion[]) => void;
-  saveAnswer: (questionId: string, answerText: string, secondsSpent: number) => void;
+  saveAnswer: (questionId: string, answerText: string, secondsSpent: number, metrics?: SpeakingMetrics) => void;
   nextQuestion: () => void;
   previousQuestion: () => void;
   goToQuestion: (index: number) => void;
@@ -38,6 +40,7 @@ const initialSessionState: InterviewSession = {
   currentQuestionIndex: 0,
   answers: {},
   timeSpent: {},
+  speakingMetrics: {},
   isCompleted: false,
   submittedAt: null,
 };
@@ -55,7 +58,11 @@ export const InterviewProvider = ({ children }: { children: ReactNode }) => {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed && Array.isArray(parsed.questions) && parsed.questions.length > 0) {
-          setSession(parsed);
+          setSession({
+            ...initialSessionState,
+            ...parsed,
+            speakingMetrics: parsed.speakingMetrics || {},
+          });
         }
       }
     } catch (e) {
@@ -95,6 +102,7 @@ export const InterviewProvider = ({ children }: { children: ReactNode }) => {
       currentQuestionIndex: 0,
       answers: {},
       timeSpent: {},
+      speakingMetrics: {},
       isCompleted: false,
       submittedAt: null,
     };
@@ -102,7 +110,12 @@ export const InterviewProvider = ({ children }: { children: ReactNode }) => {
     setSession(newSession);
   };
 
-  const saveAnswer = (questionId: string, answerText: string, secondsSpent: number) => {
+  const saveAnswer = (
+    questionId: string,
+    answerText: string,
+    secondsSpent: number,
+    metrics?: SpeakingMetrics
+  ) => {
     setSession((prev) => ({
       ...prev,
       answers: {
@@ -112,6 +125,10 @@ export const InterviewProvider = ({ children }: { children: ReactNode }) => {
       timeSpent: {
         ...prev.timeSpent,
         [questionId]: (prev.timeSpent[questionId] || 0) + secondsSpent,
+      },
+      speakingMetrics: {
+        ...prev.speakingMetrics,
+        ...(metrics ? { [questionId]: metrics } : {}),
       },
     }));
   };
@@ -164,6 +181,7 @@ export const InterviewProvider = ({ children }: { children: ReactNode }) => {
     const resetState: InterviewSession = {
       ...initialSessionState,
       questions: generateInterviewQuestions("Software Engineer", "frontend", "intermediate"),
+      speakingMetrics: {},
     };
     setSession(resetState);
     try {
